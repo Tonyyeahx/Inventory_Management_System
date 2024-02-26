@@ -98,7 +98,7 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
 
 <!-- Images can be included with `![alt_text](image_path)` -->
 
-`![User Interface Diagram](./UserInterfaceDiagram.jepg)`
+`![User Interface Diagram](./UserInterfaceDiagram.jpeg)`
 
 **User Authentication Interface**
 
