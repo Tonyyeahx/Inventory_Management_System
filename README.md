@@ -98,6 +98,8 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
 
 <!-- Images can be included with `![alt_text](image_path)` -->
 
+`![User Interface Diagram](./UserInterfaceDiagram.jepg)`
+
 **User Authentication Interface**
 
 The login interface should provide separate options for testing users and business owners.
