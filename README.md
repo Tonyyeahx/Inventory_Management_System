@@ -208,51 +208,8 @@ B <--> C```
 ---
 title: Databse ERD for Smart Stock
 ---
-erDiagram
-    Store {
-        int store_id PK
-        string store_branch_name
-        string store_location
-        string store_owner
-    }
-    
-    Category {
-        int category_id PK
-        string category_name
-    }
-    
-    Brand {
-        int brand_id PK
-        string brand_name
-    }
-    
-    Supplier {
-        int supplier_id PK
-        string supplier_name
-    }
-    
-    Product {
-        int product_id PK
-        string description
-        int store_id FK
-        int category_id FK
-        int supplier_id FK
-        int brand_id FK
-        float price
-        float cost
-        int amountSold
-        int stockQty
-        float weight
-        float volume
-        datetime created
-        datetime lastUpdated
-        string status
-        string promotions
-        string additionalInformation
-    }
-
 ```
-
+![ER_Diagram](ER_InventoryManagement.png)
 
 #### Class Diagram
 <!-- 
