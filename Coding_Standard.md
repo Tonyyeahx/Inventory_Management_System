@@ -134,6 +134,10 @@
 
 - Use JavaDoc for at least public classes and public or protect members
 
+- Use test driven development
+
+- Use ```UpperCamelCase``` for class names, use ``` lowerCamelCase``` for method and variable names, and ```UPPER_SNAKE_CASE``` for constants
+
 
 ### Source File Basics
 
@@ -148,6 +152,10 @@
 
     > Each top-level class resides in a source file of its own.
 
+- The test class should be written piror to the production code. 
+
+    - A test class has a name that ends with Test, for example, ```HashIntegrationTest```. If it covers a single class, its name is the name of that class plus Test, for example HashImplTest
+
 
 ### Import Statements
 
@@ -160,6 +168,16 @@
     > Import statements are not line-wrapped. The column limit (source code column limit: 100) does not apply to import statements.
 
 ### Formatting
+
+- Naming:
+
+    - Class names are written in ```UpperCamelCase```. 
+    
+    - Method names, non-constant field names, parameter, and local variable names are written in ```lowerCamelCase```.
+
+    - Constant names use ```UPPER_SNAKE_CASE```: all uppercase letters, with each word separated from the next by a single underscore
+
+
 
 - Use of braces:
 
@@ -314,12 +332,18 @@
 
 - Use horizontal whitespace before ```(``` and after ```//```
 
+- Use test driven development
+
+- Use ```UpperCamelCase``` for class names, use ``` lowerCamelCase``` for method and variable names, and ```UPPER_SNAKE_CASE``` for constants
+
 
 ### Source File Basics
 
 - File names must be all lowercase and may include underscores (```_```) or dashes (```-```), but no additional punctuation.  Filenames’ extension must be .js
 
 - Source files are encoded in UTF-8.
+
+- The test class should be written piror to the production code. 
 
 
 ### Import Statements
@@ -332,6 +356,14 @@
 
 
 ### Formatting
+
+- Naming:
+
+    - Class names are written in ```UpperCamelCase```. 
+    
+    - Method names, non-constant field names, parameter, and local variable names are written in ```lowerCamelCase```.
+
+    - Constant names use ```UPPER_SNAKE_CASE```: all uppercase letters, with each word separated from the next by a single underscore
 
 - Use of braces:
 
