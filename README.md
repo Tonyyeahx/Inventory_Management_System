@@ -199,7 +199,7 @@ subgraph Database
 end
 
 A <-->|HTTP| B
-B <--> C```
+B <--> |SpringBoot| C
 
 
 
