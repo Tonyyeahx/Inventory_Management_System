@@ -4,10 +4,7 @@ import com.uw.cs506.team03.smartstock.dao.NewTableDAO;
 import com.uw.cs506.team03.smartstock.entity.NewTable;
 import com.uw.cs506.team03.smartstock.service.NewTableService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/test")
@@ -52,5 +49,12 @@ public class DemoRestController {
         else {
             return theTuple;
         }
+    }
+
+    @PostMapping("/newtable/addtuple")
+    public NewTable addTuple(@RequestBody NewTable theTuple) {
+        //in cases frontend give it id (it should not because id == 0 is for insert)
+        theTuple.setId(0);
+        return newTableService.save(theTuple);
     }
 }
