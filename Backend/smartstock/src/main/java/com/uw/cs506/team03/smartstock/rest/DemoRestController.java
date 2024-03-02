@@ -4,10 +4,7 @@ import com.uw.cs506.team03.smartstock.dao.NewTableDAO;
 import com.uw.cs506.team03.smartstock.entity.NewTable;
 import com.uw.cs506.team03.smartstock.service.NewTableService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/test")
@@ -42,7 +39,7 @@ public class DemoRestController {
         return  "id 1's stock - 1";
     }
 
-    @GetMapping("/newtable/{tupleID}")
+    @GetMapping("gettuple/{tupleID}")
     public NewTable getTuple(@PathVariable int tupleID) {
         NewTable theTuple = newTableService.findById(tupleID);
 
@@ -52,5 +49,29 @@ public class DemoRestController {
         else {
             return theTuple;
         }
+    }
+
+    @PostMapping("/addtuple")
+    public NewTable addTuple(@RequestBody NewTable theTuple) {
+        //in cases frontend give it id (it should not because id == 0 is for insert)
+        theTuple.setId(0);
+        return newTableService.save(theTuple);
+    }
+
+    @PutMapping("/updatetuple")
+    public NewTable updateTuple(@RequestBody NewTable theTuple) {
+        NewTable updatedTuple = newTableService.save(theTuple);
+        return updatedTuple;
+    }
+
+    @DeleteMapping("/deletetuple/{tupleID}")
+    public String deleteTuple(@PathVariable int tupleID) {
+        NewTable theTuple = newTableService.findById(tupleID);
+        if(theTuple == null) {
+            throw new RuntimeException(String.format("tupleID: %d not found", tupleID));
+        }
+
+        newTableService.deleteById(tupleID);
+        return String.format("tupleID: %d deleted", tupleID);
     }
 }
