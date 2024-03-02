@@ -9,4 +9,10 @@ public interface NewTableService {
     void addStock(Integer id);
 
     void subStock(Integer id);
+
+    NewTable save(NewTable newTable);
+
+    NewTable findById(Integer id);
+
+    void deleteById(Integer id);
 }

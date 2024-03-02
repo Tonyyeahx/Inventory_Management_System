@@ -4,8 +4,10 @@ import com.uw.cs506.team03.smartstock.entity.NewTable;
 
 public interface NewTableDAO {
 
-    void save(NewTable newTable);
+    NewTable save(NewTable newTable);
+
     NewTable findById(Integer id);
 
-    void update(NewTable newTable);
+    void deleteById(Integer id);
+
 }

@@ -39,4 +39,23 @@ public class NewTableServiceImp implements NewTableService{
         int newStock = stock - 1;
         tuple.setStock(newStock);
     }
+
+    @Override
+    @Transactional
+    public NewTable save(NewTable newTable) {
+        return newTableDAO.save(newTable);
+    }
+
+    @Override
+    @Transactional
+    public NewTable findById(Integer id) {
+        return newTableDAO.findById(id);
+
+    }
+
+    @Override
+    @Transactional
+    public void deleteById(Integer id) {
+        newTableDAO.deleteById(id);
+    }
 }

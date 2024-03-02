@@ -12,13 +12,17 @@ public class NewTableDAOImp implements NewTableDAO{
     private EntityManager entityManager;
 
     @Autowired
+    //constructor injection
     public NewTableDAOImp(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
     @Override
-    public void save(NewTable newTable) {
-        entityManager.persist(newTable);
+    public NewTable save(NewTable newTable) {
+        //if id == 0 merge will insert tuple to the DB
+        //if id != 0 merge will update tuple to the DB
+        NewTable updatedNewTable = entityManager.merge(newTable);
+        return updatedNewTable;
     }
 
     @Override
@@ -27,7 +31,9 @@ public class NewTableDAOImp implements NewTableDAO{
     }
 
     @Override
-    public void update(NewTable newTable) {
-        entityManager.merge(newTable);
+    public void deleteById(Integer id) {
+        NewTable theNewTable = entityManager.find(NewTable.class, id);
+        entityManager.remove(theNewTable);
     }
+
 }

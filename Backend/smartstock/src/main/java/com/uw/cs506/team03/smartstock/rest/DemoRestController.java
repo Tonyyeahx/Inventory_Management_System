@@ -5,6 +5,7 @@ import com.uw.cs506.team03.smartstock.entity.NewTable;
 import com.uw.cs506.team03.smartstock.service.NewTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -39,5 +40,17 @@ public class DemoRestController {
     public  String subStock() {
         newTableService.subStock(1);
         return  "id 1's stock - 1";
+    }
+
+    @GetMapping("/newtable/{tupleID}")
+    public NewTable getTuple(@PathVariable int tupleID) {
+        NewTable theTuple = newTableService.findById(tupleID);
+
+        if(theTuple == null) {
+            throw new RuntimeException("tuple not find. id is " + tupleID);
+        }
+        else {
+            return theTuple;
+        }
     }
 }
