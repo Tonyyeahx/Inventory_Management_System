@@ -1,0 +1,46 @@
+CREATE DATABASE store;
+
+USE store;
+
+CREATE TABLE Store (
+  StoreID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  Longtitude float NOT NULL,
+  Latitude float NOT NULL,
+  Manager varchar(30) NOT NULL,
+  OpenDate date NOT NULL,
+  Contact char(10) NOT NULL
+);
+
+CREATE TABLE Inventory (
+  InventoryID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  StoreID int NOT NULL,
+  ProductID int NOT NULL,
+  Quantity int NOT NULL,
+  LastOrderDate date NOT NULL,
+  OrderQuantity int NOT NULL,
+  FOREIGN KEY (StoreID) REFERENCES Store(StoreID),
+  FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+);
+
+CREATE TABLE Product (
+  ProductID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  ProductName varchar(20) NOT NULL,
+  SellPrice float NOT NULL,
+  Discount float DEFAULT 1.0,
+  Cost float NOT NULL,
+  CategoryID int NOT NULL,
+  SupplierID int NOT NULL,
+  FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
+  FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID)
+);
+
+CREATE TABLE Category (
+  CategoryID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  CategoryName varchar(20) NOT NULL
+);
+
+CREATE TABLE Supplier (
+  SupplierID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  SupplierName varchar(20) NOT NULL,
+  Contact char(10) NOT NULL
+);
