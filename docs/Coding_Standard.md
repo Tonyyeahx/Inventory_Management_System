@@ -122,9 +122,9 @@
 
 ### Highlight
 
-- Block indentation: +2 spaces
+- Block indentation: +4 spaces
 
-- Indent continuation lines at least +4 spaces
+- Indent continuation lines at least +8 spaces
 
 - Column limit: 100
 
@@ -233,7 +233,7 @@
         }
         ```
 
-- Block indentation: +2 spaces
+- Block indentation: +4 spaces
 
 - One statement per line
 
@@ -266,7 +266,7 @@
         5. A line is never broken adjacent to the arrow in a lambda, except that a break may come immediately after the arrow if the body of the lambda consists of a single unbraced expression
 
 
-    - Indent continuation lines at least +4 spaces:
+    - Indent continuation lines at least +8 spaces:
 
         - When line-wrapping, each line after the first (each continuation line) is indented at least +4 from the original line.
 
@@ -322,9 +322,9 @@
 
 - Similar to Java
 
-- Block indentation: +2 spaces
+- Block indentation: +4 spaces
 
-- Indent continuation lines at least +4 spaces
+- Indent continuation lines at least +8 spaces
 
 - Column limit: 100
 
