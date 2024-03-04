@@ -10,6 +10,8 @@ public interface NewTableService {
 
     void subStock(Integer id);
 
+    NewTable sqlTesting();
+
     NewTable save(NewTable newTable);
 
     NewTable findById(Integer id);

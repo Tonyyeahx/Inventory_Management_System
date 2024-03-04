@@ -1,6 +1,5 @@
 package com.uw.cs506.team03.smartstock.rest;
 
-import com.uw.cs506.team03.smartstock.dao.NewTableDAO;
 import com.uw.cs506.team03.smartstock.entity.NewTable;
 import com.uw.cs506.team03.smartstock.service.NewTableService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +38,10 @@ public class DemoRestController {
         return  "id 1's stock - 1";
     }
 
+    @GetMapping("sqltesting")
+    public NewTable sqlTesting() {
+        return newTableService.sqlTesting();
+    }
     @GetMapping("gettuple/{tupleID}")
     public NewTable getTuple(@PathVariable int tupleID) {
         NewTable theTuple = newTableService.findById(tupleID);
