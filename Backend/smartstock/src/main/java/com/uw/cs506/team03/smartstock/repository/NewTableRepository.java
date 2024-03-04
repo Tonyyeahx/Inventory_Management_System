@@ -1,4 +1,4 @@
-package com.uw.cs506.team03.smartstock.dao;
+package com.uw.cs506.team03.smartstock.repository;
 
 import com.uw.cs506.team03.smartstock.entity.NewTable;
 import org.springframework.data.jpa.repository.JpaRepository;
