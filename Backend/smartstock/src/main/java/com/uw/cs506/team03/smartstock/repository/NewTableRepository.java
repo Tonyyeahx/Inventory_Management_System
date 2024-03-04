@@ -11,4 +11,6 @@ public interface NewTableRepository extends JpaRepository<NewTable, Integer> {
 
     @Query("SELECT n FROM NewTable n WHERE n.id = 1")
     NewTable sqlTesting();
+
+
 }

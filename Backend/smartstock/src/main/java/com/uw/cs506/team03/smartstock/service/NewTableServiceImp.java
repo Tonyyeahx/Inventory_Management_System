@@ -36,6 +36,7 @@ public class NewTableServiceImp implements NewTableService{
         int stock = tuple.getStock();
         int newStock = stock + 1;
         tuple.setStock(newStock);
+        newTableRepository.save(tuple);
     }
 
     @Override
@@ -51,6 +52,7 @@ public class NewTableServiceImp implements NewTableService{
         int stock = tuple.getStock();
         int newStock = stock - 1;
         tuple.setStock(newStock);
+        newTableRepository.save(tuple);
     }
 
     @Override

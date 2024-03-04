@@ -26,16 +26,16 @@ public class DemoRestController {
         return "yeah, james added in database";
     }
 
-    @GetMapping("/addstock")
-    public  String addStock() {
-        newTableService.addStock(1);
-        return  "id 1's stock + 1";
+    @GetMapping("/addstock/{tupleID}")
+    public  String addStock(@PathVariable int tupleID) {
+        newTableService.addStock(tupleID);
+        return  String.format("id %d's stock + 1", tupleID);
     }
 
-    @GetMapping("/substock")
-    public  String subStock() {
-        newTableService.subStock(1);
-        return  "id 1's stock - 1";
+    @GetMapping("/substock/{tupleID}")
+    public  String subStock(@PathVariable int tupleID) {
+        newTableService.subStock(tupleID);
+        return  String.format("id %d's stock - 1", tupleID);
     }
 
     @GetMapping("sqltesting")
