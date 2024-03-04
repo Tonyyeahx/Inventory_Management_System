@@ -1,4 +1,4 @@
-package com.uw.cs506.team03.smartstock.rest;
+package com.uw.cs506.team03.smartstock.controller;
 
 import com.uw.cs506.team03.smartstock.entity.NewTable;
 import com.uw.cs506.team03.smartstock.service.NewTableService;
