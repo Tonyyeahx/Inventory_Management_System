@@ -8,22 +8,22 @@ import java.util.Date;
 public class Inventory{
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "InventoryID", nullable = false)
+    @Column(name = "inventory_id", nullable = false)
     private int inventoryId;
 
-    @Column(name = "StoreID", nullable = false)
+    @Column(name = "store_id", nullable = false)
     private int storeId;
 
-    @Column(name = "ProductID", nullable = false) // set to not null
+    @Column(name = "product_id", nullable = false)
     private int productId;
 
-    @Column(name = "Quantity", nullable = false)
+    @Column(name = "quantity_id", nullable = false)
     private int quantity;
 
-    @Column(name = "LastOrderDate", nullable = false)
+    @Column(name = "last_order_date", nullable = false)
     private Date lastOrderDate;
 
-    @Column(name = "OrderQuantity", nullable = false)
+    @Column(name = "order_quantity", nullable = false)
     private int orderQuantity;
 
     public Inventory() {
@@ -89,12 +89,12 @@ public class Inventory{
     @Override
     public String toString() {
         return "Inventory{" +
-                "inventoryId=" + inventoryId +
-                ", storeId=" + storeId +
-                ", productId=" + productId +
+                "inventory_id=" + inventoryId +
+                ", store_id=" + storeId +
+                ", product_id=" + productId +
                 ", quantity=" + quantity +
-                ", lastOrderDate=" + lastOrderDate +
-                ", orderQuantity=" + orderQuantity +
+                ", last_order_date=" + lastOrderDate +
+                ", order_quantity=" + orderQuantity +
                 '}';
     }
 }
