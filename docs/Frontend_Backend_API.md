@@ -10,6 +10,7 @@ Request the inventories of a certain store, with possible category and supplier 
 | ------- | -------------  | ------------------------------- |
 |  `GET`  | `/inventories` | `store`, `category`, `supplier` |
 
+
 #### Remarks
 
 None. All users with or without authentications should be able to call this HTTP method
@@ -30,12 +31,13 @@ None. All users with or without authentications should be able to call this HTTP
     `/inventories?store=123&category=Chicken&supplier=iKun%20Warehouse`
 
 
-#### Expect Return Value
+#### Expect Returns
+
 A list of inventories in the store, with given filter condition applied, in JSON format. 
 
 For example:
 
-1. Successful call, return a list of inventory objects, with return code = `200` (OK)
+1. Successful call, return a list of inventory objects, with a return code `200` (OK)
 
     ```
     [
@@ -75,7 +77,7 @@ For example:
     ]
     ```
 
-2. Successful call but there is no inventory matching given constrains, return an empty array, with return code = `200` (OK)
+2. Successful call but there is no inventory matching given constrains, return an empty array, with a return code `200` (OK)
 
     ```
     []
@@ -85,15 +87,74 @@ For example:
 
     ```
     {
-        "msg": "illegal store ID"
+        "msg": "Illegal store ID"
     }
     ```
 
-### Set Inventory Quantity
 
-Set the quantity of a certain inventory in a given store. This HTTP method will be used to increment and decrement 
+### Set Inventory Quantity (Merchant Only)
+
+Set the quantity of a certain inventory in a given store to a target number. This HTTP method will be used to increment and decrement quantity of a certain inventory by the merchant.
+
+| Method  |      URL       |             Parameters          |
+| ------- | -------------  | ------------------------------- |
+| `POST`  | `/setInventoryQuantity` | `inventoryID`, `targetQuantity` |
 
 
+#### Remarks
 
-?company=SocksTalk&amn=-10086
+Due to security reasons, only merchant users (including store manager and higher level management team members. User authentications will be implemented in a later phase) should be able to call this API.
 
+User authentication function will not be implemented during Sprint 1, so the base case backend does not need to consider user authentication for now. However, the backend should be designed with user authentication function in mind to streamline future developments
+
+
+#### Example Calls
+
+1. Set product with ID `10001`'s quantity to `999`
+
+    `/setInventoryQuantity?inventoryID=10001&targetQuantity=999`
+
+2. Set product with ID `10002`'s quantity to `0`
+
+    `/setInventoryQuantity?inventoryID=10002&targetQuantity=0`
+
+3. Set product with ID `10003`'s quantity to `-1` (illegal)
+
+    `/setInventoryQuantity?inventoryID=10003&targetQuantity=-1`
+
+4. Set product with ID `10003`'s quantity to `abcd` (illegal)
+
+    `/setInventoryQuantity?inventoryID=10003&targetQuantity=abcd`
+
+#### Expect Returns
+
+A message object with descriptive message indicating whether or not this operation is successful, or an descriptive error message when operation is illegal
+
+For example: 
+
+1. Successful call, return a message object indicting operation is successful with a return code `200` (OK)
+
+    ```
+    {
+        "msg": "Target quantity set successful"
+    }
+    ```
+
+2. Unsuccessful call due to a illegal input argument (ex. a negative number or even not a number), return an error message with a return code `400` (Bad Request)
+
+    ```
+    {
+        "msg": "Illegal targetQuantity input"
+    }
+    ```
+
+3. Unsuccessful call due to unauthorized user (i.e. a customer or a consumer), return an error message with a return code `401` (Unauthorized)
+
+    ```
+    {
+        "msg": "Unauthorized user"
+    }
+    ```
+
+
+## Consumer View
