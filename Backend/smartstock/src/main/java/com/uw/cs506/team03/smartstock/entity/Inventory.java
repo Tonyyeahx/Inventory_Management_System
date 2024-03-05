@@ -86,6 +86,10 @@ public class Inventory{
         this.orderQuantity = orderQuantity;
     }
 
+    public void addQuantity(int quantityToAdd) {
+        this.quantity += quantityToAdd;
+    }
+
     @Override
     public String toString() {
         return "Inventory{" +
