@@ -3,10 +3,12 @@ package com.uw.cs506.team03.smartstock.entity;
 import jakarta.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "category")
 public class Category {
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id", nullable)
+    @Column(name = "category_id")
     private int categoryId;
 
     @Column(name = "category_name", nullable = false)
