@@ -5,6 +5,8 @@ import java.util.Date;
 
 @Entity
 @Table(name = "inventory")
+
+//This class is used to create an Inventory object that will be used to store the product into the inventory.
 public class Inventory{
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)

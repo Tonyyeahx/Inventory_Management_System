@@ -23,8 +23,7 @@ public class InventoryServiceImp implements InventoryService {
         Inventory product = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
         if(product != null){
             inventoryRepository.delete(product);
-        }
-        else{
+        }else{
             throw new RuntimeException("Product not found");
         }
     }
