@@ -322,9 +322,9 @@
 
 - Similar to Java
 
-- Block indentation: +4 spaces
+- Block indentation: +2 spaces
 
-- Indent continuation lines at least +8 spaces
+- Indent continuation lines at least +4 spaces
 
 - Column limit: 100
 
@@ -338,8 +338,6 @@
 
 
 ### Source File Basics
-
-- File names must be all lowercase and may include underscores (```_```) or dashes (```-```), but no additional punctuation.  Filenames’ extension must be .js
 
 - Source files are encoded in UTF-8.
 
