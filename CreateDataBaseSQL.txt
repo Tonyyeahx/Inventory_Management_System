@@ -2,45 +2,45 @@ CREATE DATABASE store;
 
 USE store;
 
-CREATE TABLE Store (
-  StoreID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  Longtitude float NOT NULL,
-  Latitude float NOT NULL,
-  Manager varchar(30) NOT NULL,
-  OpenDate date NOT NULL,
-  Contact char(10) NOT NULL
+CREATE TABLE store (
+  store_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  longtitude float NOT NULL,
+  latitude float NOT NULL,
+  manager varchar(30) NOT NULL,
+  open_date date NOT NULL,
+  contact char(10) NOT NULL
 );
 
-CREATE TABLE Inventory (
-  InventoryID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  StoreID int NOT NULL,
-  ProductID int NOT NULL,
-  Quantity int NOT NULL,
-  LastOrderDate date NOT NULL,
-  OrderQuantity int NOT NULL,
-  FOREIGN KEY (StoreID) REFERENCES Store(StoreID),
-  FOREIGN KEY (ProductID) REFERENCES Product(ProductID)
+CREATE TABLE inventory (
+  inventory_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  store_id int NOT NULL,
+  product_id int NOT NULL,
+  quantity int NOT NULL,
+  last_order_date date NOT NULL,
+  order_quantity int NOT NULL,
+  FOREIGN KEY (store_id) REFERENCES store(store_id),
+  FOREIGN KEY (product_id) REFERENCES product(product_id)
 );
 
-CREATE TABLE Product (
-  ProductID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  ProductName varchar(20) NOT NULL,
-  SellPrice float NOT NULL,
-  Discount float DEFAULT 1.0,
-  Cost float NOT NULL,
-  CategoryID int NOT NULL,
-  SupplierID int NOT NULL,
-  FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
-  FOREIGN KEY (SupplierID) REFERENCES Supplier(SupplierID)
+CREATE TABLE product (
+  product_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  product_name varchar(20) NOT NULL,
+  sell_price float NOT NULL,
+  discount float DEFAULT 1.0,
+  cost float NOT NULL,
+  category_id int NOT NULL,
+  supplier_id int NOT NULL,
+  FOREIGN KEY (category_id) REFERENCES category(category_id),
+  FOREIGN KEY (supplier_id) REFERENCES supplier(supplier_id)
 );
 
-CREATE TABLE Category (
-  CategoryID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  CategoryName varchar(20) NOT NULL
+CREATE TABLE category (
+  category_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  category_name varchar(20) NOT NULL
 );
 
-CREATE TABLE Supplier (
-  SupplierID int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  SupplierName varchar(20) NOT NULL,
-  Contact char(10) NOT NULL
+CREATE TABLE supplier (
+  supplier_id int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  supplier_name varchar(20) NOT NULL,
+  contact char(10) NOT NULL
 );
