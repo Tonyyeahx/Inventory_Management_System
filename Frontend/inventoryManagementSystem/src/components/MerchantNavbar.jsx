@@ -4,14 +4,24 @@
  */
 // External imports
 import React from 'react'
-import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
+import { Sidebar, Menu, MenuItem, SubMenu} from 'react-pro-sidebar';
 
 // Internal imports
+import teamLogo from "../assets/TeamLogo.png"
+
+// CSS imports
 import "../App.css"
+import "./MerchantNavbar.css"
 
 function MerchantNavbar() {
     return (
         <Sidebar>
+            {/* Display project/team logo here in the top of the menu bar.
+                Used a logo wrapper to make it align at the center */}
+            <div className="logo-wrapper">
+                <img src={teamLogo} className="logo" alt="React logo" />
+            </div>
+
             <Menu>
                 <SubMenu label="Charts">
                     <MenuItem> Pie charts </MenuItem>
