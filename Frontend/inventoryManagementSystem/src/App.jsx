@@ -9,14 +9,18 @@ import { useState } from "react"
 
 // Internal imports
 import MerchantNavbar from "./components/MerchantNavbar";
+import InventoriesPage from "./pages/Inventories/InventoriesPage";
+
+// CSS imports
 import "./App.css"
 
 function App() {
   return (
-    <MerchantNavbar />
+    <div className="App">
+      <MerchantNavbar />
+      <InventoriesPage />
+    </div>
   );
-
-    
 }
 
 export default App
