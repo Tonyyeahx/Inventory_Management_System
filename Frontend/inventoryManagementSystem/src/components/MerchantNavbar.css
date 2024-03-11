@@ -1,0 +1,16 @@
+.side-menu-bar {
+  display: flex;
+  height: 100%;
+}
+
+.logo-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  border-radius: 40px;
+  height: 8em;
+  padding: 1.5em;
+}
+

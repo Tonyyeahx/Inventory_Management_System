@@ -1,0 +1,14 @@
+.store-swicher {
+ padding: 1em;
+  display: flex;
+  align-items: baseline;
+}
+
+.store-name {
+  line-height: 1;
+  font-size: 40px;
+}
+
+.swap-icon {
+  padding-left: 0.5em;
+}
