@@ -1,3 +1,7 @@
+## Wireframe
+
+Refer to issue #29 (cdis/cs/courses/cs506/sp2024/team/mondaywednesdaylecture/T_03/inventory-management-system#29)
+
 ## How to Run
 
 ```
