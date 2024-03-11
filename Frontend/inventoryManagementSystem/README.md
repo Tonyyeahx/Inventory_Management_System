@@ -1,3 +1,10 @@
+## How to Run
+
+```
+npm install
+npm run dev
+```
+
 ## External library installation
 
 React Pro Sidebar (https://www.npmjs.com/package/react-pro-sidebar)
