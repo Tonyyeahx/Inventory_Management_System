@@ -14,7 +14,9 @@ CREATE TABLE inventory (
   inventory_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   store_id INT NOT NULL,
   product_id INT NOT NULL,
+  sell_price FLOAT NOT NULL,
   quantity INT NOT NULL,
+  discount FLOAT DEFAULT 1.0,
   last_order_date DATE NOT NULL,
   order_quantity INT NOT NULL,
   FOREIGN KEY (store_id) REFERENCES Store(store_id),
@@ -23,12 +25,11 @@ CREATE TABLE inventory (
 
 CREATE TABLE product (
   product_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  product_name VARCHAR(20) NOT NULL,
-  sell_price FLOAT NOT NULL,
-  discount FLOAT DEFAULT 1.0,
-  cost FLOAT NOT NULL,
   category_id INT NOT NULL,
   supplier_id INT NOT NULL,
+  product_name VARCHAR(20) NOT NULL,
+  cost FLOAT NOT NULL,
+
   FOREIGN KEY (category_id) REFERENCES Category(category_id),
   FOREIGN KEY (supplier_id) REFERENCES Supplier(supplier_id)
 );

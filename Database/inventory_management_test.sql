@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db2
--- Generation Time: Mar 08, 2024 at 05:43 AM
+-- Generation Time: Mar 11, 2024 at 01:58 AM
 -- Server version: 8.0.32
 -- PHP Version: 8.2.8
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `inventory_management`
+-- Database: `inventory_management_test`
 --
 
 -- --------------------------------------------------------
@@ -50,7 +50,9 @@ CREATE TABLE `inventory` (
   `inventory_id` int NOT NULL,
   `store_id` int NOT NULL,
   `product_id` int NOT NULL,
+  `sell_price` float NOT NULL,
   `quantity` int NOT NULL,
+  `discount` float DEFAULT '1',
   `last_order_date` date NOT NULL,
   `order_quantity` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -59,9 +61,16 @@ CREATE TABLE `inventory` (
 -- Dumping data for table `inventory`
 --
 
-INSERT INTO `inventory` (`inventory_id`, `store_id`, `product_id`, `quantity`, `last_order_date`, `order_quantity`) VALUES
-(1, 1, 1, 20, '2024-03-03', 50),
-(2, 1, 2, 30, '2024-03-03', 100);
+INSERT INTO `inventory` (`inventory_id`, `store_id`, `product_id`, `sell_price`, `quantity`, `discount`, `last_order_date`, `order_quantity`) VALUES
+(1, 1, 1, 15, 20, 1, '2024-03-03', 50),
+(2, 1, 2, 20, 30, 1, '2024-03-04', 100),
+(3, 1, 3, 25, 30, 1, '2024-03-05', 100),
+(4, 2, 1, 15, 40, 1, '2024-03-06', 100),
+(5, 2, 2, 20, 50, 1, '2024-03-07', 150),
+(6, 2, 3, 25, 50, 1, '2024-03-08', 150),
+(7, 3, 1, 15, 60, 1, '2024-03-09', 150),
+(8, 3, 2, 20, 60, 1, '2024-03-10', 200),
+(9, 3, 3, 25, 60, 1, '2024-03-11', 200);
 
 -- --------------------------------------------------------
 
@@ -71,22 +80,23 @@ INSERT INTO `inventory` (`inventory_id`, `store_id`, `product_id`, `quantity`, `
 
 CREATE TABLE `product` (
   `product_id` int NOT NULL,
-  `product_name` varchar(20) NOT NULL,
-  `sell_price` float NOT NULL,
-  `discount` float DEFAULT '1',
-  `cost` float NOT NULL,
   `category_id` int NOT NULL,
-  `supplier_id` int NOT NULL
+  `supplier_id` int NOT NULL,
+  `product_name` varchar(20) NOT NULL,
+  `cost` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`product_id`, `product_name`, `sell_price`, `discount`, `cost`, `category_id`, `supplier_id`) VALUES
-(1, 'Nature Valley 12', 15, 1, 9, 1, 1),
-(2, 'Nature Valley 24', 20, 1, 12, 1, 1),
-(3, 'Nature Valley 36', 25, 1, 15, 1, 1);
+INSERT INTO `product` (`product_id`, `category_id`, `supplier_id`, `product_name`, `cost`) VALUES
+(1, 1, 1, 'Nature Valley 12', 12),
+(2, 1, 1, 'Nature Valley 24', 15),
+(3, 1, 1, 'Nature Valley 36', 20),
+(4, 2, 2, 'Purified Water 12', 3),
+(5, 2, 2, 'Purified Water 24', 4),
+(6, 2, 2, 'Purified Water 36', 5);
 
 -- --------------------------------------------------------
 
@@ -184,13 +194,13 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT for table `inventory`
 --
 ALTER TABLE `inventory`
-  MODIFY `inventory_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `inventory_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `product_id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `store`
