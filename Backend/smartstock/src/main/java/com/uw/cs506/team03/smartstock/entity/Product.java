@@ -12,12 +12,6 @@ public class Product {
     @Column(name = "product_name", nullable = false, length = 30)
     private String productName;
 
-    @Column(name = "sell_price", nullable = false)
-    private float sellPrice;
-
-    @Column(name = "discount", nullable = false)
-    private float discount;
-
     @Column(name = "cost", nullable = false)
     private float cost;
 
@@ -31,10 +25,8 @@ public class Product {
 
     }
 
-    public Product(String productName, float sellPrice, float discount, float cost, int categoryId, int supplierId) {
+    public Product(String productName, float cost, int categoryId, int supplierId) {
         this.productName = productName;
-        this.sellPrice = sellPrice;
-        this.discount = discount;
         this.cost = cost;
         this.categoryId = categoryId;
         this.supplierId = supplierId;
@@ -54,22 +46,6 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
-    }
-
-    public float getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setSellPrice(float sellPrice) {
-        this.sellPrice = sellPrice;
-    }
-
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
     }
 
     public float getCost() {
@@ -101,8 +77,6 @@ public class Product {
         return "Product{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
-                ", sellPrice=" + sellPrice +
-                ", discount=" + discount +
                 ", cost=" + cost +
                 ", categoryId=" + categoryId +
                 ", supplierId=" + supplierId +
