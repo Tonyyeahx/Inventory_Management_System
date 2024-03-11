@@ -1,4 +1,6 @@
 .inventories-page-pane {
   flex: 1;
   background-color: #fafafa;
+
+  padding: 0.5em;
 }

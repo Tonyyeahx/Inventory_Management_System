@@ -37,10 +37,10 @@ function MerchantNavbar() {
 
         {/* Start of the menu items */}
           <Menu>
-              <MenuItem icon={<StoreOutlineIcon />}> Inventories </MenuItem>
+              <MenuItem active icon={<StoreOutlineIcon />}> Inventories </MenuItem>
               <MenuItem icon={<TruckCargoContainerIcon />}> Orders </MenuItem>
-              <MenuItem icon={<DevToIcon />}> Menu 3 </MenuItem>
-              <MenuItem icon={<DevToIcon />}> Menu 4 </MenuItem>
+              <MenuItem disabled icon={<DevToIcon />}> Menu 3 </MenuItem>
+              <MenuItem disabled icon={<DevToIcon />}> Menu 4 </MenuItem>
               <MenuItem icon={<CogIcon />}> Settings </MenuItem>
               <MenuItem icon={<LogoutIcon />}> Logout </MenuItem>
               <MenuItem icon={<CartVariantIcon />}> Consumer (Debug) </MenuItem>

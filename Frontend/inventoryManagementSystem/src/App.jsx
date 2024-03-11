@@ -13,6 +13,7 @@ import InventoriesPage from "./pages/Inventories/InventoriesPage";
 
 // CSS imports
 import "./App.css"
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (

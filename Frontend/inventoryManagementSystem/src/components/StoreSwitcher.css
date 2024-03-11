@@ -5,7 +5,8 @@
 }
 
 .store-name {
-  line-height: 0;
+  line-height: 1;
+  font-size: 40px;
 }
 
 .swap-icon {
