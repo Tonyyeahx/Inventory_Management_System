@@ -1,7 +1,6 @@
 package com.uw.cs506.team03.smartstock.entity;
-
 import jakarta.persistence.*;
-import java.util.Date;
+
 @Entity
 @Table(name = "product")
 public class Product {
