@@ -33,7 +33,7 @@ function MerchantNavbar() {
         {/* Display project/team logo here in the top of the menu bar. Used a logo wrapper to make
             it align at the center */}
         <div className="logo-wrapper">
-            <img src={teamLogo} className="logo" alt="React logo" />
+            <img src={teamLogo} className="logo" alt="Project logo" />
         </div>
 
         {/* Start of the menu items */}
