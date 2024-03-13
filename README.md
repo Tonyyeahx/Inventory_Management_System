@@ -40,11 +40,11 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
 
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
-| R1  | Users should be able to sign in first based on what type of customer they are. For example, there should be a testing user page and a business owner page.  | Med      | Open   |
-| R2  | The Grocery Store Managing User should be able to select what inventory they would like to observe. | High     | Open   |
-| R3  | Grocery Store Managing User should be able to add and remove from inventory for each good. | High     | Open   |
-| R4  | Grocery Store Managing User should only see inventory of the branch that they are in charge of. | High      | Open   |
-| R5  | On request, the system should be able to return financial metrics (such as Days Inventory Held) on the inventory that the Grocery Store Managing User oversees.  | Med     | Open   |
+| R1  | The system shall allow users to sign in, distinguishing between corporate  users and individual chain business owners, with separate login pages provided for each user type.  | Med      | Open   |
+| R2  | The system shall enable Grocery Store Managing Users to select specific inventory items for observation. | High     | Open   |
+| R3  | The system shall permit Grocery Store Managing Users to add or remove items from the inventory for each product. | High     | Open   |
+| R4  | The system shall restrict Grocery Store Managing Users to view only the inventory of the branch they are assigned to manage. | High      | Open   |
+| R5  | Upon request, the system shall generate and provide financial metrics (such as Days Inventory Held) for the inventory managed by the Grocery Store Managing User.  | Med     | Open   |
 
 
 <!-- <div align="center"><small><i>Excerpt from Crookshanks Table 2-2 showing example user requirements for a timekeeping system</i></small></div>
@@ -77,7 +77,7 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
 
 3. User Case 3: Manage Inventory
     1. As a grocery store managing user, I want to be able to add or remove items from the inventory, so that I can update stock levels as needed
-        1. The system should provide options to add new items to the inventory and specify details such as quantity, category, brand, etc.
+        1. The system should provide options to add new items to the inventory and specify details such as quantity, category, and brand.
         2. The user should be able to remove items from the inventory and adjust quantities accordingly.
 
 4. User Case 4: View Branch Inventory
@@ -110,7 +110,7 @@ Upon successful authentication, the user should be redirected to the appropriate
 
 The inventory viewing interface should present a clear and organized list of inventory items.
 It should include filtering and search functionalities to allow users to find specific items based on categories, brands, or other parameters.
-The interface should display relevant details for each inventory item, such as quantity, category, brand, etc.
+The interface should display relevant details for each inventory item, the quantity, category, and brand.
 Branch Specific:
 It should clearly indicate the branch name and location.
 Access to inventory data from other branches should be restricted based on user permissions.
@@ -118,7 +118,7 @@ Access to inventory data from other branches should be restricted based on user 
 **Inventory Management Interface**
 
 The inventory management interface should provide options for adding and removing items from the inventory.
-It should include input fields and dropdown menus to specify details such as quantity, category, brand, etc., when adding new items.
+It should include input fields and dropdown menus to specify details: the quantity, category, and brand, when adding new items.
 The interface should include intuitive controls for adjusting quantities and removing items from the inventory.
 
 **Financial Metrics Interface**

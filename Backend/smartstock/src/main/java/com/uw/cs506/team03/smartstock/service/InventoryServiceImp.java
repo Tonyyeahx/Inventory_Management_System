@@ -13,8 +13,8 @@ public class InventoryServiceImp implements InventoryService {
     private InventoryRepository inventoryRepository;
 
     @Override
-    public void addProductToInventory(int inventoryId, int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity) {
-        Inventory product = new Inventory(storeId, productId, quantity, lastOrderDate, orderQuantity);
+    public void addProductToInventory(int inventoryId, int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice) {
+        Inventory product = new Inventory(storeId, productId, quantity, lastOrderDate, orderQuantity, discount, sellPrice);
         inventoryRepository.save(product);
     }
 
@@ -23,8 +23,7 @@ public class InventoryServiceImp implements InventoryService {
         Inventory product = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
         if(product != null){
             inventoryRepository.delete(product);
-        }
-        else{
+        }else{
             throw new RuntimeException("Product not found");
         }
     }

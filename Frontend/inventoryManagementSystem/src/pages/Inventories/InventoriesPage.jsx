@@ -5,6 +5,7 @@
 
 // External imports
 import React from 'react'
+import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -33,6 +34,8 @@ function InventoriesPage() {
 
           <Col md={2}>
             <p>My side panels placeholder</p>
+            <div className="mb-2"><Button variant='primary'>+</Button></div>
+            <div className="mb-2"><Button variant='secondary'>-</Button></div>
           </Col>
         </Row>
       </Container>

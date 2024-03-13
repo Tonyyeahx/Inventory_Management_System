@@ -5,23 +5,30 @@
  */
 
 // External imports
-import { useState } from "react"
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useState } from "react";
 
 // Internal imports
 import MerchantNavbar from "./components/MerchantNavbar";
 import InventoriesPage from "./pages/Inventories/InventoriesPage";
-
+import UserTestPage from "./pages/UserTestPage/userPage";
 // CSS imports
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
-    <div className="App">
-      <MerchantNavbar />
-      <InventoriesPage />
-    </div>
+    <Router>
+      <div className="App">
+        <MerchantNavbar />
+        <Routes>
+          <Route exact path="/" element={<InventoriesPage />} />
+          <Route path="/shopping" element={<UserTestPage />} /> {/* Route for ShoppingPage */}
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
-export default App
+export default App;
