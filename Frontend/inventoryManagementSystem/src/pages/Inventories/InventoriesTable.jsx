@@ -5,13 +5,17 @@
  */
 
 // External imports
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import Table from 'react-bootstrap/Table';
+
+// Internal imports
+import InventoriesTableRow from './InventoriesTableRow';
 
 // CSS imports
 import "../../App.css"
 
-function InventoriesTable() {
+function InventoriesTable(props) {
+
   return (
     <Table bordered hover>
       {/* Table header */}
@@ -28,48 +32,31 @@ function InventoriesTable() {
         </tr>
       </thead>
 
-      {/* Table body, with placeholder entries now, will be populated with map() and components */}
+      {/* Table body */}
       <tbody>
-      <tr> 
-          <td>Fresh Strawberries</td>
-          <td>Fresh Fruits</td>
-          <td>$3.99</td>
-          <td>$2.15</td>
-          <td>$0.99</td>
-          <td>200</td>
-          <td>02-01-2024</td>
-          <td>XYZ Farm</td>
-        </tr>
-        <tr> 
-          <td>Fried Chicken Tenders</td>
-          <td>Frozen</td>
-          <td>$2.50</td>
-          <td>$1.00</td>
-          <td>$0.00</td>
-          <td>114514</td>
-          <td>02-15-2024</td>
-          <td>iKun Warehouse</td>
-        </tr>
-        <tr> 
-          <td>Fried Basketball</td>
-          <td>Chinese Memes</td>
-          <td>$2.50</td>
-          <td>$1.00</td>
-          <td>$0.00</td>
-          <td>151085</td>
-          <td>02-15-2024</td>
-          <td>iKun Warehouse</td>
-        </tr>
-        <tr> 
-          <td>Jin Ke La</td>
-          <td>Chinese Memes</td>
-          <td>$18.00</td>
-          <td>$10.00</td>
-          <td>$0.00</td>
-          <td>1800</td>
-          <td>02-15-2024</td>
-          <td>Bilibili</td>
-        </tr>
+        {
+          // Render every table entries as an object of InventoriesTableRow component
+          props.tableEntries.map(entry => {
+            return <InventoriesTableRow 
+                      key={entry.inventoryID} 
+                      inventoryID={entry.inventoryID}
+                      storeID={entry.storeID}
+                      productID={entry.productID}
+                      productImg={entry.productImg}
+                      productName={entry.productName}
+                      categoryID={entry.categoryID}
+                      category={entry.category}
+                      cost={entry.cost}
+                      sellPrice={entry.sellPrice}
+                      quantity={entry.quantity}
+                      discount={entry.discount}
+                      lastOrderedDate={entry.lastOrderedDate}
+                      orderedQuantity={entry.orderedQuantity}
+                      supplierID={entry.supplierID}
+                      supplier={entry.supplier}
+                    />
+          })
+        }
       </tbody>
     </Table>
   );

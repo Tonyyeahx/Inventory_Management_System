@@ -4,7 +4,7 @@
  */
 
 // External imports
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -13,12 +13,27 @@ import Col from 'react-bootstrap/Col';
 // Internal imports
 import StoreSwitcher from '../../components/StoreSwitcher';
 import InventoriesTable from './InventoriesTable';
+import createDummyGroceries from "../../utils/createDummyGroceries.js"
 
 // CSS imports
 import "../../App.css"
 import "./InventoriesPage.css"
 
 function InventoriesPage() {
+
+  // Holds all inventories that satisfy the filter constrains (currently category and supplier) in
+  // the current store
+  const [inventories, setInventories] = useState([]);
+
+  // Fetch the inventories from the API (in the future) and store them into the 'inventories' 
+  // variable, or load dummy data before the integration phase
+  const fetchInventories = () => {
+    // TODO: Set inventories using real data fetched from the 'inventories' API endpoint
+    setInventories(createDummyGroceries())
+  }
+
+  // Fetch inventories when the page is reload
+  useEffect(fetchInventories, []);
   
   return (
     <div className="inventories-page-pane">
@@ -29,7 +44,8 @@ function InventoriesPage() {
       <Container>
         <Row>
           <Col md={10}>
-            <InventoriesTable />
+            {/* Ask the table to show all inventories from this store */}
+            <InventoriesTable tableEntries={inventories} />
           </Col>
 
           <Col md={2}>
