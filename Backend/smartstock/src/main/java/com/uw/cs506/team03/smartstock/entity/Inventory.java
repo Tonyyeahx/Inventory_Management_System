@@ -6,7 +6,7 @@ import java.util.Date;
 @Entity
 @Table(name = "inventory")
 
-//This class is used to create an Inventory object that will be used to store the product into the inventory.
+// This class is used to create an object that represents the inventory table in the database
 public class Inventory{
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,10 +34,12 @@ public class Inventory{
     @Column(name = "sell_price", nullable = false)
     private float sellPrice;
 
+    // Default constructor for Inventory object
     public Inventory() {
 
     }
     
+    // Constructor for Inventory object
     public Inventory(int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice) {
         this.storeId = storeId;
         this.productId = productId;
@@ -48,6 +50,7 @@ public class Inventory{
         this.sellPrice = sellPrice;
     }
 
+    // Getters and Setters for Inventory object
     public int getInventoryId() {
         return inventoryId;
     }
@@ -96,10 +99,6 @@ public class Inventory{
         this.orderQuantity = orderQuantity;
     }
 
-    public void addQuantity(int quantityToAdd) {
-        this.quantity += quantityToAdd;
-    }
-
     public float getDiscount() {
         return discount;
     }
@@ -116,6 +115,12 @@ public class Inventory{
         this.sellPrice = sellPrice;
     }
 
+    // Method to add quantity to a product within the inventory
+    public void addQuantity(int quantityToAdd) {
+        this.quantity += quantityToAdd;
+    }
+
+    // Override toString method for Inventory object
     @Override
     public String toString() {
         return "Inventory{" +
