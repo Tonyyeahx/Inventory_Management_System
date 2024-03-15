@@ -12,13 +12,20 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import { Image } from 'react-bootstrap';
 
+// Icon imports
+import StoreOutlineIcon from 'mdi-react/StoreOutlineIcon';
+import TruckCargoContainerIcon from 'mdi-react/TruckCargoContainerIcon';
+
+// CSS import
+import "./ProductDetailModal.css"
+
 function ProductDetailModal(props) {
 
   // Use && to ensure that we are not trying access a null 'props.displayContent' object.
   // If the left of the '&&' operator is null, the content on the right will not be rendered, 
   // avoiding accessing things like null.productName or null.productImg, causing a crash
   return props.displayContent && (
-    <Modal centered size='lg' show={props.show} onHide={props.handleClose}>
+    <Modal centered size='xl' show={props.show} onHide={props.handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>
           Product Detail - {props.displayContent.productName}
@@ -31,11 +38,11 @@ function ProductDetailModal(props) {
         <Container>
           <Row>
             {/* Used a Bootstrap's flexbox utilities 'd-flex' to align content at the center */}
-            <Col className="d-flex justify-content-center">
-              <Image fluid src={props.displayContent.productImg}/>
+            <Col md={7} className="d-flex justify-content-center">
+              <Image src={props.displayContent.productImg} className='product-image'/>
             </Col>
 
-            <Col className="d-flex justify-content-center">
+            <Col md={5} className="d-flex justify-content-center">
               {/* Use a table to show the product's detail */}
               <Table striped borderless hover>
                 <tbody>
