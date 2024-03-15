@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "new_table")
+//POJO
 public class NewTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
