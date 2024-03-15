@@ -1,12 +1,10 @@
 package com.uw.cs506.team03.smartstock.controller;
 
-import com.uw.cs506.team03.smartstock.service.InventoryService;
 import com.uw.cs506.team03.smartstock.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.condition.ProducesRequestCondition;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/product")

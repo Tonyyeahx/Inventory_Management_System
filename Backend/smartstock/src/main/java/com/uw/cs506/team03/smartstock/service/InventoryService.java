@@ -2,9 +2,6 @@ package com.uw.cs506.team03.smartstock.service;
 
 import java.util.Date;
 
-import org.springframework.stereotype.Service;
-
-@Service
 // This interface is used to define the methods that will be used to interact with the Inventory table in the database
 public interface InventoryService {
 
