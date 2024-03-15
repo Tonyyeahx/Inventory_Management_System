@@ -29,6 +29,9 @@ function InventoriesPage() {
   // A boolean state variable controls if the ProductDetailModal should be shown or not
   const [showProdDetailModal, setShowProdDetailModal] = useState(false)
 
+  // What to display in the ProductDetailModal when it's opened
+  const [prodDetailDisplayContent, setProdDetailDisplayContent] = useState()
+
   /**
    * Fetch the inventories from the API (in the future) and store them into the 'inventories' 
    * variable, or load dummy data before the integration phase
@@ -48,6 +51,7 @@ function InventoriesPage() {
    */ 
   const openProductDetailModal = (entity) => {
     console.log("openProductDetailModal() function called with " + entity)
+    setProdDetailDisplayContent(entity)
     setShowProdDetailModal(true)
   }
 
@@ -67,7 +71,10 @@ function InventoriesPage() {
         <Row>
           <Col md={10}>
             {/* Ask the table to show all inventories from this store */}
-            <InventoriesTable tableEntries={inventories} openProductDetailModal={openProductDetailModal}/>
+            <InventoriesTable 
+              tableEntries={inventories} 
+              openProductDetailModal={openProductDetailModal}
+            />
           </Col>
 
           <Col md={2}>
@@ -79,7 +86,11 @@ function InventoriesPage() {
       </Container>
 
       {/* Attach modals that could be show to the React DOM */}
-      <ProductDetailModal show={showProdDetailModal} handleClose={hideProductDetailModal}/>
+      <ProductDetailModal 
+        show={showProdDetailModal} 
+        handleClose={hideProductDetailModal} 
+        displayContent={prodDetailDisplayContent}
+      />
     </div>
   );
 }

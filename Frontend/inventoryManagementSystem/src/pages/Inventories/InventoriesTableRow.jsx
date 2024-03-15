@@ -11,7 +11,7 @@ import ProductDetailModal from './ProductDetailModal';
 
 function InventoriesTableRow(props) {
   return (
-    <tr onClick={() => props.openProductDetailModal(props.productName)}> 
+    <tr onClick={() => props.openProductDetailModal(props)}> 
       <td>{props.productName}</td>
       <td>{props.category}</td>
       <td>${props.sellPrice.toFixed(2)}</td>
