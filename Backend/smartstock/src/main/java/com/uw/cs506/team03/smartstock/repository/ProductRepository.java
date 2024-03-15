@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-// This interface is used to create sql searching methods for the Product object
 public interface ProductRepository extends JpaRepository<Product, Integer>{
-    Product findByProductId(int productId); // search by product id
+    Product findByProductId(int productId);
 }

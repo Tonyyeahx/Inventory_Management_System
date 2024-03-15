@@ -1,20 +1,23 @@
 package com.uw.cs506.team03.smartstock.entity;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
+import java.util.Date;
 @Entity
 @Table(name = "product")
-
-// This class is used to create an object that represents the product table in the database
 public class Product {
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    // Attributes for Product object
     @Column(name = "product_id", nullable = false)
     private int productId;
 
     @Column(name = "product_name", nullable = false, length = 30)
     private String productName;
+
+    @Column(name = "sell_price", nullable = false)
+    private float sellPrice;
+
+    @Column(name = "discount", nullable = false)
+    private float discount;
 
     @Column(name = "cost", nullable = false)
     private float cost;
@@ -25,20 +28,19 @@ public class Product {
     @Column(name = "supplier_id", nullable = false)
     private int supplierId;
 
-    // Default constructor for Product object
     public Product() {
 
     }
 
-    // Constructor for Product object
-    public Product(String productName, float cost, int categoryId, int supplierId) {
+    public Product(String productName, float sellPrice, float discount, float cost, int categoryId, int supplierId) {
         this.productName = productName;
+        this.sellPrice = sellPrice;
+        this.discount = discount;
         this.cost = cost;
         this.categoryId = categoryId;
         this.supplierId = supplierId;
     }
 
-    // Getters and Setters for Product object
     public int getProductId() {
         return productId;
     }
@@ -53,6 +55,22 @@ public class Product {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public float getSellPrice() {
+        return sellPrice;
+    }
+
+    public void setSellPrice(float sellPrice) {
+        this.sellPrice = sellPrice;
+    }
+
+    public float getDiscount() {
+        return discount;
+    }
+
+    public void setDiscount(float discount) {
+        this.discount = discount;
     }
 
     public float getCost() {
@@ -79,12 +97,13 @@ public class Product {
         this.supplierId = supplierId;
     }
 
-    // toString method for Product object
     @Override
     public String toString() {
         return "Product{" +
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
+                ", sellPrice=" + sellPrice +
+                ", discount=" + discount +
                 ", cost=" + cost +
                 ", categoryId=" + categoryId +
                 ", supplierId=" + supplierId +

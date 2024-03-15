@@ -24,11 +24,8 @@ public class InventoryController {
                                                    @RequestParam int productId, 
                                                    @RequestParam int quantity, 
                                                    @RequestParam Date lastOrderDate, 
-                                                   @RequestParam int orderQuantity,
-                                                   @RequestParam float discount,
-                                                   @RequestParam float sellPrice
-                                                   ) {
-        inventoryService.addProductToInventory(inventoryId, storeId, productId, quantity, lastOrderDate, orderQuantity, discount, sellPrice);
+                                                   @RequestParam int orderQuantity) {
+        inventoryService.addProductToInventory(inventoryId, storeId, productId, quantity, lastOrderDate, orderQuantity);
         return ResponseEntity.ok("Product added to inventory successfully.");
     }
 

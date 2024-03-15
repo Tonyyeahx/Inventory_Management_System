@@ -1,11 +1,10 @@
 package com.uw.cs506.team03.smartstock.entity;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name = "Supplier")
-
-// This class is used to create an object that represents the supplier table in the database
+@Table(name = "supplier")
 public class Supplier {
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,18 +17,15 @@ public class Supplier {
     @Column(name = "contact", nullable = false)
     private String contact;
 
-    // Default constructor for Supplier object
     public Supplier() {
 
     }
 
-    // Constructor for Supplier object
-    public Supplier(int supplierId, String supplierName, String contact) {
+    public Supplier(String supplierName, String contact) {
         this.supplierName = supplierName;
         this.contact = contact;
     }
 
-    // Getters and Setters for Supplier object
     public int getSupplierId() {
         return supplierId;
     }
@@ -54,7 +50,6 @@ public class Supplier {
         this.contact = contact;
     }
 
-    // toString method for Supplier object
     @Override
     public String toString() {
         return "Supplier{" +

@@ -6,13 +6,9 @@ import java.util.Date;
 
 @Entity
 @Table(name = "store")
-
-// This class is used to create an object that represents the store table in the database
 public class Store {
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    // Attributes for Store object
     @Column(name = "store_id")
     private int storeId;
 
@@ -31,12 +27,10 @@ public class Store {
     @Column(name = "contact", nullable = false, length = 10)
     private String contact;
 
-    // Default constructor for Store object
     public Store() {
 
     }
 
-    // Constructor for Store object
     public Store(float longitude, float latitude, String manager, Date openDate, String contact) {
         this.longitude = longitude;
         this.latitude = latitude;
@@ -45,7 +39,6 @@ public class Store {
         this.contact = contact;
     }
 
-    // Getters and Setters for Store object
     public int getStoreId() {
         return storeId;
     }
@@ -94,7 +87,6 @@ public class Store {
         this.contact = contact;
     }
 
-    // toString method for Store object
     @Override
     public String toString() {
         return "Store{" +

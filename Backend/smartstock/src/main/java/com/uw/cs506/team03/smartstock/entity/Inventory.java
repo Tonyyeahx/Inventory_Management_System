@@ -6,12 +6,10 @@ import java.util.Date;
 @Entity
 @Table(name = "inventory")
 
-// This class is used to create an object that represents the inventory table in the database
+//This class is used to create an Inventory object that will be used to store the product into the inventory.
 public class Inventory{
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    // Attributes for Inventory object
     @Column(name = "inventory_id", nullable = false)
     private int inventoryId;
 
@@ -30,29 +28,18 @@ public class Inventory{
     @Column(name = "order_quantity", nullable = false)
     private int orderQuantity;
 
-    @Column(name = "discount", nullable = false)
-    private float discount;
-
-    @Column(name = "sell_price", nullable = false)
-    private float sellPrice;
-
-    // Default constructor for Inventory object
     public Inventory() {
 
     }
     
-    // Constructor for Inventory object
-    public Inventory(int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice) {
+    public Inventory(int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity) {
         this.storeId = storeId;
         this.productId = productId;
         this.quantity = quantity;
         this.lastOrderDate = lastOrderDate;
         this.orderQuantity = orderQuantity;
-        this.discount = discount;
-        this.sellPrice = sellPrice;
     }
 
-    // Getters and Setters for Inventory object
     public int getInventoryId() {
         return inventoryId;
     }
@@ -101,28 +88,10 @@ public class Inventory{
         this.orderQuantity = orderQuantity;
     }
 
-    public float getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(float discount) {
-        this.discount = discount;
-    }
-
-    public float getSellPrice() {
-        return sellPrice;
-    }
-
-    public void setSellPrice(float sellPrice) {
-        this.sellPrice = sellPrice;
-    }
-
-    // Method to add quantity to a product within the inventory
     public void addQuantity(int quantityToAdd) {
         this.quantity += quantityToAdd;
     }
 
-    // Override toString method for Inventory object
     @Override
     public String toString() {
         return "Inventory{" +
@@ -132,8 +101,6 @@ public class Inventory{
                 ", quantity=" + quantity +
                 ", last_order_date=" + lastOrderDate +
                 ", order_quantity=" + orderQuantity +
-                ", discount=" + discount +
-                ", sell_price=" + sellPrice +
                 '}';
     }
 }

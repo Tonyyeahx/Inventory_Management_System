@@ -8,7 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-// This interface is used to create sql searching methods for the Store object
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 
     @Query(value = "SELECT * FROM store", nativeQuery = true)
