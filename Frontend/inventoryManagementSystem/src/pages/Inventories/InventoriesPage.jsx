@@ -13,6 +13,7 @@ import Col from 'react-bootstrap/Col';
 // Internal imports
 import StoreSwitcher from '../../components/StoreSwitcher';
 import InventoriesTable from './InventoriesTable';
+import ProductDetailModal from './ProductDetailModal.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
 
 // CSS imports
@@ -25,8 +26,13 @@ function InventoriesPage() {
   // the current store
   const [inventories, setInventories] = useState([]);
 
-  // Fetch the inventories from the API (in the future) and store them into the 'inventories' 
-  // variable, or load dummy data before the integration phase
+  // A boolean state variable controls if the ProductDetailModal should be shown or not
+  const [showProdDetailModal, setShowProdDetailModal] = useState(false)
+
+  /**
+   * Fetch the inventories from the API (in the future) and store them into the 'inventories' 
+   * variable, or load dummy data before the integration phase
+   */
   const fetchInventories = () => {
     // TODO: Set inventories using real data fetched from the 'inventories' API endpoint
     setInventories(createDummyGroceries())
@@ -34,9 +40,25 @@ function InventoriesPage() {
 
   // Fetch inventories when the page is reload
   useEffect(fetchInventories, []);
+
+  /**
+   * Open a product detail modal with specified product information in the 'entity' argument.
+   * This function is passed 
+   * @param {*} entity information about the grocery product to be displayed
+   */ 
+  const openProductDetailModal = (entity) => {
+    console.log("openProductDetailModal() function called with " + entity)
+    setShowProdDetailModal(true)
+  }
+
+  const hideProductDetailModal = () => {
+    setShowProdDetailModal(false)
+
+  }
   
   return (
     <div className="inventories-page-pane">
+      {/* A store switcher to switch between different stores */}
       <StoreSwitcher />
 
       {/* Use React-Bootstrap to correctly layout the table and side panels, make sure that the
@@ -45,7 +67,7 @@ function InventoriesPage() {
         <Row>
           <Col md={10}>
             {/* Ask the table to show all inventories from this store */}
-            <InventoriesTable tableEntries={inventories} />
+            <InventoriesTable tableEntries={inventories} openProductDetailModal={openProductDetailModal}/>
           </Col>
 
           <Col md={2}>
@@ -56,6 +78,8 @@ function InventoriesPage() {
         </Row>
       </Container>
 
+      {/* Attach modals that could be show to the React DOM */}
+      <ProductDetailModal show={showProdDetailModal} handleClose={hideProductDetailModal}/>
     </div>
   );
 }

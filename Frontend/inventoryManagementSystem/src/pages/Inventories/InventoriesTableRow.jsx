@@ -6,9 +6,12 @@
 // External imports
 import React from 'react'
 
+// Internal imports
+import ProductDetailModal from './ProductDetailModal';
+
 function InventoriesTableRow(props) {
   return (
-    <tr> 
+    <tr onClick={() => props.openProductDetailModal(props.productName)}> 
       <td>{props.productName}</td>
       <td>{props.category}</td>
       <td>${props.sellPrice.toFixed(2)}</td>

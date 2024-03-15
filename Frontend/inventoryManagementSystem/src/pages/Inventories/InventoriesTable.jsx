@@ -54,6 +54,7 @@ function InventoriesTable(props) {
                       orderedQuantity={entry.orderedQuantity}
                       supplierID={entry.supplierID}
                       supplier={entry.supplier}
+                      openProductDetailModal={props.openProductDetailModal}
                     />
           })
         }
