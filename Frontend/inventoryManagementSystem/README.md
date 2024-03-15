@@ -1,3 +1,14 @@
+## Wireframe
+
+Refer to issue #29 (cdis/cs/courses/cs506/sp2024/team/mondaywednesdaylecture/T_03/inventory-management-system#29)
+
+## How to Run
+
+```
+npm install
+npm run dev
+```
+
 ## External library installation
 
 React Pro Sidebar (https://www.npmjs.com/package/react-pro-sidebar)

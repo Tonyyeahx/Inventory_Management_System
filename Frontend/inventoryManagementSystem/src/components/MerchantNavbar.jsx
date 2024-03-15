@@ -33,18 +33,24 @@ function MerchantNavbar() {
         {/* Display project/team logo here in the top of the menu bar. Used a logo wrapper to make
             it align at the center */}
         <div className="logo-wrapper">
-            <img src={teamLogo} className="logo" alt="React logo" />
+            <img src={teamLogo} className="logo" alt="Project logo" />
         </div>
 
         {/* Start of the menu items */}
           <Menu>
-              <MenuItem active icon={<StoreOutlineIcon />}><Link to="/">Inventories</Link></MenuItem>
+              <MenuItem icon={<StoreOutlineIcon />} component={<Link to="/" />}>
+                Inventories
+              </MenuItem>
+              
               <MenuItem icon={<TruckCargoContainerIcon />}> Orders </MenuItem>
               <MenuItem disabled icon={<DevToIcon />}> Menu 3 </MenuItem>
               <MenuItem disabled icon={<DevToIcon />}> Menu 4 </MenuItem>
               <MenuItem icon={<CogIcon />}> Settings </MenuItem>
               <MenuItem icon={<LogoutIcon />}> Logout </MenuItem>
-              <MenuItem icon={<CartVariantIcon />}><Link to="/shopping">Consumer (Debug)</Link></MenuItem>
+
+              <MenuItem icon={<CartVariantIcon />} component={<Link to ="/shopping" />}>
+                Consumer (Debug)
+              </MenuItem>
           </Menu>
       </Sidebar>
     </div>
