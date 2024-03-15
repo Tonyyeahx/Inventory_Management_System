@@ -10,6 +10,8 @@ import java.util.Date;
 public class Inventory{
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    // Attributes for Inventory object
     @Column(name = "inventory_id", nullable = false)
     private int inventoryId;
 
