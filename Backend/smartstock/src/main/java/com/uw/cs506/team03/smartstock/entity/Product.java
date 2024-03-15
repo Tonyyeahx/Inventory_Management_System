@@ -3,9 +3,13 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "product")
+
+// This class is used to create an object that represents the product table in the database
 public class Product {
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    // Attributes for Product object
     @Column(name = "product_id", nullable = false)
     private int productId;
 
@@ -21,10 +25,12 @@ public class Product {
     @Column(name = "supplier_id", nullable = false)
     private int supplierId;
 
+    // Default constructor for Product object
     public Product() {
 
     }
 
+    // Constructor for Product object
     public Product(String productName, float cost, int categoryId, int supplierId) {
         this.productName = productName;
         this.cost = cost;
@@ -32,6 +38,7 @@ public class Product {
         this.supplierId = supplierId;
     }
 
+    // Getters and Setters for Product object
     public int getProductId() {
         return productId;
     }
@@ -72,6 +79,7 @@ public class Product {
         this.supplierId = supplierId;
     }
 
+    // toString method for Product object
     @Override
     public String toString() {
         return "Product{" +
