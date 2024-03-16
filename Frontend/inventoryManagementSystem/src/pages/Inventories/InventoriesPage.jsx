@@ -9,6 +9,7 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form'
 
 // Internal imports
 import StoreSwitcher from '../../components/StoreSwitcher';
@@ -32,6 +33,15 @@ function InventoriesPage() {
   // What to display in the ProductDetailModal when it's opened
   const [prodDetailDisplayContent, setProdDetailDisplayContent] = useState()
 
+  // Determines what feature/functionality we will be searching by?
+  const [searchCriteria, setSearchCriteria] = useState("productName"); // Default search criteria
+
+  // Search bar state for inventories that holds the current search input of user
+  const [searchValue, setSearchValue] = useState("") //search bar 1
+
+  // Allows User to Reset the Search state so that Default Inventories apge loaded
+  const [resetButton, setResetButton] = useState(false)
+
   /**
    * Fetch the inventories from the API (in the future) and store them into the 'inventories' 
    * variable, or load dummy data before the integration phase
@@ -41,8 +51,33 @@ function InventoriesPage() {
     setInventories(createDummyGroceries())
   }
 
+  const resetSearch = () => {
+    setSearchValue("")
+    setSearchCriteria("productName")
+    fetchInventories()
+  }
+
   // Fetch inventories when the page is reload
   useEffect(fetchInventories, []);
+
+  useEffect(() => {
+    setResetButton(false)
+    let data = []
+    createDummyGroceries().forEach(inventory => {
+      let valueMatch = inventory[searchCriteria].toLowerCase().includes(searchValue.toLowerCase())
+
+      if (valueMatch){
+        data.push(inventory)
+      }
+    })
+
+    setInventories(data)
+
+  }, [searchValue, searchCriteria])
+  // Reset the search when resetButton state changes
+  useEffect(() => {
+    resetSearch(); 
+  }, [resetButton]);
 
   /**
    * Open a product detail modal with specified product information in the 'entity' argument.
@@ -59,14 +94,18 @@ function InventoriesPage() {
     setShowProdDetailModal(false)
 
   }
+
+  const handleResetButtonClick = () => {
+    setResetButton(true);
+  }
   
   return (
     <div className="inventories-page-pane">
       {/* A store switcher to switch between different stores */}
       <StoreSwitcher />
-
+      <br></br>
       {/* Use React-Bootstrap to correctly layout the table and side panels, make sure that the
-          table takes the left 10/12 and the panels takes the right 2/12 */}
+      table takes the left 10/12 and the panels takes the right 2/12 */}
       <Container>
         <Row>
           <Col md={10}>
@@ -78,9 +117,37 @@ function InventoriesPage() {
           </Col>
 
           <Col md={2}>
-            <p>My side panels placeholder</p>
-            <div className="mb-2"><Button variant='primary'>+</Button></div>
-            <div className="mb-2"><Button variant='secondary'>-</Button></div>
+            <div>
+              <Form>
+              <Form.Group>
+                    <Form.Label htmlFor="searchInventoryCriteria">I want to search by:</Form.Label>
+                    <Form.Control as="select" id="searchInventoryCriteria" value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)}>
+                      <option value="productID">Product ID</option>
+                      <option value="productName">Product Name</option>
+                      <option value="category">Category</option>
+                      <option value="categoryID">Category ID</option>
+                      <option value="supplier">Supplier</option>
+                      <option value="supplierID">Supplier ID</option>
+                    </Form.Control>
+              </Form.Group>
+              <Form.Group>
+                <Form.Label htmlFor="searchInventoryName">Inventory Name</Form.Label>
+                <Form.Control id="searchInventoryName" value={searchValue} onChange={
+                        (e) => setSearchValue(e.target.value)
+                        }/>
+                <br></br>
+              </Form.Group>
+                <Button variant="primary" onClick={handleResetButtonClick}>Reset Search</Button> 
+              </Form>
+              </div>
+            <br></br>  
+          </Col>
+        </Row>
+        <Row>
+          <Col md={10}></Col>
+          <Col md={2}>
+            <div className="mb-2"><Button variant='primary'>+ Item</Button></div>
+            <div className="mb-2"><Button variant='secondary'>- Item</Button></div>
           </Col>
         </Row>
       </Container>
