@@ -34,7 +34,7 @@ function ProductDetailModal(props) {
 
       <Modal.Body>
         {/* Use a React-Bootstrap to correctly layout the modal, so that the image will occupy the
-            left 50% and the product information will occupy the right 50% */}
+            left 7/12 and the product information will occupy the right 5/12 */}
         <Container>
           <Row>
             {/* Used a Bootstrap's flexbox utilities 'd-flex' to align content at the center */}
