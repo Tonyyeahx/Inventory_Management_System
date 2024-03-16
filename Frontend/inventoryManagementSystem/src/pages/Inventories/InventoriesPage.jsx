@@ -66,8 +66,10 @@ function InventoriesPage() {
       <StoreSwitcher />
 
       {/* Use React-Bootstrap to correctly layout the table and side panels, make sure that the
-          table takes the left 10/12 and the panels takes the right 2/12 */}
-      <Container>
+          table takes the left 10/12 and the panels takes the right 2/12. 
+          Add 'fluid' so that this container can have a max-width of 100%, taking the entire width
+          of the Inventories Page */}
+      <Container fluid>
         <Row>
           <Col md={10}>
             {/* Ask the table to show all inventories from this store */}
