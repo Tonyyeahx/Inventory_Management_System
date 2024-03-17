@@ -17,7 +17,7 @@ function InventoriesTableRow(props) {
       <td>${props.sellPrice.toFixed(2)}</td>
       <td>${props.cost.toFixed(2)}</td>
       <td>${props.discount.toFixed(2)}</td>
-      <td>{props.quantity}</td>
+      <td>{props.quantity} / {props.orderedQuantity}</td>
       <td>{props.lastOrderedDate}</td>
       <td>{props.supplier}</td>
     </tr>

@@ -45,6 +45,7 @@ For example:
             "inventoryID": 100001,
             "storeID": 12345,
             "productID": 23456,
+            "productImg": "/assets/item_001.png"
             "productName": "Beautiful Chicken",
             "categoryID": 996007,
             "category": "Chicken",
@@ -61,6 +62,7 @@ For example:
             "inventoryID": 100002,
             "storeID": 12345,
             "productID": 23456,
+            "productImg": "/assets/item_001.png"
             "productName": "Beautiful iKun",
             "categoryID": 9960078,
             "category": "Chicken",
