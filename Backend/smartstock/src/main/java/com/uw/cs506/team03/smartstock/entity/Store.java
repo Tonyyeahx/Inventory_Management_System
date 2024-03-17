@@ -2,6 +2,7 @@ package com.uw.cs506.team03.smartstock.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 
 @Entity
@@ -26,6 +27,12 @@ public class Store {
 
     @Column(name = "contact", nullable = false, length = 10)
     private String contact;
+
+
+    @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
+    private Set<Inventory> inventories;
+
+
 
     public Store() {
 
@@ -86,6 +93,7 @@ public class Store {
     public void setContact(String contact) {
         this.contact = contact;
     }
+
 
     @Override
     public String toString() {

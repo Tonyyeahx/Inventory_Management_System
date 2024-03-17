@@ -36,6 +36,13 @@ public class Inventory{
     @Column(name = "sell_price", nullable = false)
     private float sellPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "product.product_id")
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "store.store_id")
+    private Store store;
     // Default constructor for Inventory object
     public Inventory() {
 

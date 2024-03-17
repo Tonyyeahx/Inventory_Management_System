@@ -1,4 +1,6 @@
 package com.uw.cs506.team03.smartstock.entity;
+import java.util.Set;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -24,6 +26,17 @@ public class Product {
 
     @Column(name = "supplier_id", nullable = false)
     private int supplierId;
+
+    @ManyToOne
+    @JoinColumn(name = "category.category_id")
+    private Category category;
+
+    @ManyToOne
+    @JoinColumn(name = "supplier.supplier_id")
+    private Supplier supplier;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private Set<Inventory> inventories;
 
     // Default constructor for Product object
     public Product() {
