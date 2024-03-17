@@ -1,9 +1,10 @@
 package com.uw.cs506.team03.smartstock.entity;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
+import java.util.Date;
 
 @Entity
-@Table(name = "Supplier")
+@Table(name = "supplier")
 public class Supplier {
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +21,7 @@ public class Supplier {
 
     }
 
-    public Supplier(int supplierId, String supplierName, String contact) {
+    public Supplier(String supplierName, String contact) {
         this.supplierName = supplierName;
         this.contact = contact;
     }

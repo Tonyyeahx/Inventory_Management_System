@@ -5,6 +5,11 @@ import com.uw.cs506.team03.smartstock.service.NewTableService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+/*
+ * Best practice for naming endpoint is not show CRUD in api.
+ * using GET, POST, PUT, DELETE to methods to assign actions.
+ */
+
 @RestController
 @RequestMapping("/test")
 public class DemoRestController {
@@ -12,11 +17,6 @@ public class DemoRestController {
     @Autowired
     public DemoRestController(NewTableService theNewTableService) {
         this.newTableService = theNewTableService;
-    }
-
-    @GetMapping("/hello")
-    public String hello () {
-        return "hi";
     }
 
     @GetMapping("/adduser")
