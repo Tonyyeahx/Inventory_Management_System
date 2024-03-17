@@ -146,7 +146,7 @@ function InventoriesPage() {
         <Row>
           <Col md={10}></Col>
           <Col md={2}>
-            <div className="mb-2"><Button variant='primary'>+ Item</Button></div>
+            <div className="mb-2"><Button variant='primary'>New Inventory Item</Button></div>
             <div className="mb-2"><Button variant='secondary'>- Item</Button></div>
           </Col>
         </Row>
