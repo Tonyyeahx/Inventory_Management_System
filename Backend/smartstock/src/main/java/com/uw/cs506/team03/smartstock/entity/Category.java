@@ -2,8 +2,9 @@ package com.uw.cs506.team03.smartstock.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
+
 @Entity
 @Table(name = "category")
 public class Category {
@@ -16,7 +17,7 @@ public class Category {
     private String categoryName;
 
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
-    private Set<Product> products;
+    private List<Product> products;
 
     
     public Category() {
@@ -25,7 +26,7 @@ public class Category {
 
     public Category(String categoryName) {
         this.categoryName = categoryName;
-        this.products = new HashSet<>();
+        this.products = new ArrayList<>();
     }
 
     public int getCategoryId() {
