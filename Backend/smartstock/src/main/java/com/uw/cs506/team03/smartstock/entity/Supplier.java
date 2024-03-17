@@ -2,7 +2,8 @@ package com.uw.cs506.team03.smartstock.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "supplier")
@@ -19,7 +20,7 @@ public class Supplier {
     private String contact;
 
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
-    private Set<Product> products;
+    private List<Product> products;
     public Supplier() {
 
     }
@@ -27,6 +28,7 @@ public class Supplier {
     public Supplier(String supplierName, String contact) {
         this.supplierName = supplierName;
         this.contact = contact;
+        this.products = new ArrayList<>();
     }
 
     public int getSupplierId() {

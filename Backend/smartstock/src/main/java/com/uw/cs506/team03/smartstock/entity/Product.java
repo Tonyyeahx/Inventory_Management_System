@@ -1,5 +1,7 @@
 package com.uw.cs506.team03.smartstock.entity;
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
+
 
 import jakarta.persistence.*;
 
@@ -36,7 +38,7 @@ public class Product {
     private Supplier supplier;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
-    private Set<Inventory> inventories;
+    private List<Inventory> inventories;
 
     // Default constructor for Product object
     public Product() {
@@ -49,6 +51,7 @@ public class Product {
         this.cost = cost;
         this.categoryId = categoryId;
         this.supplierId = supplierId;
+        this.inventories = new ArrayList<>();
     }
 
     // Getters and Setters for Product object

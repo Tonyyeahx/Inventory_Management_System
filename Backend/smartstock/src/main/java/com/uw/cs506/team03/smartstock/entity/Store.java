@@ -2,7 +2,8 @@ package com.uw.cs506.team03.smartstock.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
+import java.util.ArrayList;
 
 
 @Entity
@@ -30,7 +31,7 @@ public class Store {
 
 
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
-    private Set<Inventory> inventories;
+    private List<Inventory> inventories;
 
 
 
@@ -44,6 +45,7 @@ public class Store {
         this.manager = manager;
         this.openDate = openDate;
         this.contact = contact;
+        this.inventories = new ArrayList<>();
     }
 
     public int getStoreId() {
