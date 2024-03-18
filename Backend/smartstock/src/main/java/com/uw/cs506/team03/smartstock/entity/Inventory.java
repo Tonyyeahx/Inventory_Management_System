@@ -15,7 +15,7 @@ public class Inventory{
     @Column(name = "inventory_id", nullable = false)
     private int inventoryId;
 
-    @Column(name = "quantity_id", nullable = false)
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     @Column(name = "last_order_date", nullable = false)
