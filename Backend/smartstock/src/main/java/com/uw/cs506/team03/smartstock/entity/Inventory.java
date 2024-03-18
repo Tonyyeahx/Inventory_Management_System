@@ -37,11 +37,11 @@ public class Inventory{
     private float sellPrice;
 
     @ManyToOne
-    @JoinColumn(name = "product.product_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "store.store_id")
+    @JoinColumn(name = "store_id")
     private Store store;
     // Default constructor for Inventory object
     public Inventory() {
@@ -122,6 +122,22 @@ public class Inventory{
 
     public void setSellPrice(float sellPrice) {
         this.sellPrice = sellPrice;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     // Method to add quantity to a product within the inventory

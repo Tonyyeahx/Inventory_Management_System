@@ -96,6 +96,13 @@ public class Store {
         this.contact = contact;
     }
 
+    public List<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(List<Inventory> inventories) {
+        this.inventories = inventories;
+    }
 
     @Override
     public String toString() {
