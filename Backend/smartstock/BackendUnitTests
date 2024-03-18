@@ -1,0 +1,108 @@
+POST (Inventory):
+pm.test("Status code is 201", function () {
+    pm.response.to.have.status(201);
+});
+
+// Allows us to work with response body values
+// Saves response value
+const response = pm.response.json();
+
+pm.test("Response Body structure is valid", () =>{
+    //var temp = JSON.stringify(response);
+    //var jsonData = JSON.parse(temp);
+    /*
+    pm.expect(response.storeId).to.eql(1);
+    pm.expect(response.productId).to.eql(1);
+    pm.expect(response.quantity).to.eql(100);
+    pm.expect(response.lastOrderDate).to.eql("2023-03-15T00:00:00.000+00:00");
+    pm.expect(response.orderQuantity).to.eql(50);
+    pm.expect(response.discount).to.eql(1.0);
+    pm.expect(response.sellPrice).to.eql(20.99);
+    pm.expect(response.quantity).to.eql(100);
+    */
+    //pm.expect(response[0].inventoryId).to.eql(1);
+    //console.log("Response Body:", response);
+    const expectedResult = pm.globals.get("expectedResult");
+    console.log("Expected Result:", expectedResult);
+    pm.expect(response.quantity).to.eql(expectedResult.quantity);
+    pm.expect(response.sellPrice).to.eql(expectedResult.sellPrice);
+    pm.expect(response.lastOrderDate).to.eql(expectedResult.lastOrderDate);
+    pm.expect(response.discount).to.eql(expectedResult.discount);
+    pm.expect(response.orderQuantity).to.eql(expectedResult.orderQuantity);
+    pm.expect(response.storeId).to.eql(expectedResult.storeId);
+    pm.expect(response.productId).to.eql(expectedResult.productId);
+    //pm.expect(response).to.eql(expectedResult);
+})
+
+GET (Inventory):
+Pre-Request Script: pm.globals.set("inventoryId", "1");
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+pm.test("Response has expected structure", function () {
+    const responseData = pm.response.json();
+    console.log(responseData);
+    pm.expect(responseData.storeId).to.eql(1);
+    pm.expect(responseData.productId).to.eql(1);
+    pm.expect(responseData.quantity).to.eql(100);
+    pm.expect(responseData.lastOrderDate).to.eql("2023-03-15T00:00:00.000+00:00");
+    pm.expect(responseData.orderQuantity).to.eql(50);
+    pm.expect(responseData.discount).to.eql(1.0);
+    pm.expect(responseData.sellPrice).to.eql(20.99);
+    pm.expect(responseData.quantity).to.eql(100);
+});
+
+PUT (Inventory):
+Pre-Request Script:  pm.globals.set("inventoryId", "7");
+
+pm.test("Status code is 200", function () {
+    pm.response.to.have.status(200);
+});
+
+pm.test("Response body has updated fields", function () {
+    var jsonData = pm.response.json();
+    console.log(jsonData.quantity);
+    //console.log("hi");
+    // Adjust the following tests to reflect the fields you expect to be updated
+    pm.expect(jsonData.quantity).to.eql(300);
+    // Add more field checks as required
+});
+// Example: Check if the response contains certain header
+pm.test("Content-Type header is present", function () {
+    pm.response.to.have.header("Content-Type");
+});
+
+DELETE (Inventory):
+
+pm.test("Status code is 200", function () {
+  pm.response.to.have.status(200);
+});
+
+AND A GET to check if GONE.
+// This test assumes that a deleted resource should return a 404 Not Found status
+pm.test("Resource no longer exists (404 Not Found)", function () {
+    pm.response.to.have.status(404);
+});
+
+
+POST (Product):
+
+pm.test("Status code is 201", function () {
+  pm.response.to.have.status(201);
+});
+
+pm.test("Response contains product variables", function () {
+  let responseData = pm.response.json();
+  //console.log(pm.response.json());
+  const expectedResult = pm.globals.get("expectedResult");
+  //console.log("Expected Result:", expectedResult);
+  pm.expect(responseData.productName).to.eql(expectedResult.productName);
+  pm.expect(responseData.cost).to.eql(expectedResult.cost);
+  pm.expect(responseData.supplierId).to.eql(expectedResult.supplierId);
+  pm.expect(responseData.categoryId).to.eql(expectedResult.categoryId);
+  pm.expect(responseData).to.have.property('_links');
+  pm.expect(responseData._links).to.have.property('product');
+  pm.expect(responseData._links.product).to.have.property('href');
+});
+
