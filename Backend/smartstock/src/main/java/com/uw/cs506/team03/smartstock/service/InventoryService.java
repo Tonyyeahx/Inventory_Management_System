@@ -13,4 +13,6 @@ public interface InventoryService {
 
     public List<AllInOneDTO> findProductsByDynamicCriteria(Integer store, String category, String supplier);
 
+    public String setInventoryQuantity(Integer inventoryId, Integer targetQuantity);
+
 }

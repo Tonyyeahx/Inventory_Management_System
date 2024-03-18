@@ -4,10 +4,7 @@ package com.uw.cs506.team03.smartstock.controller;
 import com.uw.cs506.team03.smartstock.dto.AllInOneDTO;
 import com.uw.cs506.team03.smartstock.service.InventoryService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,5 +24,9 @@ public class InventoryController {
         return  inventoryService.findProductsByDynamicCriteria(store, category, supplier);
     }
 
+    @PostMapping("/setInventoryQuantity")
+    public String setInventoryQuantity(@RequestParam(name = "inventoryId", required = true) Integer inventoryId, @RequestParam(name = "targetQuantity", required = true) Integer targetQuantity) {
+        return inventoryService.setInventoryQuantity(inventoryId, targetQuantity);
+    }
 
 }
