@@ -47,8 +47,14 @@ function InventoriesPage() {
    * variable, or load dummy data before the integration phase
    */
   const fetchInventories = () => {
+    let URI = "https://8de114b4-ca1b-41e4-8485-ae484d35edc5.mock.pstmn.io/"
     // TODO: Set inventories using real data fetched from the 'inventories' API endpoint
-    setInventories(createDummyGroceries())
+    fetch(`${URI}/inventories?store=123&category&supplier`)
+      .then(requestBody => requestBody.json())
+      .then(json => {
+            console.log(json)
+            setInventories(json)
+        })
   }
 
   const resetSearch = () => {
