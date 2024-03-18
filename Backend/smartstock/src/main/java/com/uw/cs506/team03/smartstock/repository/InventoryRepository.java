@@ -20,7 +20,7 @@ public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
             "JOIN Category c ON c.categoryId = p.category.categoryId " +
             "WHERE (:store IS NULL OR s.storeId = :store) AND " +
             "(:category IS NULL OR c.categoryName = :category) AND " +
-            "(:sellPrice IS NULL OR sup.supplierName = :supplier)")
+            "(:supplier IS NULL OR sup.supplierName = :supplier)")
     List<AllInOneDTO> findProductsByDynamicCriteria(@Param("store") Integer store, @Param("category") String category, @Param("supplier") String supplier);
 
 
