@@ -1,10 +1,15 @@
 package com.uw.cs506.team03.smartstock.service;
 
+import com.uw.cs506.team03.smartstock.dto.AllInOneDTO;
 import com.uw.cs506.team03.smartstock.repository.*;
 import com.uw.cs506.team03.smartstock.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.SQLOutput;
 import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InventoryServiceImp implements InventoryService {
@@ -19,31 +24,28 @@ public class InventoryServiceImp implements InventoryService {
     }
 
     @Override
-    public void removeProductFromInventory(int inventoryId, int productId) {
-        Inventory product = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
-        if(product != null){
-            inventoryRepository.delete(product);
-        }else{
-            throw new RuntimeException("Product not found");
-        }
+    public List<AllInOneDTO> findProductsByDynamicCriteria(Integer store, String category, String supplier) {
+        return inventoryRepository.findProductsByDynamicCriteria(store, category, supplier);
     }
 
     @Override
-    public void addQuantityToInventory(int inventoryId, int productId, int quantity) {
-        Inventory product = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
-        product.setQuantity(product.getQuantity() + quantity);
-        inventoryRepository.save(product);
+    public String setInventoryQuantity(Integer inventoryId, Integer targetQuantity) {
+        if(targetQuantity <= 0) return "\"msg\": \"Illegal targetQuantity input\"";
+        Optional<Inventory> result = inventoryRepository.findById(inventoryId);
+        Inventory tuple = null;
+        if(result.isPresent()) {
+            tuple = result.get();
+        }
+        else {
+            throw new RuntimeException("can not find tuple by id: " + inventoryId);
+        }
+        System.out.println(inventoryId);
+        System.out.println(targetQuantity);
+
+        tuple.setQuantity(targetQuantity);
+        inventoryRepository.save(tuple);
+        return "\"msg\": \"Target quantity set successful\"";
     }
 
-    @Override
-    public void removeQuantityFromInventory(int inventoryId, int productId, int quantity) {
-        Inventory inventory = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
-        if(inventory.getQuantity() - quantity < 0){
-            inventory.setQuantity(0);
-        }else{
-            inventory.setQuantity(inventory.getQuantity() - quantity);
-        }
-        inventoryRepository.save(inventory);
-    }
 
 }

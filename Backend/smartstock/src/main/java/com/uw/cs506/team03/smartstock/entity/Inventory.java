@@ -15,13 +15,7 @@ public class Inventory{
     @Column(name = "inventory_id", nullable = false)
     private int inventoryId;
 
-    @Column(name = "store_id", nullable = false)
-    private int storeId;
-
-    @Column(name = "product_id", nullable = false)
-    private int productId;
-
-    @Column(name = "quantity_id", nullable = false)
+    @Column(name = "quantity", nullable = false)
     private int quantity;
 
     @Column(name = "last_order_date", nullable = false)
@@ -36,6 +30,13 @@ public class Inventory{
     @Column(name = "sell_price", nullable = false)
     private float sellPrice;
 
+    @ManyToOne
+    @JoinColumn(name = "product_id")
+    private Product product;
+
+    @ManyToOne
+    @JoinColumn(name = "store_id")
+    private Store store;
     // Default constructor for Inventory object
     public Inventory() {
 
@@ -43,8 +44,6 @@ public class Inventory{
     
     // Constructor for Inventory object
     public Inventory(int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice) {
-        this.storeId = storeId;
-        this.productId = productId;
         this.quantity = quantity;
         this.lastOrderDate = lastOrderDate;
         this.orderQuantity = orderQuantity;
@@ -59,22 +58,6 @@ public class Inventory{
 
     public void setInventoryId(int inventoryId) {
         this.inventoryId = inventoryId;
-    }
-
-    public int getStoreId() {
-        return storeId;
-    }
-
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
-    }
-
-    public int getProductId() {
-        return productId;
-    }
-
-    public void setProductId(int productId) {
-        this.productId = productId;
     }
 
     public int getQuantity() {
@@ -117,6 +100,24 @@ public class Inventory{
         this.sellPrice = sellPrice;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
+    }
+
+
+
     // Method to add quantity to a product within the inventory
     public void addQuantity(int quantityToAdd) {
         this.quantity += quantityToAdd;
@@ -127,8 +128,6 @@ public class Inventory{
     public String toString() {
         return "Inventory{" +
                 "inventory_id=" + inventoryId +
-                ", store_id=" + storeId +
-                ", product_id=" + productId +
                 ", quantity=" + quantity +
                 ", last_order_date=" + lastOrderDate +
                 ", order_quantity=" + orderQuantity +

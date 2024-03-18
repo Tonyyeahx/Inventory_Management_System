@@ -1,4 +1,8 @@
 package com.uw.cs506.team03.smartstock.entity;
+import java.util.List;
+import java.util.ArrayList;
+
+
 import jakarta.persistence.*;
 
 @Entity
@@ -19,11 +23,16 @@ public class Product {
     @Column(name = "cost", nullable = false)
     private float cost;
 
-    @Column(name = "category_id", nullable = false)
-    private int categoryId;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 
-    @Column(name = "supplier_id", nullable = false)
-    private int supplierId;
+    @ManyToOne
+    @JoinColumn(name = "supplier_id")
+    private Supplier supplier;
+
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<Inventory> inventories;
 
     // Default constructor for Product object
     public Product() {
@@ -34,8 +43,7 @@ public class Product {
     public Product(String productName, float cost, int categoryId, int supplierId) {
         this.productName = productName;
         this.cost = cost;
-        this.categoryId = categoryId;
-        this.supplierId = supplierId;
+        this.inventories = new ArrayList<>();
     }
 
     // Getters and Setters for Product object
@@ -63,20 +71,28 @@ public class Product {
         this.cost = cost;
     }
 
-    public int getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
-    public int getSupplierId() {
-        return supplierId;
+    public Supplier getSupplier() {
+        return supplier;
     }
 
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
+    public void setSupplier(Supplier supplier) {
+        this.supplier = supplier;
+    }
+
+    public List<Inventory> getInventories() {
+        return inventories;
+    }
+
+    public void setInventories(List<Inventory> inventories) {
+        this.inventories = inventories;
     }
 
     // toString method for Product object
@@ -86,8 +102,6 @@ public class Product {
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", cost=" + cost +
-                ", categoryId=" + categoryId +
-                ", supplierId=" + supplierId +
                 '}';
     }
     
