@@ -23,12 +23,6 @@ public class Product {
     @Column(name = "cost", nullable = false)
     private float cost;
 
-    @Column(name = "category_id", nullable = false)
-    private int categoryId;
-
-    @Column(name = "supplier_id", nullable = false)
-    private int supplierId;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
@@ -49,8 +43,6 @@ public class Product {
     public Product(String productName, float cost, int categoryId, int supplierId) {
         this.productName = productName;
         this.cost = cost;
-        this.categoryId = categoryId;
-        this.supplierId = supplierId;
         this.inventories = new ArrayList<>();
     }
 
@@ -77,22 +69,6 @@ public class Product {
 
     public void setCost(float cost) {
         this.cost = cost;
-    }
-
-    public int getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    public int getSupplierId() {
-        return supplierId;
-    }
-
-    public void setSupplierId(int supplierId) {
-        this.supplierId = supplierId;
     }
 
     public Category getCategory() {
@@ -126,8 +102,6 @@ public class Product {
                 "productId=" + productId +
                 ", productName='" + productName + '\'' +
                 ", cost=" + cost +
-                ", categoryId=" + categoryId +
-                ", supplierId=" + supplierId +
                 '}';
     }
     

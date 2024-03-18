@@ -18,32 +18,4 @@ public class InventoryServiceImp implements InventoryService {
         inventoryRepository.save(product);
     }
 
-    @Override
-    public void removeProductFromInventory(int inventoryId, int productId) {
-        Inventory product = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
-        if(product != null){
-            inventoryRepository.delete(product);
-        }else{
-            throw new RuntimeException("Product not found");
-        }
-    }
-
-    @Override
-    public void addQuantityToInventory(int inventoryId, int productId, int quantity) {
-        Inventory product = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
-        product.setQuantity(product.getQuantity() + quantity);
-        inventoryRepository.save(product);
-    }
-
-    @Override
-    public void removeQuantityFromInventory(int inventoryId, int productId, int quantity) {
-        Inventory inventory = inventoryRepository.findByInventoryIdAndProductId(inventoryId, productId);
-        if(inventory.getQuantity() - quantity < 0){
-            inventory.setQuantity(0);
-        }else{
-            inventory.setQuantity(inventory.getQuantity() - quantity);
-        }
-        inventoryRepository.save(inventory);
-    }
-
 }
