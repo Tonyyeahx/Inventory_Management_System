@@ -16,7 +16,8 @@ import StoreSwitcher from '../../components/StoreSwitcher';
 import InventoriesTable from './InventoriesTable';
 import ProductDetailModal from './ProductDetailModal.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
-
+// Import the DeleteConfirmationModal component
+import DeleteConfirmationModal from './DeleteConfirmationModal';
 // CSS imports
 import "../../App.css"
 import "./InventoriesPage.css"
@@ -96,7 +97,7 @@ function InventoriesPage() {
   const openProductDetailModal = (entity) => {
     console.log("openProductDetailModal() function called with " + entity)
     setProdDetailDisplayContent(entity)
-    setShowProdDetailModal(true)
+    setShowProdDetailModal(true) 
   }
 
   const hideProductDetailModal = () => {
@@ -107,6 +108,15 @@ function InventoriesPage() {
   const handleResetButtonClick = () => {
     setResetButton(true);
   }
+
+  // Function to delete an inventory item by ID
+  const deleteInventoryItem = (inventoryID) => {
+    // Perform delete operation (e.g., call API to delete inventory item)
+    // Once the item is deleted, fetch the updated inventory list
+    alert("deleting " + inventoryID) //replace this eventually with api call to backend
+    fetchInventories();
+  };
+  
   
   return (
     <div className="inventories-page-pane">
@@ -121,10 +131,14 @@ function InventoriesPage() {
         <Row>
           <Col md={10}>
             {/* Ask the table to show all inventories from this store */}
+            <div className='table-container'>
             <InventoriesTable 
               tableEntries={inventories} 
+              setShowProdDetailModal={setShowProdDetailModal}
               openProductDetailModal={openProductDetailModal}
+              deleteInventoryItem={deleteInventoryItem}
             />
+            </div>
           </Col>
 
           <Col md={2}>

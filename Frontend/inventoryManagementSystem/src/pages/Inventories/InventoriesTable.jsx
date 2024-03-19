@@ -88,6 +88,7 @@ function InventoriesTable(props) {
                       supplierID={entry.supplierID}
                       supplier={entry.supplier}
                       openProductDetailModal={props.openProductDetailModal}
+                      onDelete={props.deleteInventoryItem}
                       mode={mode}
                     />
           })
