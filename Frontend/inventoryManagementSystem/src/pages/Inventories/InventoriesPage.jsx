@@ -67,19 +67,22 @@ function InventoriesPage() {
   useEffect(fetchInventories, []);
 
   useEffect(() => {
-    setResetButton(false)
-    let data = []
-    createDummyGroceries().forEach(inventory => {
-      let valueMatch = inventory[searchCriteria].toLowerCase().includes(searchValue.toLowerCase())
-
-      if (valueMatch){
-        data.push(inventory)
-      }
-    })
-
-    setInventories(data)
-
-  }, [searchValue, searchCriteria])
+    const URI = "https://8de114b4-ca1b-41e4-8485-ae484d35edc5.mock.pstmn.io/";
+    // TODO: Set inventories using real data fetched from the 'inventories' API endpoint
+    fetch(`${URI}/inventories?store=123&category&supplier`)
+      .then(requestBody => requestBody.json())
+      .then(data => {
+        let filteredData = [];
+        console.log(data);
+        data.forEach(inventory => {
+          let valueMatch = inventory[searchCriteria].toLowerCase().includes(searchValue.toLowerCase());
+          if (valueMatch) {
+            filteredData.push(inventory);
+          }
+        });
+        setInventories(filteredData);
+      });
+  }, [searchValue, searchCriteria]);
   // Reset the search when resetButton state changes
   useEffect(() => {
     resetSearch(); 
@@ -139,7 +142,7 @@ function InventoriesPage() {
                     </Form.Control>
               </Form.Group>
               <Form.Group>
-                <Form.Label htmlFor="searchInventoryName">Inventory Name</Form.Label>
+                <Form.Label htmlFor="searchInventoryName">Search Inventory</Form.Label>
                 <Form.Control id="searchInventoryName" value={searchValue} onChange={
                         (e) => setSearchValue(e.target.value)
                         }/>
@@ -155,7 +158,6 @@ function InventoriesPage() {
           <Col md={10}></Col>
           <Col md={2}>
             <div className="mb-2"><Button variant='primary'>New Inventory Item</Button></div>
-            <div className="mb-2"><Button variant='secondary'>- Item</Button></div>
           </Col>
         </Row>
       </Container>
