@@ -2,6 +2,8 @@ package com.uw.cs506.team03.smartstock.entity;
 
 import jakarta.persistence.*;
 import java.util.Date;
+import java.util.List;
+import java.util.ArrayList;
 
 @Entity
 @Table(name = "category")
@@ -14,12 +16,25 @@ public class Category {
     @Column(name = "category_name", nullable = false)
     private String categoryName;
 
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+    private List<Product> products;
+
+    
     public Category() {
 
     }
 
     public Category(String categoryName) {
         this.categoryName = categoryName;
+        this.products = new ArrayList<>();
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     public int getCategoryId() {
