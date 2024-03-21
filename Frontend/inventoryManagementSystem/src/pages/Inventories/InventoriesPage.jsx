@@ -17,7 +17,7 @@ import InventoriesTable from './InventoriesTable';
 import ProductDetailModal from './ProductDetailModal.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
 // Import the DeleteConfirmationModal component
-import DeleteConfirmationModal from './DeleteConfirmationModal';
+import NewInventoryModal from './NewInventoryModal.jsx';
 // CSS imports
 import "../../App.css"
 import "./InventoriesPage.css"
@@ -42,6 +42,8 @@ function InventoriesPage() {
 
   // Allows User to Reset the Search state so that Default Inventories apge loaded
   const [resetButton, setResetButton] = useState(false)
+
+  const [showNewInventories, setShowNewInventories] = useState(false);
 
   /**
    * Fetch the inventories from the API (in the future) and store them into the 'inventories' 
@@ -102,7 +104,10 @@ function InventoriesPage() {
 
   const hideProductDetailModal = () => {
     setShowProdDetailModal(false)
+  }
 
+  const hideNewInventories = () => {
+    setShowNewInventories(false)
   }
 
   const handleResetButtonClick = () => {
@@ -171,7 +176,7 @@ function InventoriesPage() {
         <Row>
           <Col md={10}></Col>
           <Col md={2}>
-            <div className="mb-2"><Button variant='primary'>New Inventory Item</Button></div>
+            <div className="mb-2"><Button variant='primary' onClick={() => setShowNewInventories(true)}>New Inventory Item</Button></div>
           </Col>
         </Row>
       </Container>
@@ -181,6 +186,11 @@ function InventoriesPage() {
         show={showProdDetailModal} 
         handleClose={hideProductDetailModal} 
         displayContent={prodDetailDisplayContent}
+      />
+
+      <NewInventoryModal
+          show={showNewInventories}
+          handleClose={hideNewInventories}
       />
     </div>
   );
