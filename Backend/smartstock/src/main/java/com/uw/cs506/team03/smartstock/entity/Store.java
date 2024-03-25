@@ -23,7 +23,7 @@ public class Store {
     @Column(name = "manager", nullable = false, length = 30)
     private String manager;
 
-    @Column(name = "open_data", nullable = false)
+    @Column(name = "open_date", nullable = false)
     private Date openDate;
 
     @Column(name = "contact", nullable = false, length = 10)
