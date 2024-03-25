@@ -1,0 +1,26 @@
+version: "3"
+services: 
+  mysqldb: 
+    container_name: mysqldb
+    image: mysql:8.0
+    ports: 
+      - 3307:3306   
+    environment:
+      MYSQL_DATABASE: inventory
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql  # Initialize database with init.sql
+      - ./dbfile/:/var/lib/mysql                        # Persist MySQL data outside the container
+  springboot-app:
+   # container_name: spring-app
+    image: springbooot-app
+    restart: always
+    build: .
+    ports:
+      - 8082:8080 
+    environment:
+      MYSQL_HOST: mysqldb
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_PORT: 3306
+
