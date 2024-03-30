@@ -7,12 +7,12 @@
 // External imports
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useState } from "react";
 
 // Internal imports
 import MerchantNavbar from "./components/MerchantNavbar";
 import InventoriesPage from "./pages/Inventories/InventoriesPage";
 import UserTestPage from "./pages/UserTestPage/userPage";
+
 // CSS imports
 import "./App.css"
 import 'bootstrap/dist/css/bootstrap.css';
