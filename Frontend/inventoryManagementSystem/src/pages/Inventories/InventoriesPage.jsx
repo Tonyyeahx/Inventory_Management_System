@@ -15,7 +15,11 @@ import Form from 'react-bootstrap/Form'
 import StoreSwitcher from '../../components/StoreSwitcher';
 import InventoriesTable from './InventoriesTable';
 import ProductDetailModal from './ProductDetailModal.jsx';
+import ViewEditModeRadioButton from '../../components/ViewEditModeRadioButton.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
+
+// Context imports
+import { ViewModeContext } from '../../context/ViewModeContext.js';
 
 // CSS imports
 import "../../App.css"
@@ -26,6 +30,11 @@ function InventoriesPage() {
   // Holds all inventories that satisfy the filter constrains (currently category and supplier) in
   // the current store
   const [inventories, setInventories] = useState([]);
+
+  // Indicates the view mode of the table, can be either 'View' or 'Edit'. 
+  // The value of this state variable is shared across all elements used by the InventoriesPage by
+  // context 'ViewModeContext'
+  const [viewEditMode, setViewEditMode] = useState("View");
 
   // A boolean state variable controls if the ProductDetailModal should be shown or not
   const [showProdDetailModal, setShowProdDetailModal] = useState(false)
@@ -107,65 +116,72 @@ function InventoriesPage() {
   
   return (
     <div className="inventories-page-pane">
-      {/* A store switcher to switch between different stores */}
-      <StoreSwitcher />
-      <br></br>
-      {/* Use React-Bootstrap to correctly layout the table and side panels, make sure that the
-          table takes the left 10/12 and the panels takes the right 2/12. 
-          Add 'fluid' so that this container can have a max-width of 100%, taking the entire width
-          of the Inventories Page */}
-      <Container fluid>
-        <Row>
-          <Col md={10}>
-            {/* Ask the table to show all inventories from this store */}
-            <InventoriesTable 
-              tableEntries={inventories} 
-              openProductDetailModal={openProductDetailModal}
-            />
-          </Col>
+      {/* Used to share the view/edit mode across all components used in this page, including the 
+          ViewEditModeRadioButton, InventoriesTable, InventoriesTableRow, and ProductDetailModal */}
+      <ViewModeContext.Provider value={[viewEditMode, setViewEditMode]}> 
 
-          <Col md={2}>
-            <div>
-              <Form>
-              <Form.Group>
-                    <Form.Label htmlFor="searchInventoryCriteria">I want to search by:</Form.Label>
-                    <Form.Control as="select" id="searchInventoryCriteria" value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)}>
-                      <option value="productID">Product ID</option>
-                      <option value="productName">Product Name</option>
-                      <option value="category">Category</option>
-                      <option value="categoryID">Category ID</option>
-                      <option value="supplier">Supplier</option>
-                      <option value="supplierID">Supplier ID</option>
-                    </Form.Control>
-              </Form.Group>
-              <Form.Group>
-                <Form.Label htmlFor="searchInventoryName">Inventory Name</Form.Label>
-                <Form.Control id="searchInventoryName" value={searchValue} onChange={
-                        (e) => setSearchValue(e.target.value)
-                        }/>
-                <br></br>
-              </Form.Group>
-                <Button variant="primary" onClick={handleResetButtonClick}>Reset Search</Button> 
-              </Form>
-              </div>
-            <br></br>  
-          </Col>
-        </Row>
-        <Row>
-          <Col md={10}></Col>
-          <Col md={2}>
-            <div className="mb-2"><Button variant='primary'>New Inventory Item</Button></div>
-            <div className="mb-2"><Button variant='secondary'>- Item</Button></div>
-          </Col>
-        </Row>
-      </Container>
+        {/* A store switcher to switch between different stores */}
+        <StoreSwitcher />
+        <br></br>
+        {/* Use React-Bootstrap to correctly layout the table and side panels, make sure that the
+            table takes the left 10/12 and the panels takes the right 2/12. 
+            Add 'fluid' so that this container can have a max-width of 100%, taking the entire width
+            of the Inventories Page */}
+        <Container fluid>
+          <Row>
+            <Col md={10}>
+              {/* Ask the table to show all inventories from this store */}
+              <InventoriesTable 
+                tableEntries={inventories} 
+                openProductDetailModal={openProductDetailModal}
+              />
+            </Col>
 
-      {/* Attach modals that could be show to the React DOM */}
-      <ProductDetailModal 
-        show={showProdDetailModal} 
-        handleClose={hideProductDetailModal} 
-        displayContent={prodDetailDisplayContent}
-      />
+            <Col md={2}>
+              <ViewEditModeRadioButton />
+
+              <div>
+                <Form>
+                <Form.Group>
+                      <Form.Label htmlFor="searchInventoryCriteria">I want to search by:</Form.Label>
+                      <Form.Control as="select" id="searchInventoryCriteria" value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)}>
+                        <option value="productID">Product ID</option>
+                        <option value="productName">Product Name</option>
+                        <option value="category">Category</option>
+                        <option value="categoryID">Category ID</option>
+                        <option value="supplier">Supplier</option>
+                        <option value="supplierID">Supplier ID</option>
+                      </Form.Control>
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label htmlFor="searchInventoryName">Inventory Name</Form.Label>
+                  <Form.Control id="searchInventoryName" value={searchValue} onChange={
+                          (e) => setSearchValue(e.target.value)
+                          }/>
+                  <br></br>
+                </Form.Group>
+                  <Button variant="primary" onClick={handleResetButtonClick}>Reset Search</Button> 
+                </Form>
+                </div>
+              <br></br>  
+            </Col>
+          </Row>
+          <Row>
+            <Col md={10}></Col>
+            <Col md={2}>
+              <div className="mb-2"><Button variant='primary'>New Inventory Item</Button></div>
+              <div className="mb-2"><Button variant='secondary'>- Item</Button></div>
+            </Col>
+          </Row>
+        </Container>
+
+        {/* Attach modals that could be show to the React DOM */}
+        <ProductDetailModal 
+          show={showProdDetailModal} 
+          handleClose={hideProductDetailModal} 
+          displayContent={prodDetailDisplayContent}
+        />
+      </ViewModeContext.Provider>
     </div>
   );
 }
