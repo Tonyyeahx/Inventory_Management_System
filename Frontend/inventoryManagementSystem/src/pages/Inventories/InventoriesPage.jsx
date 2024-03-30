@@ -19,7 +19,7 @@ import ViewEditModeRadioButton from '../../components/ViewEditModeRadioButton.js
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
 
 // Context imports
-import { ViewModeContext } from '../../context/ViewModeContext.js';
+import ViewModeContext from '../../context/ViewModeContext.js';
 
 // CSS imports
 import "../../App.css"
