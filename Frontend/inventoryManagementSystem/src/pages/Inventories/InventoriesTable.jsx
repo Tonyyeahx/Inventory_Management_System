@@ -5,49 +5,24 @@
  */
 
 // External imports
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import Table from 'react-bootstrap/Table';
 import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 
 // Internal imports
 import InventoriesTableRow from './InventoriesTableRow';
 
+// Context imports
+import ViewModeContext from '../../context/ViewModeContext';
+
 // CSS imports
 import "../../App.css"
 
 function InventoriesTable(props) {
-
-    // State to manage the selected mode (Read or Edit)
-    const [mode, setMode] = useState('Read');
-
-    // Toggle function to switch between Read and Edit modes
-    const toggleMode = () => {
-      setMode(mode === 'Read' ? 'Edit' : 'Read');
-    };
+  // Toggles between 'View' and 'Edit'
+  const [viewEditMode, setViewEditMode] = useContext(ViewModeContext)
 
   return (
-    <div>
-    {/* Radio buttons for Read and Edit modes */}
-    <div>
-      <input
-        type="radio"
-        id="readMode"
-        name="mode"
-        value="Read"
-        checked={mode === 'Read'}
-        onChange={toggleMode}
-      />
-      <label htmlFor="readMode">Read</label>
-      <input
-        type="radio"
-        id="editMode"
-        name="mode"
-        value="Edit"
-        checked={mode === 'Edit'}
-        onChange={toggleMode}
-      />
-      <label htmlFor="editMode">Edit</label>
-    </div>
     <Table bordered hover>
       {/* Table header */}
       <thead>
@@ -61,7 +36,7 @@ function InventoriesTable(props) {
           <th>Last Ordered</th>
           <th>Supplier</th>
           {/* Display delete and edit icons if in Edit mode */}
-          {mode === 'Edit' && <th>Actions</th>}
+          {viewEditMode === 'Edit' && <th>Actions</th>}
         </tr>
       </thead>
 
@@ -88,13 +63,11 @@ function InventoriesTable(props) {
                       supplierID={entry.supplierID}
                       supplier={entry.supplier}
                       openProductDetailModal={props.openProductDetailModal}
-                      mode={mode}
                     />
           })
         }
       </tbody>
     </Table>
-    </div>
   );
 
 }
