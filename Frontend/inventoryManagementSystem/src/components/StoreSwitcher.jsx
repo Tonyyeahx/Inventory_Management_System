@@ -15,7 +15,7 @@ import "./StoreSwitcher.css"
 
 function StoreSwitcher() {
   return (
-    <div className="store-swicher">
+    <div className="store-switcher">
       <h1 className="store-name">My Store</h1>
       <SwapHorizontalIcon color="#808080" className="swap-icon" />
     </div>
