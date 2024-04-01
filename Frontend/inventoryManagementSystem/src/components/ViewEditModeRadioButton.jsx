@@ -17,6 +17,7 @@ import ViewModeContext from '../context/ViewModeContext'
 import "../App.css"
 
 function ViewEditModeRadioButton() {
+  // Toggles between 'View' and 'Edit'
   const [viewEditMode, setViewEditMode] = useContext(ViewModeContext)
 
   return (
