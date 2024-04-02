@@ -26,7 +26,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` 
 VALUES 
-('james','{bcrypt}$2y$10$wuqLiLCQtdLpRMYrd88ydOlq2Ji3g.S0PSgWwbUK7a1bTDcWZCrs.',1),
+('james','{bcrypt}$2y$10$btOLaQBTO1gdSjsee4x7W.8XEyUyhdUs2zzPp3URfmaV3n6Dq9KTS',1),
 ('jack','{bcrypt}$2y$10$wuqLiLCQtdLpRMYrd88ydOlq2Ji3g.S0PSgWwbUK7a1bTDcWZCrs.',1);
 
 
