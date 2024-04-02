@@ -10,6 +10,9 @@ import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 // Context imports
 import ViewModeContext from '../../context/ViewModeContext';
 
+// CSS imports
+import "./InventoriesTableRow.css"
+
 function InventoriesTableRow(props) {
   // Toggles between 'View' and 'Edit'
   const [viewEditMode, setViewEditMode] = useContext(ViewModeContext)
@@ -35,10 +38,10 @@ function InventoriesTableRow(props) {
 
       {/* Render delete and edit icons if in Edit mode */}
         {viewEditMode === 'Edit' && (
-        <td>
-          <BsPencilSquare />
-          <div onClick={handleDeleteClick}>
-            <BsTrash />
+        <td >
+          <div className="action-col">
+            <BsPencilSquare />
+            <BsTrash onClick={handleDeleteClick}/>
           </div>
         </td>
       )}
