@@ -37,7 +37,7 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.GET, "/inventories").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET, "/inventories/**").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.POST, "/inventories").hasRole("MANAGER")
-                        .requestMatchers(HttpMethod.PUT, "/inventories").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "/inventories/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/inventories/**").hasRole("MANAGER")
                 );
         httpSecurity.httpBasic(Customizer.withDefaults());
