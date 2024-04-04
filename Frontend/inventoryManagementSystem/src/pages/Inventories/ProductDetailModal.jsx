@@ -44,6 +44,9 @@ function ProductDetailModal(props) {
   const [editLastOrderedDate, setEditLastOrderedDate] = useState("")
   const [editSupplier, setEditSupplier] = useState("")
   const [editSupplierID, setEditSupplierID] = useState("")
+  const [editImage, setEditImage] = useState()
+
+  useEffect(() => console.log(editImage),[editImage])
 
   // Update the value of the state variables when props arrives, avoiding to render null when the 
   // props hasn't arrived yet
@@ -86,8 +89,17 @@ function ProductDetailModal(props) {
         <Container>
           <Row>
             {/* Used a Bootstrap's flexbox utilities 'd-flex' to align content at the center */}
-            <Col md={7} className="d-flex justify-content-center">
+            <Col md={7} className="d-flex flex-column justify-content-center">
               <Image src={props.displayContent.productImg} className='product-image'/>
+
+              {
+                // Show the file upload module only when in edit mode, hide it when is view mode
+                viewEditMode == "Edit" && 
+                  <>
+                    <Form.Label>Upload New Images</Form.Label>
+                    <Form.Control type="file" onChange={e => setEditImage(e.target.files[0])}/>
+                  </>
+              }
             </Col>
 
             <Col md={5} className="d-flex flex-column justify-content-center">
