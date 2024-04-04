@@ -4,22 +4,70 @@
  */
 
 // External imports
-import React, {useState} from 'react'
-import Modal from 'react-bootstrap/Modal';
+import React, {useState, useContext, useEffect} from 'react'
+
 import Container from 'react-bootstrap/Container';
 import Table from 'react-bootstrap/Table';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
-import { Image } from 'react-bootstrap';
 
-// Icon imports
-import StoreOutlineIcon from 'mdi-react/StoreOutlineIcon';
-import TruckCargoContainerIcon from 'mdi-react/TruckCargoContainerIcon';
+import Image from 'react-bootstrap/Image';
+import Modal from 'react-bootstrap/Modal';
+import Form from 'react-bootstrap/Form';
+
+// Internal imports
+import ViewEditModeRadioButton from '../../components/ViewEditModeRadioButton';
+
+// Context imports
+import ViewModeContext from '../../context/ViewModeContext';
 
 // CSS import
 import "./ProductDetailModal.css"
 
 function ProductDetailModal(props) {
+  // Toggles between 'View' and 'Edit'
+  const [viewEditMode, setViewEditMode] = useContext(ViewModeContext)
+
+  // When in edit mode, these state variables stores the (user edited) value of the entities of
+  // this inventory
+  const [editProductName, setEditProductName] = useState("")
+  const [editProductID, setEditProductID] = useState("")
+  const [editInventoryID, setEditInventoryID] = useState("")
+  const [editStoreID, setEditStoreID] = useState("")
+  const [editCategory, setEditCategory] = useState("")
+  const [editCategoryID, setEditCategoryID] = useState("")
+  const [editCost, setEditCost] = useState("")
+  const [editSellPrice, setEditSellPrice] = useState("")
+  const [editDiscount, setEditDiscount] = useState("")
+  const [editQuantity, setEditQuantity] = useState("")
+  const [editOrderedQuantity, setEditOrderedQuantity] = useState("")
+  const [editLastOrderedDate, setEditLastOrderedDate] = useState("")
+  const [editSupplier, setEditSupplier] = useState("")
+  const [editSupplierID, setEditSupplierID] = useState("")
+
+  // Update the value of the state variables when props arrives, avoiding to render null when the 
+  // props hasn't arrived yet
+  const syncEditValueWithDisplayValue = () => {
+    // Checking if props.displayContent is null. Only assign the value when it's not null
+    if (props.displayContent) {
+      setEditProductName(props.displayContent.productName)
+      setEditProductID(props.displayContent.productID)
+      setEditInventoryID(props.displayContent.inventoryID)
+      setEditStoreID(props.displayContent.storeID)
+      setEditCategory(props.displayContent.category)
+      setEditCategoryID(props.displayContent.categoryID)
+      setEditCost(props.displayContent.cost)
+      setEditSellPrice(props.displayContent.sellPrice)
+      setEditDiscount(props.displayContent.discount)
+      setEditQuantity(props.displayContent.quantity)
+      setEditOrderedQuantity(props.displayContent.orderedQuantity)
+      setEditLastOrderedDate(props.displayContent.lastOrderedDate)
+      setEditSupplier(props.displayContent.supplier)
+      setEditSupplierID(props.displayContent.supplierID)
+    }
+  }
+
+  useEffect(syncEditValueWithDisplayValue, [props.displayContent])
 
   // Use && to ensure that we are not trying access a null 'props.displayContent' object.
   // If the left of the '&&' operator is null, the content on the right will not be rendered, 
@@ -42,81 +90,260 @@ function ProductDetailModal(props) {
               <Image src={props.displayContent.productImg} className='product-image'/>
             </Col>
 
-            <Col md={5} className="d-flex justify-content-center">
-              {/* Use a table to show the product's detail */}
-              <Table striped borderless hover>
-                <tbody>
-                  <tr>
-                    <th>Product Name</th>
-                    <td>{props.displayContent.productName}</td>
-                  </tr>
+            <Col md={5} className="d-flex flex-column justify-content-center">
+              {/* To toggle between view mode and edit mode. In edit mode, the attributes for the 
+                  inventories would be able to edit */}
+              <ViewEditModeRadioButton />
+              <br />
 
-                  <tr>
-                    <th>Product ID</th>
-                    <td>{props.displayContent.productID}</td>
-                  </tr>
+              <Form>
+                {/* Use a table to show the product's detail 
+                    When in view mode, the table display the value 
+                  */}
+                <Table striped borderless hover>
+                  <tbody>
+                    <tr>
+                      <th>Product Name</th>
+                      <td>
+                        {
+                          // Show the text only when in view mode, show the text in the edit box 
+                          // when it's in edit mode
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editProductName} 
+                              onChange={e => setEditProductName(e.target.value)}
+                            />
+                          :
+                            props.displayContent.productName
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Inventory ID</th>
-                    <td>{props.displayContent.inventoryID}</td>
-                  </tr>
+                    <tr>
+                      <th>Product ID</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editProductID} 
+                              onChange={e => setEditProductID(e.target.value)}
+                            />
+                          :
+                            props.displayContent.productID
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Store ID</th>
-                    <td>{props.displayContent.storeID}</td>
-                  </tr>
+                    <tr>
+                      <th>Inventory ID</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editInventoryID} 
+                              onChange={e => setEditInventoryID(e.target.value)}
+                            />
+                          :
+                            props.displayContent.inventoryID
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Category</th>
-                    <td>{props.displayContent.category}</td>
-                  </tr>
+                    <tr>
+                      <th>Store ID</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editStoreID} 
+                              onChange={e => setEditStoreID(e.target.value)}
+                            />
+                          :
+                            props.displayContent.storeID
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Category ID</th>
-                    <td>{props.displayContent.categoryID}</td>
-                  </tr>
+                    <tr>
+                      <th>Category</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editCategory} 
+                              onChange={e => setEditCategory(e.target.value)}
+                            />
+                          :
+                            props.displayContent.category
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Cost</th>
-                    <td>{props.displayContent.cost}</td>
-                  </tr>
+                    <tr>
+                      <th>Category ID</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editCategoryID} 
+                              onChange={e => setEditCategoryID(e.target.value)}
+                            />
+                          :
+                            props.displayContent.categoryID
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Sell Price</th>
-                    <td>{props.displayContent.sellPrice}</td>
-                  </tr>
+                    <tr>
+                      <th>Cost $</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editCost} 
+                              onChange={e => setEditCost(e.target.value)}
+                            />
+                          :
+                            props.displayContent.cost
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Discount</th>
-                    <td>{props.displayContent.discount}</td>
-                  </tr>
+                    <tr>
+                      <th>Sell Price $</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editSellPrice} 
+                              onChange={e => setEditSellPrice(e.target.value)}
+                            />
+                          :
+                            props.displayContent.sellPrice
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Remaining Quantity</th>
-                    <td>{props.displayContent.quantity}</td>
-                  </tr>
+                    <tr>
+                      <th>Discount $</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editDiscount} 
+                              onChange={e => setEditDiscount(e.target.value)}
+                            />
+                          :
+                            props.displayContent.discount
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Ordered Quantity</th>
-                    <td>{props.displayContent.orderedQuantity}</td>
-                  </tr>
+                    <tr>
+                      <th>Remaining Quantity</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editQuantity} 
+                              onChange={e => setEditQuantity(e.target.value)}
+                            />
+                          :
+                            props.displayContent.quantity
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Last Ordered Date</th>
-                    <td>{props.displayContent.lastOrderedDate}</td>
-                  </tr>
+                    <tr>
+                      <th>Ordered Quantity</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editOrderedQuantity} 
+                              onChange={e => setEditOrderedQuantity(e.target.value)}
+                            />
+                          :
+                            props.displayContent.orderedQuantity
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Supplier</th>
-                    <td>{props.displayContent.supplier}</td>
-                  </tr>
+                    <tr>
+                      <th>Last Ordered Date</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editLastOrderedDate} 
+                              onChange={e => setEditLastOrderedDate(e.target.value)}
+                            />
+                          :
+                            props.displayContent.lastOrderedDate
+                        }
+                      </td>
+                    </tr>
 
-                  <tr>
-                    <th>Supplier ID</th>
-                    <td>{props.displayContent.supplierID}</td>
-                  </tr>
-                </tbody>
-              </Table>
+                    <tr>
+                      <th>Supplier</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editSupplier} 
+                              onChange={e => setEditSupplier(e.target.value)}
+                            />
+                          :
+                            props.displayContent.supplier
+                        }
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <th>Supplier ID</th>
+                      <td>
+                        {
+                          viewEditMode == "Edit" 
+                          ? 
+                            <Form.Control 
+                              size="sm"
+                              value={editSupplierID} 
+                              onChange={e => setEditSupplierID(e.target.value)}
+                            />
+                          :
+                            props.displayContent.supplierID
+                        }
+                      </td>
+                    </tr>
+                  </tbody>
+                </Table>
+              </Form>
             </Col>
           </Row>
         </Container>
