@@ -180,6 +180,7 @@ function InventoriesPage() {
           show={showProdDetailModal} 
           handleClose={hideProductDetailModal} 
           displayContent={prodDetailDisplayContent}
+          fetchInventories={fetchInventories}
         />
       </ViewModeContext.Provider>
     </div>
