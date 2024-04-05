@@ -31,7 +31,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
-
+        //allow user access those APIs
+        //** means no matter what it is are allow
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
                         .requestMatchers(HttpMethod.GET, "/inventories").hasRole("EMPLOYEE")

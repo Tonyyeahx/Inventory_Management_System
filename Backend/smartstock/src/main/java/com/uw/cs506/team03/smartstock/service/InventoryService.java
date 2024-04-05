@@ -1,6 +1,7 @@
 package com.uw.cs506.team03.smartstock.service;
 
 import com.uw.cs506.team03.smartstock.dto.AllInOneDTO;
+import com.uw.cs506.team03.smartstock.entity.Inventory;
 import org.springframework.data.repository.query.Param;
 
 import java.util.Date;
@@ -14,5 +15,17 @@ public interface InventoryService {
     public List<AllInOneDTO> findProductsByDynamicCriteria(Integer store, String category, String supplier);
 
     public String setInventoryQuantity(Integer inventoryId, Integer targetQuantity);
+
+    //==================BASIC Functions are needed====================================
+    public List<Inventory> findAll();
+
+    public Inventory findById(int id);
+
+    public Inventory save(Inventory inventory);
+
+    public void deleteById(int id);
+    //==================================================================================
+
+
 
 }
