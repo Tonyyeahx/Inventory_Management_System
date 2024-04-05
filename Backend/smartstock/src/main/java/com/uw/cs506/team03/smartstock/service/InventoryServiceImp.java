@@ -46,6 +46,32 @@ public class InventoryServiceImp implements InventoryService {
         inventoryRepository.save(tuple);
         return "\"msg\": \"Target quantity set successful\"";
     }
+    //==============================BASIC CRUD===================================
+    @Override
+    public List<Inventory> findAll() {
+        return inventoryRepository.findAll();
+    }
 
+    @Override
+    public Inventory findById(int id) {
+        Optional<Inventory> inventory = inventoryRepository.findById(id);
+        if(inventory.isPresent()) {
+            return inventory.get();
+        }
+        else {
+            throw new RuntimeException("Do not find tuple id " + id);
+        }
+    }
+
+    @Override
+    public Inventory save(Inventory inventory) {
+        return inventoryRepository.save(inventory);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        inventoryRepository.deleteById(id);
+    }
+    //==========================================================================
 
 }
