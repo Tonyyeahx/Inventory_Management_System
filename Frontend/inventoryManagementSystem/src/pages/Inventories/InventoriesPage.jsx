@@ -177,6 +177,7 @@ function InventoriesPage() {
               <FilterCategoryPanel 
                 inventories={inventories}
                 setInventories={setInventories}
+                fetchInventories={fetchInventories}
               />
             </Col>
           </Row>

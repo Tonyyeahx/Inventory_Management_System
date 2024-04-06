@@ -170,6 +170,7 @@ function ProductDetailModal(props) {
                             viewEditMode == "Edit" 
                             ? 
                               <Form.Control 
+                                disabled
                                 size="sm"
                                 value={editProductID} 
                                 onChange={e => setEditProductID(e.target.value)}
@@ -187,6 +188,7 @@ function ProductDetailModal(props) {
                             viewEditMode == "Edit" 
                             ? 
                               <Form.Control 
+                                disabled
                                 size="sm"
                                 value={editInventoryID} 
                                 onChange={e => setEditInventoryID(e.target.value)}
