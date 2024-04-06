@@ -9,7 +9,7 @@ import Form from 'react-bootstrap/Form';
 
 
 // CSS imports
-import "./FilterCategoryPanel.css"
+import "./FilterPanels.css"
 
 function FilterCategoryPanel(props) {
   // Stores a list containing all (unique) categories 
