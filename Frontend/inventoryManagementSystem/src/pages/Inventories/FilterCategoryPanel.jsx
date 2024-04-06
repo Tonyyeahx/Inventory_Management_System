@@ -35,10 +35,10 @@ function FilterCategoryPanel(props) {
       <p className="panel-title">Filter Category</p>
 
       {/* Display the unique categories in checkboxes */}
-      <Form>
+      <Form className="form">
         {
           uniqueCategories.map(category => (
-            <Form.Check 
+            <Form.Check className='checkbox'
               key={category}
               type={"checkbox"}
               label={category}
