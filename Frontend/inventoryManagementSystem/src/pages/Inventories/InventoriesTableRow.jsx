@@ -4,15 +4,18 @@
  */
 
 // External imports
-import React from 'react'
+import React, {useContext} from 'react'
 import { BsPencilSquare, BsTrash } from 'react-icons/bs';
 
-// Internal imports
-import ProductDetailModal from './ProductDetailModal';
+// Context imports
+import ViewModeContext from '../../context/ViewModeContext';
 
+// CSS imports
+import "./InventoriesTableRow.css"
 
 function InventoriesTableRow(props) {
-  const { entry, openProductDetailModal, mode } = props;
+  // Toggles between 'View' and 'Edit'
+  const [viewEditMode, setViewEditMode] = useContext(ViewModeContext)
 
   // Function to handle click on delete icon
   const handleDeleteClick = (event) => {
@@ -32,12 +35,13 @@ function InventoriesTableRow(props) {
       <td>{props.quantity} / {props.orderedQuantity}</td>
       <td>{props.lastOrderedDate}</td>
       <td>{props.supplier}</td>
+
       {/* Render delete and edit icons if in Edit mode */}
-        {mode === 'Edit' && (
-        <td>
-          <BsPencilSquare />
-          <div onClick={handleDeleteClick}>
-            <BsTrash />
+        {viewEditMode === 'Edit' && (
+        <td >
+          <div className="action-col">
+            <BsPencilSquare />
+            <BsTrash onClick={handleDeleteClick}/>
           </div>
         </td>
       )}
