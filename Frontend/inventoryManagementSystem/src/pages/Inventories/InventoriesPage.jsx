@@ -201,17 +201,22 @@ function InventoriesPage() {
             <Col md={2}>
               <div className="mb-2"><Button variant='primary' onClick={() => setShowNewInventories(true)}>New Inventory Item</Button></div>
               
-              {/* The 'Filter Category' side panel */}
-              <FilterCategoryPanel 
-                cleanInventories={cleanInventories}
-                setInventories={setInventories}
-              />
+              {/* The 'Filter Category' side panel, mb-2 for add bottom margin */}
+              <div className="mb-2">
+                <FilterCategoryPanel 
+                  cleanInventories={cleanInventories}
+                  setInventories={setInventories}
+                />
+              </div>
 
               {/* The 'Filter Supplier' side panel */}
-              <FilterSupplierPanel 
-                cleanInventories={cleanInventories}
-                setInventories={setInventories}
-              />
+              <div className="mb-2">
+                <FilterSupplierPanel 
+                  cleanInventories={cleanInventories}
+                  setInventories={setInventories}
+                />
+              </div>
+
             </Col>
           </Row>
         </Container>
