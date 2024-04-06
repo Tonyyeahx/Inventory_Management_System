@@ -18,9 +18,11 @@ import ProductDetailModal from './ProductDetailModal.jsx';
 import ViewEditModeRadioButton from '../../components/ViewEditModeRadioButton.jsx';
 import FilterCategoryPanel from './FilterCategoryPanel.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
+import NewInventoryModal from './NewInventoryModal.jsx';
 
 // Context imports
 import ViewModeContext from '../../context/ViewModeContext.js';
+
 
 // CSS imports
 import "../../App.css"
@@ -52,6 +54,8 @@ function InventoriesPage() {
   // Allows User to Reset the Search state so that Default Inventories apge loaded
   const [resetButton, setResetButton] = useState(false)
 
+  const [showNewInventories, setShowNewInventories] = useState(false);
+
   /**
    * Fetch the inventories from the API (in the future) and store them into the 'inventories' 
    * variable, or load dummy data before the integration phase
@@ -77,22 +81,26 @@ function InventoriesPage() {
   useEffect(fetchInventories, []);
 
   useEffect(() => {
-    setResetButton(false)
-    let data = []
-    createDummyGroceries().forEach(inventory => {
-      let valueMatch = inventory[searchCriteria].toLowerCase().includes(searchValue.toLowerCase())
-
-      if (valueMatch){
-        data.push(inventory)
-      }
-    })
-
-    setInventories(data)
-
-  }, [searchValue, searchCriteria])
+    const URI = "https://8de114b4-ca1b-41e4-8485-ae484d35edc5.mock.pstmn.io/";
+    // TODO: Set inventories using real data fetched from the 'inventories' API endpoint
+    fetch(`${URI}/inventories?store=123&category&supplier`)
+      .then(requestBody => requestBody.json())
+      .then(data => {
+        let filteredData = [];
+        console.log(data);
+        data.forEach(inventory => {
+          let valueMatch = inventory[searchCriteria].toLowerCase().includes(searchValue.toLowerCase());
+          if (valueMatch) {
+            filteredData.push(inventory);
+          }
+        });
+        setInventories(filteredData);
+      });
+  }, [searchValue, searchCriteria]);
   // Reset the search when resetButton state changes
   useEffect(() => {
-    resetSearch(); 
+    resetSearch();
+    setResetButton(false); 
   }, [resetButton]);
 
   /**
@@ -103,17 +111,29 @@ function InventoriesPage() {
   const openProductDetailModal = (entity) => {
     console.log("openProductDetailModal() function called with " + entity)
     setProdDetailDisplayContent(entity)
-    setShowProdDetailModal(true)
+    setShowProdDetailModal(true) 
   }
 
   const hideProductDetailModal = () => {
     setShowProdDetailModal(false)
+  }
 
+  const hideNewInventories = () => {
+    setShowNewInventories(false)
   }
 
   const handleResetButtonClick = () => {
-    setResetButton(true);
+    setResetButton(prevState => !prevState);
   }
+
+  // Function to delete an inventory item by ID
+  const deleteInventoryItem = (inventoryID) => {
+    // Perform delete operation (e.g., call API to delete inventory item)
+    // Once the item is deleted, fetch the updated inventory list
+    alert("deleting " + inventoryID) //replace this eventually with api call to backend
+    fetchInventories();
+  };
+  
   
   return (
     <div className="inventories-page-pane">
@@ -132,10 +152,13 @@ function InventoriesPage() {
           <Row>
             <Col md={10}>
               {/* Ask the table to show all inventories from this store */}
+              <div className='table-container'>
               <InventoriesTable 
                 tableEntries={inventories} 
                 openProductDetailModal={openProductDetailModal}
+                deleteInventoryItem={deleteInventoryItem}
               />
+              </div>
             </Col>
 
             <Col md={2}>
@@ -155,7 +178,7 @@ function InventoriesPage() {
                       </Form.Control>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label htmlFor="searchInventoryName">Inventory Name</Form.Label>
+                  <Form.Label htmlFor="searchInventoryName">Search Inventory</Form.Label>
                   <Form.Control id="searchInventoryName" value={searchValue} onChange={
                           (e) => setSearchValue(e.target.value)
                           }/>
@@ -170,8 +193,7 @@ function InventoriesPage() {
           <Row>
             <Col md={10}></Col>
             <Col md={2}>
-              <div className="mb-2"><Button variant='primary'>New Inventory Item</Button></div>
-              <div className="mb-2"><Button variant='secondary'>- Item</Button></div>
+              <div className="mb-2"><Button variant='primary' onClick={() => setShowNewInventories(true)}>New Inventory Item</Button></div>
               
               {/* The 'Filter Category' side panel */}
               <FilterCategoryPanel 
@@ -188,6 +210,12 @@ function InventoriesPage() {
           show={showProdDetailModal} 
           handleClose={hideProductDetailModal} 
           displayContent={prodDetailDisplayContent}
+          fetchInventories={fetchInventories}
+        />
+        
+        <NewInventoryModal
+          show={showNewInventories}
+          handleClose={hideNewInventories}
           fetchInventories={fetchInventories}
         />
       </ViewModeContext.Provider>
