@@ -5,7 +5,8 @@
 
 // External imports
 import React, { useState, useEffect } from 'react'
-import Form from 'react-bootstrap/Form';
+import Form from 'react-bootstrap/Form'
+import Spinner from 'react-bootstrap/Spinner'
 
 
 // CSS imports
@@ -75,21 +76,26 @@ function FilterCategoryPanel(props) {
       {/* The title of this panel */}
       <p className="panel-title">Filter Category</p>
 
-      {/* Display the unique categories in checkboxes */}
-      <Form className="form">
-        {
-          uniqueCategories.map(category => (
-            <Form.Check className='checkbox'
-              key={category}
-              type={"checkbox"}
-              label={category}
-              checked={selectedCategories.includes(category)}
-              onChange={() => updateSelectedCategories(category)}
-            />
-          ))
-        }
-
-      </Form>
+      {
+        // Display a spinner while loading the categories, or the actual category checkboxes
+        uniqueCategories.length == 0 
+        ? 
+          <Spinner animation="border" role="status" />
+        :
+          <Form className="form">
+          {
+            uniqueCategories.map(category => (
+              <Form.Check className='checkbox'
+                key={category}
+                type={"checkbox"}
+                label={category}
+                checked={selectedCategories.includes(category)}
+                onChange={() => updateSelectedCategories(category)}
+              />
+            ))
+          }
+        </Form>
+      }
 
     </div>
   );
