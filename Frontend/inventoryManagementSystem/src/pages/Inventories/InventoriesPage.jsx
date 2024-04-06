@@ -17,6 +17,7 @@ import InventoriesTable from './InventoriesTable';
 import ProductDetailModal from './ProductDetailModal.jsx';
 import ViewEditModeRadioButton from '../../components/ViewEditModeRadioButton.jsx';
 import FilterCategoryPanel from './FilterCategoryPanel.jsx';
+import FilterSupplierPanel from './FilterSupplierPanel.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
 import NewInventoryModal from './NewInventoryModal.jsx';
 
@@ -202,6 +203,12 @@ function InventoriesPage() {
               
               {/* The 'Filter Category' side panel */}
               <FilterCategoryPanel 
+                cleanInventories={cleanInventories}
+                setInventories={setInventories}
+              />
+
+              {/* The 'Filter Supplier' side panel */}
+              <FilterSupplierPanel 
                 cleanInventories={cleanInventories}
                 setInventories={setInventories}
               />
