@@ -16,6 +16,7 @@ import StoreSwitcher from '../../components/StoreSwitcher';
 import InventoriesTable from './InventoriesTable';
 import ProductDetailModal from './ProductDetailModal.jsx';
 import ViewEditModeRadioButton from '../../components/ViewEditModeRadioButton.jsx';
+import FilterCategoryPanel from './FilterCategoryPanel.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
 
 // Context imports
@@ -171,6 +172,12 @@ function InventoriesPage() {
             <Col md={2}>
               <div className="mb-2"><Button variant='primary'>New Inventory Item</Button></div>
               <div className="mb-2"><Button variant='secondary'>- Item</Button></div>
+              
+              {/* The 'Filter Category' side panel */}
+              <FilterCategoryPanel 
+                inventories={inventories}
+                setInventories={setInventories}
+              />
             </Col>
           </Row>
         </Container>
