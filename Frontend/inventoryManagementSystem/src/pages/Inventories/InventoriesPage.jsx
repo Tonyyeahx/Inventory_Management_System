@@ -88,7 +88,8 @@ function InventoriesPage() {
   }, [searchValue, searchCriteria]);
   // Reset the search when resetButton state changes
   useEffect(() => {
-    resetSearch(); 
+    resetSearch();
+    setResetButton(false); 
   }, [resetButton]);
 
   /**
@@ -111,7 +112,7 @@ function InventoriesPage() {
   }
 
   const handleResetButtonClick = () => {
-    setResetButton(true);
+    setResetButton(prevState => !prevState);
   }
 
   // Function to delete an inventory item by ID
@@ -191,6 +192,7 @@ function InventoriesPage() {
       <NewInventoryModal
           show={showNewInventories}
           handleClose={hideNewInventories}
+          fetchInventories={fetchInventories}
       />
     </div>
   );
