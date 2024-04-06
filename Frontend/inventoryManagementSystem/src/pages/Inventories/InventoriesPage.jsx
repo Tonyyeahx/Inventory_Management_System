@@ -34,6 +34,10 @@ function InventoriesPage() {
   // the current store
   const [inventories, setInventories] = useState([]);
 
+  // A clean copy of the inventories array, free from torture of filter or search.
+  // Each filter or search operation will start with the clean copy
+  const [cleanInventories, setCleanInventories] = useState([])
+
   // Indicates the view mode of the table, can be either 'View' or 'Edit'. 
   // The value of this state variable is shared across all elements used by the InventoriesPage by
   // context 'ViewModeContext'
@@ -68,6 +72,7 @@ function InventoriesPage() {
       .then(json => {
             console.log(json)
             setInventories(json)
+            setCleanInventories(json)
         })
   }
 
@@ -197,9 +202,8 @@ function InventoriesPage() {
               
               {/* The 'Filter Category' side panel */}
               <FilterCategoryPanel 
-                inventories={inventories}
+                cleanInventories={cleanInventories}
                 setInventories={setInventories}
-                fetchInventories={fetchInventories}
               />
             </Col>
           </Row>

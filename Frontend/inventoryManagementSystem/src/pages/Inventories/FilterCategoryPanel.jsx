@@ -25,11 +25,14 @@ function FilterCategoryPanel(props) {
    */
   const fetchUniqueCategories = () => {
     // Filter all unique categories using a set
-    setUniqueCategories([...new Set(props.inventories.map(item => item.category))])
+    setUniqueCategories([...new Set(props.cleanInventories.map(item => item.category))])
+
+    // By default, selecting all categories
+    setSelectedCategories([...new Set(props.cleanInventories.map(item => item.category))])
   }
 
   // Only fetch the unique categories when props arrived
-  useEffect(fetchUniqueCategories, [props.inventories])
+  useEffect(fetchUniqueCategories, [props.cleanInventories])
 
   /**
    * Update the "selectedCategories" array with the state of the currently selected category
@@ -56,7 +59,7 @@ function FilterCategoryPanel(props) {
     console.log(selectedCategories)
 
     // Use the selectedCategories to filter the inventories
-    const filteredInventories = props.inventories.filter(inventory =>
+    const filteredInventories = props.cleanInventories.filter(inventory =>
       selectedCategories.includes(inventory.category)
     );
     
@@ -64,7 +67,7 @@ function FilterCategoryPanel(props) {
     props.setInventories(filteredInventories);
   }
 
-  useEffect(() => handleFilter, [selectedCategories])
+  useEffect(handleFilter, [selectedCategories])
 
   return (
     <div className="filter-panel">
