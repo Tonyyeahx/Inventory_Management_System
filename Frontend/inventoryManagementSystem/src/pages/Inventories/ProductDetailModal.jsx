@@ -1,5 +1,5 @@
 /**
- * @file A pop-up modal for showing the product detail
+ * @file A pop-up modal for showing and editing the product detail
  * @author Yucheng Zang <yzang7@wisc.edu>
  */
 
