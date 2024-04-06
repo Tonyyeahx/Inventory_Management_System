@@ -5,13 +5,15 @@
 
 // External imports
 import React, { useState, useEffect } from 'react'
+import Form from 'react-bootstrap/Form';
+
 
 // CSS imports
 import "./FilterCategoryPanel.css"
 
-function FilterCategoryPanel() {
+function FilterCategoryPanel(props) {
   // Stores a list containing all (unique) categories 
-  const [categories, setCategories] = useState([])
+  const [uniqueCategories, setUniqueCategories] = useState([])
 
   /**
    * Fetch unique categories.
@@ -19,8 +21,12 @@ function FilterCategoryPanel() {
    * data on the already fetched inventory table
    */
   const fetchUniqueCategories = () => {
-    
+    // Filter all unique categories using a set
+    setUniqueCategories([...new Set(props.inventories.map(item => item.category))])
   }
+
+  // Only fetch the unique categories when props arrived
+  useEffect(fetchUniqueCategories, [props.inventories])
 
   return (
     <div className="filter-panel">
@@ -28,6 +34,19 @@ function FilterCategoryPanel() {
       {/* The title of this panel */}
       <p className="panel-title">Filter Category</p>
 
+      {/* Display the unique categories in checkboxes */}
+      <Form>
+        {
+          uniqueCategories.map(category => (
+            <Form.Check 
+              key={category}
+              type={"checkbox"}
+              label={category}
+            />
+          ))
+        }
+
+      </Form>
 
     </div>
   );
