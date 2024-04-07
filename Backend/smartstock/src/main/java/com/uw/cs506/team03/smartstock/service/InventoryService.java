@@ -11,6 +11,8 @@ import java.util.List;
 public interface InventoryService {
 
     void addProductToInventory(int InventoryId, int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice);
+    
+    void deleteProductToAStoreFromInventory(int InventoryId, int storeId, int productId);
 
     public List<AllInOneDTO> findProductsByDynamicCriteria(Integer store, String category, String supplier);
 

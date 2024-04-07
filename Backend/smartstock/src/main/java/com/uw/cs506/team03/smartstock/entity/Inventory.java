@@ -43,7 +43,8 @@ public class Inventory{
     }
     
     // Constructor for Inventory object
-    public Inventory(int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice) {
+    public Inventory(int inventoryId, int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice) {
+        this.inventoryId = inventoryId;
         this.quantity = quantity;
         this.lastOrderDate = lastOrderDate;
         this.orderQuantity = orderQuantity;

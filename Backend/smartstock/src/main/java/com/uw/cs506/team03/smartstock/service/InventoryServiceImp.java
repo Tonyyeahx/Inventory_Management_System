@@ -19,8 +19,14 @@ public class InventoryServiceImp implements InventoryService {
 
     @Override
     public void addProductToInventory(int inventoryId, int storeId, int productId, int quantity, Date lastOrderDate, int orderQuantity, float discount, float sellPrice) {
-        Inventory product = new Inventory(storeId, productId, quantity, lastOrderDate, orderQuantity, discount, sellPrice);
+        Inventory product = new Inventory(inventoryId, storeId, productId, quantity, lastOrderDate, orderQuantity, discount, sellPrice);
         inventoryRepository.save(product);
+    }
+
+    @Override
+    public void deleteProductToAStoreFromInventory(int inventoryId, int storeId, int productId) {
+        Inventory product = inventoryRepository.findByStoreIdAndProductId(storeId, productId);
+        inventoryRepository.delete(product);
     }
 
     @Override
