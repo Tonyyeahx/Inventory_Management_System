@@ -29,6 +29,13 @@ public class InventoryController {
         return inventoryService.setInventoryQuantity(inventoryId, targetQuantity);
     }
 
+    //API for deleting a product from a store in the inventory
+    @PostMapping("/deleteProductToAStoreFromInventory")
+    public String deleteProductToAStoreFromInventory(@RequestParam(name = "inventoryId", required = true) Integer inventoryId, @RequestParam(name = "storeId", required = true) Integer storeId, @RequestParam(name = "productId", required = true) Integer productId) {
+        inventoryService.deleteProductToAStoreFromInventory(inventoryId, storeId, productId);
+        return "delete success";
+    }
+
     //=======================CRUD APIs==============================================
     //find all tuple in the inventory table
     @GetMapping("/inventories")
