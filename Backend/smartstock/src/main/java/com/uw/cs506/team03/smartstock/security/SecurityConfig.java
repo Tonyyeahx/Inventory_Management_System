@@ -40,6 +40,16 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/inventories").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT, "/inventories/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/inventories/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/suppliers").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/suppliers/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/suppliers").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "/suppliers/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.DELETE, "/suppliers/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/categories").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.GET, "/categories/**").hasRole("EMPLOYEE")
+                        .requestMatchers(HttpMethod.POST, "/categories").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.PUT, "/categories/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.DELETE, "/categories/**").hasRole("MANAGER")
                 );
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.csrf(csrf -> csrf.disable());
