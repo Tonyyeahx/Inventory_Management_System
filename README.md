@@ -73,7 +73,8 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
 2. User Case 2: View Inventory
     1. As a grocery store managing user, I want to be able to select and view the inventory of my store, so that I can monitor stock levels and make informed decisions.
         1. The system should present a list of inventory items available in the store.
-        2. The business user should be able to filter and search for specific items based on categories, brands, or other parameters.
+        2. The business user should be able to check the detail of a inventory.
+        3. The business user should be able to filter and search for specific items based on categories, brands, or other parameters.
 
 3. User Case 3: Manage Inventory
     1. As a grocery store managing user, I want to be able to add or remove items from the inventory, so that I can update stock levels as needed
