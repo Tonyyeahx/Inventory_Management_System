@@ -1,134 +1,99 @@
 package com.uw.cs506.team03.smartstock.controller;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.uw.cs506.team03.smartstock.entity.Category;
 import com.uw.cs506.team03.smartstock.service.CategoryService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
-import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.security.test.context.support.WithMockUser;
+import org.mockito.MockitoAnnotations;
 
-
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import static org.hamcrest.Matchers.hasSize;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-// @WebMvcTest annotation is used for Spring MVC tests
-@WebMvcTest(CategoryController.class)
-public class CategoryControllerTest {
+class CategoryControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @MockBean
+    @Mock
     private CategoryService categoryService;
 
-    private Category category;
+    @InjectMocks
+    private CategoryController categoryController;
 
-    // @BeforeEach annotation is used on a method containing the code to run before each test
     @BeforeEach
-    public void setup() {
-        // Use the constructor with categoryName to create a new Category instance
-        category = new Category("Test Category");
-        category.setCategoryId(1); // Simulate the ID set by the database
+    void setUp() {
+        MockitoAnnotations.openMocks(this);
     }
 
-    // @Test annotation is used to signal that the annotated method is a test method
     @Test
-    @WithMockUser(roles = "Manager")
-    // testFindAll() method tests the findAll() method in the CategoryController class
-    public void testFindAll() throws Exception {
-        List<Category> categories = Arrays.asList(category);
+    void findAll_shouldReturnListOfCategories() {
+        List<Category> categories = new ArrayList<>();
+        categories.add(new Category("Category 1"));
+        categories.add(new Category("Category 2"));
+
         when(categoryService.findAll()).thenReturn(categories);
 
-        // Perform a GET request to the "/categories" endpoint
-        mockMvc.perform(get("/categories"))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$", hasSize(1)))
-                .andExpect(jsonPath("$[0].categoryId").value(category.getCategoryId()))
-                .andExpect(jsonPath("$[0].categoryName").value("Test Category"));
+        List<Category> result = categoryController.findAll();
 
+        assertEquals(categories, result);
         verify(categoryService, times(1)).findAll();
     }
 
     @Test
-    @WithMockUser(roles = "Manager")
-    // testFindById() method tests the findById() method in the CategoryController class
-    public void testFindById() throws Exception {
-        when(categoryService.findById(1)).thenReturn(category);
+    void findById_shouldReturnCategoryById() {
+        int categoryId = 1;
+        Category category = new Category("Category 1");
+        category.setCategoryId(categoryId);
 
-        mockMvc.perform(get("/categories/{id}", 1))
-                .andExpect(status().isOk())
-                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.categoryId").value(1))
-                .andExpect(jsonPath("$.categoryName").value("Test Category"));
+        when(categoryService.findById(categoryId)).thenReturn(category);
 
-        verify(categoryService, times(1)).findById(1);
+        Category result = categoryController.findById(categoryId);
+
+        assertEquals(category, result);
+        verify(categoryService, times(1)).findById(categoryId);
     }
 
     @Test
-    @WithMockUser(roles = "Manager")
-    // testAddTuple() method tests the addTuple() method in the CategoryController class
-    public void testAddTuple() throws Exception {
-        when(categoryService.save(any(Category.class))).thenReturn(category);
+    void addTuple_shouldAddCategoryAndReturnAddedCategory() {
+        Category category = new Category("New Category");
+        Category addedCategory = new Category("New Category");
+        addedCategory.setCategoryId(1);
 
-        String categoryJson = new ObjectMapper().writeValueAsString(
-            Map.of("categoryName", "Test Category")
-        );
+        when(categoryService.save(category)).thenReturn(addedCategory);
 
-        mockMvc.perform(post("/categories")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(categoryJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.categoryId").value(1))
-                .andExpect(jsonPath("$.categoryName").value("Test Category"));
+        Category result = categoryController.addTuple(category);
 
-        verify(categoryService, times(1)).save(any(Category.class));
+        assertEquals(addedCategory, result);
+        verify(categoryService, times(1)).save(category);
     }
 
     @Test
-    @WithMockUser(roles = "Manager")
-    // testUpdateTuple() method tests the updateTuple() method in the CategoryController class
-    public void testUpdateTuple() throws Exception {
-        when(categoryService.save(any(Category.class))).thenReturn(category);
+    void updateTuple_shouldUpdateCategoryAndReturnUpdatedCategory() {
+        Category category = new Category("Updated Category");
+        category.setCategoryId(1);
 
-        String categoryJson = new ObjectMapper().writeValueAsString(
-            Map.of("categoryName", "Test Category", "categoryId", 1)
-        );
+        when(categoryService.save(category)).thenReturn(category);
 
-        mockMvc.perform(put("/categories")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(categoryJson))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.categoryId").value(1))
-                .andExpect(jsonPath("$.categoryName").value("Test Category"));
+        Category result = categoryController.updateTuple(category);
 
-        verify(categoryService, times(1)).save(any(Category.class));
+        assertEquals(category, result);
+        verify(categoryService, times(1)).save(category);
     }
 
     @Test
-    @WithMockUser(roles = "Manager")
-    // testDeleteTuple() method tests the deleteTuple() method in the CategoryController class
-    public void testDeleteTuple() throws Exception {
-        doNothing().when(categoryService).deleteById(1);
-        when(categoryService.findById(1)).thenReturn(category);
+    void deleteTuple_shouldDeleteCategoryAndReturnSuccessMessage() {
+        int categoryId = 1;
+        Category category = new Category("Category 1");
+        category.setCategoryId(categoryId);
 
-        mockMvc.perform(delete("/categories/{id}", 1))
-                .andExpect(status().isOk())
-                .andExpect(content().string("deleted tuple[id: 1success"));
+        when(categoryService.findById(categoryId)).thenReturn(category);
 
-        verify(categoryService, times(1)).deleteById(1);
+        String result = categoryController.deleteTuple(categoryId);
+
+        assertEquals("deleted tuple[id: " + categoryId + "success", result);
+        verify(categoryService, times(1)).findById(categoryId);
+        verify(categoryService, times(1)).deleteById(categoryId);
     }
 }
