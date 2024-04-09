@@ -17,18 +17,22 @@ import static org.mockito.Mockito.*;
 
 class StoreControllerTest {
 
+    // Mocking the StoreService
     @Mock
     private StoreService storeService;
 
+    // Injecting the mocked StoreService into the StoreController
     @InjectMocks
     private StoreController storeController;
 
+    // Setting up the mock
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
+    // Testing the findAll method of the StoreController
     void findAll_shouldReturnListOfStores() {
         List<Store> stores = new ArrayList<>();
         stores.add(new Store(40.7128f, -74.0060f, "Manager 1", new Date(), "123-456-7890"));
@@ -43,6 +47,7 @@ class StoreControllerTest {
     }
 
     @Test
+    // Testing the findById method of the StoreController
     void findById_shouldReturnStoreById() {
         int storeId = 1;
         Store store = new Store(40.7128f, -74.0060f, "Manager 1", new Date(), "123-456-7890");
@@ -57,6 +62,7 @@ class StoreControllerTest {
     }
 
     @Test
+    // Testing the addTuple method of the StoreController
     void addTuple_shouldAddStoreAndReturnAddedStore() {
         Store store = new Store(40.7128f, -74.0060f, "Manager 1", new Date(), "123-456-7890");
         Store addedStore = new Store(40.7128f, -74.0060f, "Manager 1", new Date(), "123-456-7890");
@@ -71,6 +77,7 @@ class StoreControllerTest {
     }
 
     @Test
+    // Testing the updateTuple method of the StoreController
     void updateTuple_shouldUpdateStoreAndReturnUpdatedStore() {
         Store store = new Store(40.7128f, -74.0060f, "Updated Manager", new Date(), "123-456-7890");
         store.setStoreId(1);
@@ -84,6 +91,7 @@ class StoreControllerTest {
     }
 
     @Test
+    // Testing the deleteTuple method of the StoreController
     void deleteTuple_shouldDeleteStoreAndReturnSuccessMessage() {
         int storeId = 1;
         Store store = new Store(40.7128f, -74.0060f, "Manager 1", new Date(), "123-456-7890");
