@@ -6,7 +6,6 @@ import com.uw.cs506.team03.smartstock.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;

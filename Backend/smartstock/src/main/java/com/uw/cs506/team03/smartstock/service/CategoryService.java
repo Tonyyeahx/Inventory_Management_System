@@ -6,6 +6,8 @@ import com.uw.cs506.team03.smartstock.entity.Inventory;
 import java.util.List;
 
 public interface CategoryService {
+
+    //==============================BASIC CRUD===================================
     public List<Category> findAll();
 
     public Category findById(int id);

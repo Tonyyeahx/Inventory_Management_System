@@ -1,8 +1,6 @@
 package com.uw.cs506.team03.smartstock.service;
 
-import com.uw.cs506.team03.smartstock.entity.Category;
 import com.uw.cs506.team03.smartstock.entity.Supplier;
-import com.uw.cs506.team03.smartstock.repository.CategoryRepository;
 import com.uw.cs506.team03.smartstock.repository.SupplierRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
