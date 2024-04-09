@@ -39,6 +39,7 @@ public class Store {
 
     }
 
+    // constructor
     public Store(float longitude, float latitude, String manager, Date openDate, String contact) {
         this.longitude = longitude;
         this.latitude = latitude;
