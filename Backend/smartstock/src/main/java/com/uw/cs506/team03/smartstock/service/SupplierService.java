@@ -1,11 +1,12 @@
 package com.uw.cs506.team03.smartstock.service;
 
-import com.uw.cs506.team03.smartstock.entity.Category;
+import java.util.List;
 import com.uw.cs506.team03.smartstock.entity.Supplier;
 
-import java.util.List;
 
 public interface SupplierService {
+
+    //==============================BASIC CRUD===================================
     public List<Supplier> findAll();
 
     public Supplier findById(int id);
