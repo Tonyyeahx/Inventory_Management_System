@@ -16,46 +16,58 @@ import static org.mockito.Mockito.*;
 
 class CategoryControllerTest {
 
+    // @Mock annotation is used to create the mock object to be injected
     @Mock
     private CategoryService categoryService;
 
+    // @InjectMocks annotation is used to create and inject the mock object
     @InjectMocks
     private CategoryController categoryController;
 
+    // @BeforeEach annotation is used on a method containing the code to run before each test
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
+    // test findAll method
     void findAll_shouldReturnListOfCategories() {
         List<Category> categories = new ArrayList<>();
         categories.add(new Category("Category 1"));
         categories.add(new Category("Category 2"));
 
+        // Given
         when(categoryService.findAll()).thenReturn(categories);
 
+        // When
         List<Category> result = categoryController.findAll();
 
+        // Then
         assertEquals(categories, result);
         verify(categoryService, times(1)).findAll();
     }
 
     @Test
+    // test findById method
     void findById_shouldReturnCategoryById() {
+        // Given
         int categoryId = 1;
         Category category = new Category("Category 1");
         category.setCategoryId(categoryId);
 
+        // When
         when(categoryService.findById(categoryId)).thenReturn(category);
 
         Category result = categoryController.findById(categoryId);
 
+        // Then
         assertEquals(category, result);
         verify(categoryService, times(1)).findById(categoryId);
     }
 
     @Test
+    // test addTuple method
     void addTuple_shouldAddCategoryAndReturnAddedCategory() {
         Category category = new Category("New Category");
         Category addedCategory = new Category("New Category");
@@ -70,6 +82,7 @@ class CategoryControllerTest {
     }
 
     @Test
+    // test updateTuple method
     void updateTuple_shouldUpdateCategoryAndReturnUpdatedCategory() {
         Category category = new Category("Updated Category");
         category.setCategoryId(1);
@@ -83,6 +96,7 @@ class CategoryControllerTest {
     }
 
     @Test
+    // test deleteTuple method
     void deleteTuple_shouldDeleteCategoryAndReturnSuccessMessage() {
         int categoryId = 1;
         Category category = new Category("Category 1");
