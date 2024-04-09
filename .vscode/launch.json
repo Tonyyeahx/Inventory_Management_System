@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SmartstockApplication<smartstock>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.uw.cs506.team03.smartstock.SmartstockApplication",
+            "projectName": "smartstock",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
