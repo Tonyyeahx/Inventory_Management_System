@@ -1,6 +1,5 @@
 package com.uw.cs506.team03.smartstock.service;
 
-import com.uw.cs506.team03.smartstock.entity.Inventory;
 import com.uw.cs506.team03.smartstock.entity.Product;
 import com.uw.cs506.team03.smartstock.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
