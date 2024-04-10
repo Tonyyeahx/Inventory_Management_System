@@ -1,4 +1,4 @@
-POST (Inventory):
+// POST (Inventory):
 pm.test("Status code is 201", function () {
     pm.response.to.have.status(201);
 });
@@ -34,7 +34,7 @@ pm.test("Response Body structure is valid", () =>{
     //pm.expect(response).to.eql(expectedResult);
 })
 
-GET (Inventory):
+// GET (Inventory):
 Pre-Request Script: pm.globals.set("inventoryId", "1");
 
 pm.test("Status code is 200", function () {
@@ -53,8 +53,8 @@ pm.test("Response has expected structure", function () {
     pm.expect(responseData.quantity).to.eql(100);
 });
 
-PUT (Inventory):
-Pre-Request Script:  pm.globals.set("inventoryId", "7");
+//PUT (Inventory):
+//Pre-Request Script:  pm.globals.set("inventoryId", "7");
 
 pm.test("Status code is 200", function () {
     pm.response.to.have.status(200);
@@ -79,7 +79,7 @@ pm.test("Status code is 200", function () {
   pm.response.to.have.status(200);
 });
 
-AND A GET to check if GONE.
+// AND A GET to check if GONE.
 // This test assumes that a deleted resource should return a 404 Not Found status
 pm.test("Resource no longer exists (404 Not Found)", function () {
     pm.response.to.have.status(404);
