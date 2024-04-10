@@ -1,5 +1,6 @@
-
 2/16 3:30 - 6 pm Entire Team: First meeting to decide roles, Team Logo, Project Ideas, and Tech Stack
 2/26 3:45 - 5 pm Entire Team: Created Code Requirement Doc, Assigned Issues, Visioned goals, and started editing repository
 3/01 2:30 - 5:30 pm Backend: Meeted to Review Spring Framework. Created Dummy Database and used Spring to perform CRUD operations
-3/15 3: 5:30 pm Backend: Meeted and fixed git merge issues and assigned tasks to write tests for Backend and begin implementing relational databases
+3/15 3 - 5:30 pm Backend: Meeted and fixed git merge issues and assigned tasks to write tests for Backend and begin implementing relational databases
+4/5 2:30 - 4:30 Backend: Meeting to work on Spring Security and start writing Mockito tests for CRUD operations for API. Completed Spring Security
+and got on same page on how it works.
