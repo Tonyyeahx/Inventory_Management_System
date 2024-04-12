@@ -1,5 +1,6 @@
 package com.uw.cs506.team03.smartstock.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
