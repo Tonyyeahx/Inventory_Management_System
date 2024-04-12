@@ -3,6 +3,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
 @Entity
@@ -25,10 +28,12 @@ public class Product {
 
     @ManyToOne
     @JoinColumn(name = "category_id")
+    @JsonIgnore
     private Category category;
 
     @ManyToOne
     @JoinColumn(name = "supplier_id")
+    @JsonIgnore
     private Supplier supplier;
 
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
