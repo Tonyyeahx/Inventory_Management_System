@@ -41,11 +41,11 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
 | ID   | Description                                                  | Priority | Status |
 | ---- | ------------------------------------------------------------ | -------- | ------ |
 | R1  | The system shall allow users to sign in, distinguishing between corporate  users and individual chain business owners, with separate login pages provided for each user type.  | Med      | Open   |
-| R2  | The system shall enable Grocery Store Managing Users to select specific inventory items for observation. | High     | Open   |
+| R2  | The system shall enable Grocery Store Managing Users to select specific inventory items for observation. | High     | Closed   |
 | R3  | The system shall permit Grocery Store Managing Users to add or remove items from the inventory for each product. | High     | Open   |
 | R4  | The system shall restrict Grocery Store Managing Users to view only the inventory of the branch they are assigned to manage. | High      | Open   |
 | R5  | Upon request, the system shall generate and provide financial metrics (such as Days Inventory Held) for the inventory managed by the Grocery Store Managing User.  | Med     | Open   |
-
+| R6  | System shall allow users to search up a product by Name, Category, Supplier   | High     | Closed   |
 
 <!-- <div align="center"><small><i>Excerpt from Crookshanks Table 2-2 showing example user requirements for a timekeeping system</i></small></div>
 
@@ -90,6 +90,11 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
     1. As a grocery store managing user, I want the system to provide financial metrics (such as Days Inventory Held) for the inventory that I oversee, so that I can analyze performance and optimize operations.
         1. The system should calculate and present financial metrics based on inventory data for the user's branch.
         2. The user should be able to request specific financial metrics and view them in a clear and accessible format.
+
+6. User Case: Searching For Inventory
+    1. As a grocery store employee or manager, I want to be able to search up the inventory that I want to access by product name, supplier, category, or their matching IDs.
+        1. The system should have an panel that allows users to select what logic they want to search by.
+        2. The system should have a real time search bar that filters out the invetories table with each key stroke.
 
 ### User Interface Requirements
 
