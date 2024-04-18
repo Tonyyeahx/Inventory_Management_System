@@ -20,6 +20,7 @@ import FilterCategoryPanel from './FilterCategoryPanel.jsx';
 import FilterSupplierPanel from './FilterSupplierPanel.jsx';
 import createDummyGroceries from "../../utils/createDummyGroceries.js"
 import NewInventoryModal from './NewInventoryModal.jsx';
+import MerchantNavbar from '../../components/MerchantNavbar.jsx';
 
 // Context imports
 import ViewModeContext from '../../context/ViewModeContext.js';
@@ -142,100 +143,105 @@ function InventoriesPage() {
   
   
   return (
-    <div className="inventories-page-pane">
-      {/* Used to share the view/edit mode across all components used in this page, including the 
-          ViewEditModeRadioButton, InventoriesTable, InventoriesTableRow, and ProductDetailModal */}
-      <ViewModeContext.Provider value={[viewEditMode, setViewEditMode]}> 
+    <>
+      {/* The side navbar that allow user to browses different pages */}
+      <MerchantNavbar />
+      
+      <div className="inventories-page-pane">
+        {/* Used to share the view/edit mode across all components used in this page, including the 
+            ViewEditModeRadioButton, InventoriesTable, InventoriesTableRow, and ProductDetailModal */}
+        <ViewModeContext.Provider value={[viewEditMode, setViewEditMode]}> 
 
-        {/* A store switcher to switch between different stores */}
-        <StoreSwitcher />
-        <br></br>
-        {/* Use React-Bootstrap to correctly layout the table and side panels, make sure that the
-            table takes the left 10/12 and the panels takes the right 2/12. 
-            Add 'fluid' so that this container can have a max-width of 100%, taking the entire width
-            of the Inventories Page */}
-        <Container fluid>
-          <Row>
-            <Col md={10}>
-              {/* Ask the table to show all inventories from this store */}
-              <div className='table-container'>
-              <InventoriesTable 
-                tableEntries={inventories} 
-                openProductDetailModal={openProductDetailModal}
-                deleteInventoryItem={deleteInventoryItem}
-              />
-              </div>
-            </Col>
-
-            <Col md={2}>
-              <ViewEditModeRadioButton />
-
-              <div>
-                <Form>
-                <Form.Group>
-                      <Form.Label htmlFor="searchInventoryCriteria">I want to search by:</Form.Label>
-                      <Form.Control as="select" id="searchInventoryCriteria" value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)}>
-                        <option value="productID">Product ID</option>
-                        <option value="productName">Product Name</option>
-                        <option value="category">Category</option>
-                        <option value="categoryID">Category ID</option>
-                        <option value="supplier">Supplier</option>
-                        <option value="supplierID">Supplier ID</option>
-                      </Form.Control>
-                </Form.Group>
-                <Form.Group>
-                  <Form.Label htmlFor="searchInventoryName">Search Inventory</Form.Label>
-                  <Form.Control id="searchInventoryName" value={searchValue} onChange={
-                          (e) => setSearchValue(e.target.value)
-                          }/>
-                  <br></br>
-                </Form.Group>
-                  <Button variant="primary" onClick={handleResetButtonClick}>Reset Search</Button> 
-                </Form>
+          {/* A store switcher to switch between different stores */}
+          <StoreSwitcher />
+          <br></br>
+          {/* Use React-Bootstrap to correctly layout the table and side panels, make sure that the
+              table takes the left 10/12 and the panels takes the right 2/12. 
+              Add 'fluid' so that this container can have a max-width of 100%, taking the entire width
+              of the Inventories Page */}
+          <Container fluid>
+            <Row>
+              <Col md={10}>
+                {/* Ask the table to show all inventories from this store */}
+                <div className='table-container'>
+                <InventoriesTable 
+                  tableEntries={inventories} 
+                  openProductDetailModal={openProductDetailModal}
+                  deleteInventoryItem={deleteInventoryItem}
+                />
                 </div>
-              <br></br>  
-            </Col>
-          </Row>
-          <Row>
-            <Col md={10}></Col>
-            <Col md={2}>
-              <div className="mb-2"><Button variant='primary' onClick={() => setShowNewInventories(true)}>New Inventory Item</Button></div>
-              
-              {/* The 'Filter Category' side panel, mb-2 for add bottom margin */}
-              <div className="mb-2">
-                <FilterCategoryPanel 
-                  cleanInventories={cleanInventories}
-                  setInventories={setInventories}
-                />
-              </div>
+              </Col>
 
-              {/* The 'Filter Supplier' side panel */}
-              <div className="mb-2">
-                <FilterSupplierPanel 
-                  cleanInventories={cleanInventories}
-                  setInventories={setInventories}
-                />
-              </div>
+              <Col md={2}>
+                <ViewEditModeRadioButton />
 
-            </Col>
-          </Row>
-        </Container>
+                <div>
+                  <Form>
+                  <Form.Group>
+                        <Form.Label htmlFor="searchInventoryCriteria">I want to search by:</Form.Label>
+                        <Form.Control as="select" id="searchInventoryCriteria" value={searchCriteria} onChange={(e) => setSearchCriteria(e.target.value)}>
+                          <option value="productID">Product ID</option>
+                          <option value="productName">Product Name</option>
+                          <option value="category">Category</option>
+                          <option value="categoryID">Category ID</option>
+                          <option value="supplier">Supplier</option>
+                          <option value="supplierID">Supplier ID</option>
+                        </Form.Control>
+                  </Form.Group>
+                  <Form.Group>
+                    <Form.Label htmlFor="searchInventoryName">Search Inventory</Form.Label>
+                    <Form.Control id="searchInventoryName" value={searchValue} onChange={
+                            (e) => setSearchValue(e.target.value)
+                            }/>
+                    <br></br>
+                  </Form.Group>
+                    <Button variant="primary" onClick={handleResetButtonClick}>Reset Search</Button> 
+                  </Form>
+                  </div>
+                <br></br>  
+              </Col>
+            </Row>
+            <Row>
+              <Col md={10}></Col>
+              <Col md={2}>
+                <div className="mb-2"><Button variant='primary' onClick={() => setShowNewInventories(true)}>New Inventory Item</Button></div>
+                
+                {/* The 'Filter Category' side panel, mb-2 for add bottom margin */}
+                <div className="mb-2">
+                  <FilterCategoryPanel 
+                    cleanInventories={cleanInventories}
+                    setInventories={setInventories}
+                  />
+                </div>
 
-        {/* Attach modals that could be show to the React DOM */}
-        <ProductDetailModal 
-          show={showProdDetailModal} 
-          handleClose={hideProductDetailModal} 
-          displayContent={prodDetailDisplayContent}
-          fetchInventories={fetchInventories}
-        />
-        
-        <NewInventoryModal
-          show={showNewInventories}
-          handleClose={hideNewInventories}
-          fetchInventories={fetchInventories}
-        />
-      </ViewModeContext.Provider>
-    </div>
+                {/* The 'Filter Supplier' side panel */}
+                <div className="mb-2">
+                  <FilterSupplierPanel 
+                    cleanInventories={cleanInventories}
+                    setInventories={setInventories}
+                  />
+                </div>
+
+              </Col>
+            </Row>
+          </Container>
+
+          {/* Attach modals that could be show to the React DOM */}
+          <ProductDetailModal 
+            show={showProdDetailModal} 
+            handleClose={hideProductDetailModal} 
+            displayContent={prodDetailDisplayContent}
+            fetchInventories={fetchInventories}
+          />
+          
+          <NewInventoryModal
+            show={showNewInventories}
+            handleClose={hideNewInventories}
+            fetchInventories={fetchInventories}
+          />
+        </ViewModeContext.Provider>
+      </div>
+    </>
   );
 }
 
