@@ -13,7 +13,7 @@
 
 .logo {
   border-radius: 40px;
-  height: 8.5em;
+  height: 9em;
   padding: 1.5em;
 }
 
@@ -21,7 +21,7 @@
   background-color: #fafafa;
   border-radius: 10px;
   padding: 1.5em 2em;
-  
+  min-width: 20em;  
   /* Creating the glowing effect */
   outline: none;
   box-shadow: 0 0 5px #c0c0c0;
@@ -39,4 +39,5 @@
 
 .warnings {
   margin-top: 1em;
+  text-align: center;
 }
