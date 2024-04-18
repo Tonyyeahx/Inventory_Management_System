@@ -36,3 +36,7 @@
   display: flex;
   justify-content: space-around;
 }
+
+.warnings {
+  margin-top: 1em;
+}
