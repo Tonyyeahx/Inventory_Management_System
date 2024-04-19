@@ -22,11 +22,10 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <MerchantNavbar /> */}
         <Routes>
-          <Route exact path="/" element={<InventoriesPage />} />
-          <Route path="/shopping" element={<UserTestPage />} /> {/* Route for ShoppingPage */}
-          <Route path="/login" element={<LoginPage />} /> {/* Route for Login Page */}
+          <Route exact path="/" element={<LoginPage />} /> 
+          <Route path="/inventories" element={<InventoriesPage />} />
+          <Route path="/shopping" element={<UserTestPage />} />
         </Routes>
       </div>
     </Router>
