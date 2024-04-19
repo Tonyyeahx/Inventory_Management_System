@@ -14,8 +14,6 @@ public class Image {
     @Column(name = "image_id", nullable = false)
     private Long id;
 
-    private String type;
-
     @Lob
     private byte[] data;
 
@@ -24,8 +22,7 @@ public class Image {
     }
 
     // Constructor
-    public Image(String type, byte[] data) {
-        this.type = type;
+    public Image(byte[] data) {
         this.data = data;
     }
 
@@ -36,14 +33,6 @@ public class Image {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
     }
 
     public byte[] getData() {
