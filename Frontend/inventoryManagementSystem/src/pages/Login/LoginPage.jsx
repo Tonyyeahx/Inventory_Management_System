@@ -8,6 +8,8 @@ import React, { useState, useEffect } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Alert from 'react-bootstrap/Alert';
+import { useNavigate } from 'react-router-dom';
+
 
 // Internal imports
 import teamLogo from "../../assets/TeamLogo.png"
@@ -25,6 +27,9 @@ function LoginPage(props) {
   const [isShowPasswordBlank, setIsShowPasswordBlank] = useState(false) // Password field is blank
   const [isShowWrongLogin, setIsShowWrongLogin] = useState(false)   // If username-password incorrect
 
+  // Use to navigate to the inventories page upon a successful login, or the register page if the 
+  // user clicked the register button
+  const navigate = useNavigate();
   /**
    * The function handles the login function. 
    * 
@@ -41,17 +46,22 @@ function LoginPage(props) {
     setIsShowPasswordBlank(false)
     setIsShowWrongLogin(false)
 
+    // Check if the username or password fields are blank before the communication
+    // to backend
     if (username == "") {
       setIsShowUsernameBlank(true)
+      return;
     } else if (password == "") {
       setIsShowPasswordBlank(true)
+      return;
+    }
+
+    // TODO: Communication to the backend
+    if (username == "boss") {
+      navigate('/inventories')
     } else {
       setIsShowWrongLogin(true)
     }
-
-    console.log("username: " + username)
-    console.log("password: " + password)
-
   }
 
   return (
