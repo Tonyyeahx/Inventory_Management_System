@@ -30,3 +30,9 @@
 .register-text-fields {
   margin-bottom: 1em;
 }
+
+.register-cancel-button {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: space-around;
+}

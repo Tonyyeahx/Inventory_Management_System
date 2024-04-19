@@ -99,6 +99,7 @@ function LoginPage(props) {
           >
             Register
           </Button>
+          
           <Button
             onClick={handleLogin}
           >
