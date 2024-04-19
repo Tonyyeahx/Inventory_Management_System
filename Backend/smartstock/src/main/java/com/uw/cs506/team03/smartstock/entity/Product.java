@@ -49,10 +49,11 @@ public class Product {
     }
 
     // Constructor for Product object
-    public Product(String productName, float cost, int categoryId, int supplierId) {
+    public Product(String productName, float cost, int categoryId, int supplierId, Image image) {
         this.productName = productName;
         this.cost = cost;
         this.inventories = new ArrayList<>();
+        this.image = image;
     }
 
     // Getters and Setters for Product object
