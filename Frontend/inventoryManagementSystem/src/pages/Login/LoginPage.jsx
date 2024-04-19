@@ -95,9 +95,10 @@ function LoginPage(props) {
         <div className="login-register-button">
           <Button
             variant="secondary"
+            onClick={() => navigate("/register")}
           >
-            Register</Button>
-
+            Register
+          </Button>
           <Button
             onClick={handleLogin}
           >

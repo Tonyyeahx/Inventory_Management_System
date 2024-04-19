@@ -23,6 +23,10 @@ function RegisterPage(props) {
   const [company, setCompany] = useState("")
   const [privilegeLevel, setPrivilegeLevel] = useState("")
 
+  // Use to navigate back to the login page when the user clicked the "Cancel" button or "Register"
+  // button upon a successful registration
+  const navigate = useNavigate();
+
   return (
     // Contains everything on this page, used to set the background color
     <div className="register-page">
@@ -83,6 +87,7 @@ function RegisterPage(props) {
         <div className="login-register-button">
           <Button
             variant="secondary"
+            onClick={() => navigate("/")}
           >
             Cancel
           </Button>
