@@ -18,6 +18,8 @@ public interface InventoryService {
 
     public String setInventoryQuantity(Integer inventoryId, Integer targetQuantity);
 
+    public Inventory findHighestCostInventory(int storeId);
+
     //==================BASIC Functions are needed====================================
     public List<Inventory> findAll();
 
