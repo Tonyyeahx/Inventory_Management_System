@@ -53,6 +53,15 @@ public class InventoryServiceImp implements InventoryService {
         inventoryRepository.save(tuple);
         return "\"msg\": \"Target quantity set successful\"";
     }
+
+    public Inventory findHighestCostInventory(int storeId) {
+        List<Inventory> inventories = inventoryRepository.findHighestCostByStoreId(storeId);
+        if(inventories.isEmpty()) {
+            return null;
+        }
+        return inventories.get(0);
+    }
+
     //==============================BASIC CRUD===================================
     @Override
     public List<Inventory> findAll() {

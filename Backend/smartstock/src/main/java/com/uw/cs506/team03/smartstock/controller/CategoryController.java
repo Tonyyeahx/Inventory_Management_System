@@ -23,25 +23,25 @@ public class CategoryController {
     public List<Category> findAll() {
         return categoryService.findAll();
     }
-    //find one tuple in the inventory table by id
+    //find one tuple in the category table by id
     @GetMapping("/categories/{id}")
     public Category findById(@PathVariable int id) {
         return categoryService.findById(id);
     }
-    //add one tuple in the inventory table
+    //add one tuple in the category table
     @PostMapping("categories")
     public Category addTuple(@RequestBody Category category) {
         category.setCategoryId(0);
         Category theTuple = categoryService.save(category);
         return  theTuple;
     }
-    //update one tuple in the inventory table
+    //update one tuple in the category table
     @PutMapping("categories")
     public Category updateTuple(@RequestBody Category category) {
         Category theTuple = categoryService.save(category);
         return  theTuple;
     }
-    //delete one tuple in the inventory table
+    //delete one tuple in the category table
     @DeleteMapping("categories/{id}")
     public String deleteTuple(@PathVariable int id) {
         Category theTuple = categoryService.findById(id);
