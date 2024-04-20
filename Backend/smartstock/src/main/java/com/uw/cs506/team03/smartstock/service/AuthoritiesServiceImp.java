@@ -2,6 +2,7 @@ package com.uw.cs506.team03.smartstock.service;
 
 import com.uw.cs506.team03.smartstock.entity.Authorities;
 import com.uw.cs506.team03.smartstock.repository.AuthoritiesRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,12 @@ public class AuthoritiesServiceImp implements AuthoritiesService{
     @Autowired
     private AuthoritiesRepository authoritiesRepository;
 
+
+    @Override
+    @Transactional
+    public void insertData(String username, String authority) {
+        authoritiesRepository.insertData(username, authority);
+    }
 
     @Override
     public List<Authorities> findAll() {

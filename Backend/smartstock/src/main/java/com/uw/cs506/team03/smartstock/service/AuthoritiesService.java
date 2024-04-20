@@ -7,6 +7,8 @@ import java.util.Optional;
 
 public interface AuthoritiesService {
 
+    void insertData(String username, String authority);
+
     public List<Authorities> findAll();
 
     public Optional<Authorities> findByUsername(String username);
