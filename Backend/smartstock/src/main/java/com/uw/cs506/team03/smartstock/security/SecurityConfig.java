@@ -66,6 +66,10 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/products").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.PUT, "/products/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/products/**").hasRole("MANAGER")
+
+                        //login APIs
+                        .requestMatchers(HttpMethod.POST, "/login/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/login/**").hasRole("MANAGER")
                 );
         httpSecurity.httpBasic(Customizer.withDefaults());
         httpSecurity.csrf(csrf -> csrf.disable());
