@@ -57,11 +57,29 @@ function LoginPage(props) {
     }
 
     // TODO: Communication to the backend
-    if (username == "boss") {
-      navigate('/inventories')
-    } else {
-      setIsShowWrongLogin(true)
-    }
+    // Format the header into "username:password", then do Base64 encoding
+    const basicAuthString = btoa(`${username}:${password}`);
+
+    // Construct the authorization header
+    const headers = new Headers();
+    headers.append('Authorization', `Basic ${basicAuthString}`);
+
+    // Initate the HTTP request
+    let URI = "http://localhost:8080"
+    fetch(`${URI}/`, {method: 'GET', headers: headers, })
+      .then(response => {
+        if (response.ok) {
+          alert("login successful")
+        } else {
+          alert("FUCK, HTTP error :" + response.body)
+        }
+      })
+
+    // if (username == "boss") {
+    //   navigate('/inventories')
+    // } else {
+    //   setIsShowWrongLogin(true)
+    // }
   }
 
   return (
