@@ -69,17 +69,11 @@ function LoginPage(props) {
     fetch(`${URI}/`, {method: 'GET', headers: headers, })
       .then(response => {
         if (response.ok) {
-          alert("login successful")
+          navigate('/inventories');
         } else {
-          alert("FUCK, HTTP error :" + response.body)
+          setIsShowWrongLogin(true)
         }
       })
-
-    // if (username == "boss") {
-    //   navigate('/inventories')
-    // } else {
-    //   setIsShowWrongLogin(true)
-    // }
   }
 
   return (
