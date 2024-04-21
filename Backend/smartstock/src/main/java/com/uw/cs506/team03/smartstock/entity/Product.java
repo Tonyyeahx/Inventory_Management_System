@@ -39,16 +39,21 @@ public class Product {
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
     private List<Inventory> inventories;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id", referencedColumnName = "image_id")
+    private Image image;
+
     // Default constructor for Product object
     public Product() {
 
     }
 
     // Constructor for Product object
-    public Product(String productName, float cost, int categoryId, int supplierId) {
+    public Product(String productName, float cost, int categoryId, int supplierId, Image image) {
         this.productName = productName;
         this.cost = cost;
         this.inventories = new ArrayList<>();
+        this.image = image;
     }
 
     // Getters and Setters for Product object

@@ -23,6 +23,11 @@ public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
             "(:supplier IS NULL OR sup.supplierName = :supplier)")
     List<AllInOneDTO> findProductsByDynamicCriteria(@Param("store") Integer store, @Param("category") String category, @Param("supplier") String supplier);
 
+    
+    @Query("SELECT i FROM Inventory i WHERE i.store.storeId = :storeId ORDER BY i.product.cost DESC")
+    List<Inventory> findHighestCostByStoreId(@Param("storeId") int storeId);
+
+
     @Query("SELECT i FROM Inventory i WHERE i.store.storeId = :storeId AND i.product.productId = :productId")
     Inventory findByStoreIdAndProductId(@Param("storeId") int storeId, @Param("productId") int productId);
 

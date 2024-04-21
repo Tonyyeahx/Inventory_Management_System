@@ -4,3 +4,6 @@
 3/15 3 - 5:30 pm Backend: Meeted and fixed git merge issues and assigned tasks to write tests for Backend and begin implementing relational databases
 4/5 2:30 - 4:30 Backend: Meeting to work on Spring Security and start writing Mockito tests for CRUD operations for API. Completed Spring Security
 and got on same page on how it works.
+4/13 1:00 - 3:30 Entire Team, except Rob: Meeting on how to integrate frontend with backend. Besides Docker containers, which methods we want to call and the formatting for what is returned. Regarding user authentication and user creation, we settled on a manager/employee format where storeid is entered only if employee is created.
+4/19 3:30 - 5:00 Backend: Meeting to develop User entity and Authention entity. Fix some bugs and misunderstanding regarding code. Also discuss how
+to return login info for the Frontend when registering a user.
