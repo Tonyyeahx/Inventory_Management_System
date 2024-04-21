@@ -67,11 +67,30 @@ function InventoriesPage() {
    * variable, or load dummy data before the integration phase
    */
   const fetchInventories = () => {
-    let URI = "https://8de114b4-ca1b-41e4-8485-ae484d35edc5.mock.pstmn.io/"
+    // let URI = "https://8de114b4-ca1b-41e4-8485-ae484d35edc5.mock.pstmn.io/"
+    // // TODO: Set inventories using real data fetched from the 'inventories' API endpoint
+    // fetch(`${URI}/inventories?store=123&category&supplier`)
+    //   .then(requestBody => requestBody.json())
+    //   .then(json => {
+    //         console.log(json)
+    //         setInventories(json)
+    //         setCleanInventories(json)
+    //     })
+
+    console.log("fetching from API ...")
+
+    const basicAuthString = btoa(`jack:jack`);
+
+    // Construct the authorization header
+    const headers = new Headers();
+    headers.append('Authorization', `Basic ${basicAuthString}`);
+
+    let URI = "http://localhost:8080"
     // TODO: Set inventories using real data fetched from the 'inventories' API endpoint
-    fetch(`${URI}/inventories?store=123&category&supplier`)
+    fetch(`${URI}/filterInventories`, {method: 'GET', headers: headers, })
       .then(requestBody => requestBody.json())
       .then(json => {
+            console.log("From the API:")
             console.log(json)
             setInventories(json)
             setCleanInventories(json)

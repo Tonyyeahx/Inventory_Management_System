@@ -33,6 +33,9 @@ public class LoginController {
     }
     @GetMapping("/")
     public String login() {
+        //todo 1
+        //username
+        //store_id
         return "login success";
     }
     @PostMapping("/login")
