@@ -1,0 +1,12 @@
+FROM node:20
+
+WORKDIR /usr/app
+
+COPY ../Frontend/inventoryManagementSystem/package.json .
+RUN npm install
+
+RUN mkdir node_modules/.cache && chmod -R 777 node_modules/.cache
+
+COPY ../Frontend/inventoryManagementSystem/ .
+
+CMD ["npm", "run", "dev"]
