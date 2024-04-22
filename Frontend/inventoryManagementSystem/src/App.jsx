@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import MerchantNavbar from "./components/MerchantNavbar";
 import InventoriesPage from "./pages/Inventories/InventoriesPage";
 import UserTestPage from "./pages/UserTestPage/userPage";
+import LoginPage from "./pages/Login/LoginPage";
+import RegisterPage from "./pages/Login/RegisterPage";
 
 // CSS imports
 import "./App.css"
@@ -21,10 +23,11 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <MerchantNavbar />
         <Routes>
-          <Route exact path="/" element={<InventoriesPage />} />
-          <Route path="/shopping" element={<UserTestPage />} /> {/* Route for ShoppingPage */}
+          <Route exact path="/" element={<LoginPage />} /> 
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/inventories" element={<InventoriesPage />} />
+          <Route path="/shopping" element={<UserTestPage />} />
         </Routes>
       </div>
     </Router>

@@ -1,0 +1,38 @@
+.register-page {
+  background-color: #ededed;
+
+  /* Make this page full screen */
+  flex: 1;  
+
+  /* Make the content of this page center both vertically and horizontally */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  border-radius: 40px;
+  height: 9em;
+  padding: 1.5em;
+}
+
+.user-input-panel {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 1.5em 2em;
+  min-width: 20em;  
+  /* Creating the glowing effect */
+  outline: none;
+  box-shadow: 0 0 5px #c0c0c0;
+}
+
+.register-text-fields {
+  margin-bottom: 1em;
+}
+
+.register-cancel-button {
+  margin-top: 1.5em;
+  display: flex;
+  justify-content: space-around;
+}

@@ -17,6 +17,7 @@ import java.util.Date;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:5173")
 public class LoginController {
 
     AuthoritiesService authoritiesService;
@@ -30,7 +31,13 @@ public class LoginController {
         this.usersService = usersService;
         this.storeService = storeService;
     }
-
+    @GetMapping("/")
+    public String login() {
+        //todo 1
+        //username
+        //store_id
+        return "login success";
+    }
     @PostMapping("/login")
     public String addUser(@RequestBody LoginDTO loginDTO) {
         //check username

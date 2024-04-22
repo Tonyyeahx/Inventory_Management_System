@@ -38,7 +38,7 @@ function MerchantNavbar() {
 
         {/* Start of the menu items */}
           <Menu>
-              <MenuItem icon={<StoreOutlineIcon />} component={<Link to="/" />}>
+              <MenuItem icon={<StoreOutlineIcon />} component={<Link to="/inventories" />}>
                 Inventories
               </MenuItem>
               

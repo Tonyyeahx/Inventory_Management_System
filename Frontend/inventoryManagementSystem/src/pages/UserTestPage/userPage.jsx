@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './userPage.css';
+import MerchantNavbar from '../../components/MerchantNavbar';
 
 function UserTestPage() {
   const [products, setProducts] = useState([
@@ -42,24 +43,29 @@ function UserTestPage() {
   };
 
   return (
-    <div className="product-container">
-      <h1 className="page-title">Shopping Page</h1>
-      <div className="product-list">
-        {products.map(product => (
-          <div key={product.id} className="product-item">
-            <h3>{product.name}</h3>
-            <p>Price: ${product.price}</p>
-            <div className="quantity-controls">
-              <button onClick={() => handleDecrement(product.id)}>-</button>
-              <p className="quantity">{product.quantity}</p>
-              <button onClick={() => handleIncrement(product.id)}>+</button>
+    <>
+      {/* The side navbar */}
+      <MerchantNavbar />
+    
+      <div className="product-container">
+        <h1 className="page-title">Shopping Page</h1>
+        <div className="product-list">
+          {products.map(product => (
+            <div key={product.id} className="product-item">
+              <h3>{product.name}</h3>
+              <p>Price: ${product.price}</p>
+              <div className="quantity-controls">
+                <button onClick={() => handleDecrement(product.id)}>-</button>
+                <p className="quantity">{product.quantity}</p>
+                <button onClick={() => handleIncrement(product.id)}>+</button>
+              </div>
+              <button className="buy-button" onClick={() => alert(`You just bought ${product.quantity} ${product.quantity > 1 ? 'items' : 'item'}: ${product.name}.`)}>Buy</button>
             </div>
-            <button className="buy-button" onClick={() => alert(`You just bought ${product.quantity} ${product.quantity > 1 ? 'items' : 'item'}: ${product.name}.`)}>Buy</button>
-          </div>
-        ))}
+          ))}
+        </div>
+        <button className="buy-button" onClick={handleBuy}>Buy Selected</button>
       </div>
-      <button className="buy-button" onClick={handleBuy}>Buy Selected</button>
-    </div>
+    </>
   );
 }
 
