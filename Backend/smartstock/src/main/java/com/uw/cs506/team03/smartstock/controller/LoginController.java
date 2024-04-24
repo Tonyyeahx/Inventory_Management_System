@@ -44,6 +44,9 @@ public class LoginController {
         if(user.isPresent()) {
             Users users = user.get();
             users.setPassword("Password");
+            if(users.getStore_id() == null) {
+                users.setStore_id(0);
+            }
             return users;
         }
         return null;

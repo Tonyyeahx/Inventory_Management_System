@@ -57,7 +57,7 @@ public class Users {
         this.enabled = enabled;
     }
 
-    public int getStore_id() {
+    public Integer getStore_id() {
         return store_id;
     }
 
