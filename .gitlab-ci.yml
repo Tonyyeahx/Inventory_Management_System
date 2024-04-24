@@ -1,1 +1,15 @@
-
+# jobs
+run_tests:
+  
+  image: openjdk:23-ea-18-jdk-oraclelinux9 # image of docker container default is Ruby
+  # GitLab managed runner use Ruby to start containers
+  # commands to run before script
+  # Docker is execution environment like shell. GitLab runners use Docker
+  # Before install and other things you need
+  # always use apt-get update
+  before_script:
+    - apt-get update && apt-get install make
+  # script required and a script that should be executed for job
+  # Our pipeline now runs test
+  script:
+    - make test # make command is avaliable with Java and Maven
