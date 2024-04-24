@@ -35,7 +35,6 @@ public class SecurityConfig {
         //** means no matter what it is are allow
         httpSecurity.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers(HttpMethod.GET, "/").hasRole("EMPLOYEE")
                         //inventories APIs
                         .requestMatchers(HttpMethod.GET, "/filterInventories/**").hasRole("EMPLOYEE")
                         .requestMatchers(HttpMethod.GET, "/inventories").hasRole("EMPLOYEE")
@@ -68,8 +67,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.PUT, "/products/**").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.DELETE, "/products/**").hasRole("MANAGER")
                         //login APIs
-                        .requestMatchers(HttpMethod.POST, "/login").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.POST, "/login/adduser").hasRole("MANAGER")
                         .requestMatchers(HttpMethod.GET, "/users/test/**").hasRole("MANAGER")
+                        .requestMatchers(HttpMethod.GET, "/login").hasRole("EMPLOYEE")
                         //financial metric APIs
                         .requestMatchers(HttpMethod.GET, "/greatestCost/**").hasRole("MANAGER")
 

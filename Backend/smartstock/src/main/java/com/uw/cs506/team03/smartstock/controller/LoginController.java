@@ -12,7 +12,10 @@ import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+
+import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Optional;
 
@@ -30,14 +33,22 @@ public class LoginController {
         this.usersService = usersService;
         this.storeService = storeService;
     }
-    @GetMapping("/")
-    public String login() {
+    @GetMapping("/login")
+    public Users login(@RequestHeader("Authorization") String authorizationHeader) {
         //todo 1
+        String[] credentials = parseBasicAuthHeader(authorizationHeader);
+        String username = credentials[0];
         //username
         //store_id
-        return "login success";
+        Optional<Users> user = usersService.findById(username);
+        if(user.isPresent()) {
+            Users users = user.get();
+            users.setPassword("Password");
+            return users;
+        }
+        return null;
     }
-    @PostMapping("/login")
+    @PostMapping("/login/adduser")
     public String addUser(@RequestBody LoginDTO loginDTO) {
         //check username
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -89,11 +100,11 @@ public class LoginController {
         return "O";
     }
 
-
-
-
-
-
-
+    private String[] parseBasicAuthHeader(String headerValue) {
+        String base64Credentials = headerValue.substring("Basic ".length()).trim();
+        byte[] decoded = Base64.getDecoder().decode(base64Credentials);
+        String credentials = new String(decoded, StandardCharsets.UTF_8);
+        return credentials.split(":", 2);
+    }
 
 }
