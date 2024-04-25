@@ -1,7 +1,16 @@
 # jobs
+#
+# build:
+#  stage: build
+#  script:
+#    - mvn clean package -DskipTests
+#  artifacts:
+#    paths:
+#      - target/*.jar
+
 run_tests:
   
-  image: openjdk:23-ea-18-jdk-oraclelinux9 # image of docker container default is Ruby
+  image: openjdk:latest # image of docker container default is Ruby
   # GitLab managed runner use Ruby to start containers
   # commands to run before script
   # Docker is execution environment like shell. GitLab runners use Docker
