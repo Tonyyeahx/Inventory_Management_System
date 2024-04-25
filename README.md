@@ -23,13 +23,13 @@ Smart Stock is a comprehensive solution designed to streamline inventory managem
 The primary customer for this software is a grocery store owner or manager seeking to streamline inventory management processes within their store. This customer is likely to be tech-savvy enough to navigate and utilize a digital interface but may not have extensive technical expertise. They value efficiency, accuracy, and organization in their inventory tracking efforts and are looking for a user-friendly solution that integrates seamlessly into their existing operations. Additionally, they may prioritize features such as real-time inventory updates, intuitive interface design, and the ability to access inventory data remotely for informed decision-making. Overall, this customer seeks to leverage technology to optimize inventory control and enhance the overall efficiency of their grocery store management.
 
 ### Definitions
-Inventory - A table that consists of all items across all stores. An item in an inventory is a Product with a corresponding storeid and other information.
-Product - A singular item that can be sold. 12 oz Sprite and 1 L Sprite are 2 different products.
-Store - An instance of a Store. All items in Inventory with the same storeid are sold at that store.
-Supplier - A way to save the contact information and location of the supplier who sells such Product.
-Category - A feature to determine the genre for Products to simplify filtering.
-User - A login credential saved by SmartStock to associate a user with certain permissions and Stores.
-Authentication - A role given to user to determine what level of access they have to the Inventory of a given storeid.
+Inventory - A table that consists of all items across all stores. An item in an inventory is a Product with a corresponding storeid and other information.<br>
+Product - A singular item that can be sold. 12 oz Sprite and 1 L Sprite are 2 different products.<br>
+Store - An instance of a Store. All items in Inventory with the same storeid are sold at that store.<br>
+Supplier - A way to save the contact information and location of the supplier who sells such Product.<br>
+Category - A feature to determine the genre for Products to simplify filtering.<br>
+User - A login credential saved by SmartStock to associate a user with certain permissions and Stores.<br>
+Authentication - A role given to user to determine what level of access they have to the Inventory of a given storeid.<br>
 
 
 ### User Requirements
