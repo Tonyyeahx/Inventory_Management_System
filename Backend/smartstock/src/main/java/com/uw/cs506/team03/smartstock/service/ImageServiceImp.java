@@ -10,12 +10,18 @@ import com.uw.cs506.team03.smartstock.entity.Image;
 import com.uw.cs506.team03.smartstock.repository.ImageRepository;
 
 @Service
-// This class is used to implement the ImageService interface
+/**
+ * This class is the service for the image table
+ */
 public class ImageServiceImp implements ImageService {
     @Autowired
     private ImageRepository imageRepository;
 
-    // Save image to database
+    /**
+     * This method is used to save an image
+     * @param file the image file
+     * @return the saved image
+     */
     @Override
     public Image saveImage(MultipartFile file) {
         Image image = new Image();
@@ -29,7 +35,11 @@ public class ImageServiceImp implements ImageService {
         }
     }
 
-    // Get image from database
+    /**
+     * This method is used to get an image by its id
+     * @param id the id of the image
+     * @return the image
+     */
     @Override
     public Image getImage(Long id) {
         return imageRepository.findById(id).get();
