@@ -12,10 +12,18 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+/**
+ * This class is used to configure security
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /**
+     * This method is used to create a UserDetailsManager
+     * @param dataSource the data source
+     * @return the UserDetailsManager
+     */
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
@@ -29,6 +37,12 @@ public class SecurityConfig {
 //        return new InMemoryUserDetailsManager(James, Jack);
 //    }
 
+    /**
+     * This method is used to create a SecurityFilterChain
+     * @param httpSecurity the http security
+     * @return the SecurityFilterChain
+     * @throws Exception if an exception occurs
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         //allow user access those APIs
