@@ -16,6 +16,7 @@ build_project:
   image: maven:latest
   script:
     - echo "Building the project with Maven"
+    - cd Backend/smartstock
     - mvn clean install -DskipTests=true
   artifacts:
     paths:
