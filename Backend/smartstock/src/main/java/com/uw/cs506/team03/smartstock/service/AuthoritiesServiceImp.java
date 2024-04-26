@@ -19,6 +19,12 @@ public class AuthoritiesServiceImp implements AuthoritiesService{
     private AuthoritiesRepository authoritiesRepository;
 
     /**
+     * This is the default constructor for the AuthoritiesServiceImp class
+     */
+    public AuthoritiesServiceImp() {
+    }
+
+    /**
      * This method is used to insert data into the authorities table
      * @param username the username of the user
      * @param authority the authority of the user

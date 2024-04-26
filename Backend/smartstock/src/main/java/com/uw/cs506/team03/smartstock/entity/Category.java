@@ -33,7 +33,9 @@ public class Category {
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Product> products;
 
-    
+    /**
+     * This is the default constructor for the Category class
+     */
     public Category() {
 
     }
@@ -64,8 +66,8 @@ public class Category {
     }
 
     /**
-     * This method is used to add a product to the category
-     * @param product the product
+     * This method is used to get the id of the category
+     * @return the id of the category
      */
     public int getCategoryId() {
         return categoryId;
@@ -95,11 +97,11 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    /**
-     * This method is used to add a product to the category
-     * @param product the product
-     */
     @Override
+    /**
+     * This method is used to get the string representation of the category
+     * @return the string representation of the category
+     */
     public String toString() {
         return "Category{" +
                 "categoryId=" + categoryId +

@@ -20,6 +20,12 @@ public class CategoryServiceImp implements CategoryService {
     private CategoryRepository categoryRepository;
 
     /**
+     * This is the default constructor for the CategoryServiceImp class
+     */
+    public CategoryServiceImp() {
+    }
+
+    /**
      * This method is used to find all the categories
      * @return the list of categories
      */

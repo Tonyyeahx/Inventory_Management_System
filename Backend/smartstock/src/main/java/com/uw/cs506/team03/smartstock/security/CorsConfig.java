@@ -11,6 +11,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 public class CorsConfig implements WebMvcConfigurer {
 
     /**
+     * This is the default constructor for the CorsConfig class
+     */
+    public CorsConfig() {
+    }
+
+    /**
      * This method is used to configure CORS
      * @param registry the CORS registry
      */

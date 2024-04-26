@@ -20,6 +20,12 @@ import javax.sql.DataSource;
 public class SecurityConfig {
 
     /**
+     * This is the default constructor for the SecurityConfig class
+     */
+    public SecurityConfig() {
+    }
+
+    /**
      * This method is used to create a UserDetailsManager
      * @param dataSource the data source
      * @return the UserDetailsManager

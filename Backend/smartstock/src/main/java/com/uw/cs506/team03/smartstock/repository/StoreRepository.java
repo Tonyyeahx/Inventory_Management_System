@@ -14,8 +14,7 @@ import java.util.List;
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 
     /**
-     * This method is used to find a store by its id
-     * @param storeId the id of the store
+     * THis method is used to find a store by its id
      * @return the store
      */
     @Query(value = "SELECT * FROM store", nativeQuery = true)

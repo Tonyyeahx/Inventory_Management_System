@@ -26,9 +26,11 @@ public class InventoryController {
     }
 
     /**
-     * This method is used to get the inventory with the highest cost
-     * @param storeId the id of the store
-     * @return the id of the inventory with the highest cost
+     * This method is used to add a product to a store in the inventory
+     * @param store the store id 
+     * @param category the category name
+     * @param supplier the supplier name
+     * @return the list of products
      */
     @GetMapping("/filterInventories")
     public List<AllInOneDTO> findProductsByDynamicCriteria(@RequestParam(name = "store", required = false) Integer store, @RequestParam(name = "category", required = false) String category, @RequestParam(name = "category", required = false) String supplier) {
@@ -72,7 +74,7 @@ public class InventoryController {
     
     /**
      * This method is used to get a specific tuple in the inventory table
-     * @param id
+     * @param id the id of the tuple to be retrieved
      * @return the tuple with the specified id
      */
     @GetMapping("/inventories/{id}")
@@ -82,7 +84,7 @@ public class InventoryController {
     
     /**
      * This method is used to add a tuple to the inventory table
-     * @param inventory
+     * @param inventory the tuple to be added
      * @return the tuple that was added
      */
     @PostMapping("inventories")
@@ -94,7 +96,7 @@ public class InventoryController {
     
     /**
      * This method is used to update a tuple in the inventory table
-     * @param inventory
+     * @param inventory the tuple to be updated
      * @return the updated tuple
      */
     @PutMapping("inventories")
@@ -105,7 +107,7 @@ public class InventoryController {
     
     /**
      * This method is used to delete a tuple in the inventory table
-     * @param id
+     * @param id the id of the tuple to be deleted
      * @return a string indicating whether the deletion was successful
      */
     @DeleteMapping("inventories/{id}")

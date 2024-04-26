@@ -37,7 +37,7 @@ public class StoreController {
     
     /**
      * This method is used to get a specific tuple in the store table
-     * @param id
+     * @param id the id of the tuple to be retrieved
      * @return the tuple with the specified id
      */
     @GetMapping("/stores/{id}")
@@ -47,7 +47,7 @@ public class StoreController {
     
     /**
      * This method is used to add a tuple to the store table
-     * @param store
+     * @param store the tuple to be added
      * @return the tuple that was added
      */
     @PostMapping("stores")
@@ -59,7 +59,7 @@ public class StoreController {
     
     /**
      * This method is used to update a tuple in the store table
-     * @param store
+     * @param store the tuple to be updated
      * @return the tuple that was updated
      */
     @PutMapping("stores")
@@ -70,7 +70,7 @@ public class StoreController {
     
     /**
      * This method is used to delete a tuple in the store table
-     * @param id
+     * @param id the id of the tuple to be deleted
      * @return a string indicating the success of the operation
      */
     @DeleteMapping("stores/{id}")

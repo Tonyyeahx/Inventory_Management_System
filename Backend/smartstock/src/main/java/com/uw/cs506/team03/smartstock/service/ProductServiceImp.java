@@ -17,11 +17,16 @@ public class ProductServiceImp implements ProductService{
     @Autowired
     private ProductRepository productRepository;
 
+    /**
+     * This is the default constructor for the ProductServiceImp class
+     */
+    public ProductServiceImp() {
+    }
 
     /**
      * This method is used to set the target quantity of a product
      * @param productId the id of the product
-     * @param targetQuantity the target quantity of the product
+     * @param targetCost the target cost of the product
      * @return a message indicating the success of the operation
      */
     @Override

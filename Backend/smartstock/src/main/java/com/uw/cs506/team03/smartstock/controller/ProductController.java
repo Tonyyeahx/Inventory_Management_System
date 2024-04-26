@@ -49,7 +49,7 @@ public class ProductController {
 
     /**
      * This method is used to get a specific tuple in the product table
-     * @param id
+     * @param id the id of the tuple to be retrieved
      * @return the tuple with the specified id
      */
     @GetMapping("/products/{id}")
@@ -59,7 +59,7 @@ public class ProductController {
     
     /**
      * This method is used to add a tuple to the product table
-     * @param product
+     * @param product the tuple to be added
      * @return the tuple that was added
      */
     @PostMapping("products")
@@ -71,7 +71,7 @@ public class ProductController {
     
     /**
      * This method is used to update a tuple in the product table
-     * @param product
+     * @param product the tuple to be updated
      * @return the updated tuple
      */
     @PutMapping("products")
@@ -82,7 +82,7 @@ public class ProductController {
     
     /**
      * This method is used to delete a tuple in the product table
-     * @param id
+     * @param id the id of the tuple to be deleted
      * @return a string indicating whether the deletion was successful
      */
     @DeleteMapping("products/{id}")

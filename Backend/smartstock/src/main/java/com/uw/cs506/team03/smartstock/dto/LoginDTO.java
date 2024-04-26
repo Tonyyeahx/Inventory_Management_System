@@ -10,6 +10,9 @@ public class LoginDTO {
     private String role;
     private int storeId;
 
+    /**
+     * This is the default constructor for the LoginDTO class
+     */
     public LoginDTO() {
     }
 

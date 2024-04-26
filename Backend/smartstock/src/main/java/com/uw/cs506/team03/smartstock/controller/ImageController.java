@@ -20,8 +20,14 @@ public class ImageController {
     private ImageService imageService;
 
     /**
+     * This is the default constructor for the ImageController class
+     */
+    public ImageController() {
+    }
+
+    /**
      * This method is used to upload an image
-     * @param file
+     * @param file the image file
      * @return the image that was uploaded
      */
     @PostMapping("images/upload")
@@ -36,7 +42,7 @@ public class ImageController {
 
     /**
      * This method is used to get an image
-     * @param id
+     * @param id the id of the image
      * @return the image with the specified id
      */
     @GetMapping("images/{id}")

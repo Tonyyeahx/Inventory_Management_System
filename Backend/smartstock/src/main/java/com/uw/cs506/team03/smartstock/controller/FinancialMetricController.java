@@ -23,8 +23,15 @@ public class FinancialMetricController {
     InventoryService inventoryService;
 
     /**
-     * This method is used to get all the tuples in the store table
-     * @return a list of all the tuples in the store table
+     * This is the default constructor for the FinancialMetricController class
+     */
+    public FinancialMetricController(){
+    }
+
+    /**
+     * This method is used to get the store with the highest revenue
+     * @param storeId the id of the store
+     * @return the store id
      */
     @GetMapping("/greatestCost/{storeId}")  // Fix the path variable name here to match the method parameter
     public int getGreatestCost(@PathVariable int storeId) {

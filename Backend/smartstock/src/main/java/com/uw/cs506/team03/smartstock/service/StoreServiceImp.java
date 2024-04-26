@@ -17,6 +17,12 @@ public class StoreServiceImp implements StoreService{
     private StoreRepository storeRepository;
 
     /**
+     * This is the default constructor for the StoreServiceImp class
+     */
+    public StoreServiceImp() {
+    }
+
+    /**
      * This method is used to find all the stores
      * @return the list of stores
      */

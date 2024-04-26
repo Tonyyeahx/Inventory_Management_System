@@ -24,6 +24,9 @@ public class Authorities {
     @Column(name = "authority")
     private String authority;
 
+    /**
+     * This is the default constructor for the Authorities class
+     */
     public Authorities() {
     }
 

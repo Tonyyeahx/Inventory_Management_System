@@ -5,12 +5,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import java.util.Date;
 
-@Entity
-@Table(name = "inventory")
-
 /**
  * This class is the entity for the inventory table
  */
+@Entity
+@Table(name = "inventory")
 public class Inventory{
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -67,6 +66,9 @@ public class Inventory{
     @JsonIgnore
     private Store store;
 
+    /**
+     * This is the default constructor for the Inventory class
+     */
     public Inventory() {
 
     }
@@ -74,6 +76,8 @@ public class Inventory{
     /**
      * This is the constructor for the Inventory class
      * @param inventoryId the id of the inventory
+     * @param storeId the id of the store
+     * @param productId the id of the product
      * @param quantity the quantity of the product in the inventory
      * @param lastOrderDate the last order date of the product in the inventory
      * @param orderQuantity the order quantity of the product in the inventory

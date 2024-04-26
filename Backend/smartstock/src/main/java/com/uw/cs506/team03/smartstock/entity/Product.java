@@ -8,12 +8,11 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
-@Entity
-@Table(name = "product")
-
 /**
  * This class is the entity for the product table
  */
+@Entity
+@Table(name = "product")
 public class Product {
     @Id // pk
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -65,6 +64,9 @@ public class Product {
     @JoinColumn(name = "image_id", referencedColumnName = "image_id")
     private Image image;
 
+    /**
+     * This is the default constructor for the Product class
+     */
     public Product() {
 
     }

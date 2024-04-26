@@ -22,6 +22,9 @@ public class AllInOneDTO {
     private int supplierId;
     private String supplierName;
 
+    /**
+     * This is the default constructor for the AllInOneDTO class
+     */
     public AllInOneDTO() {
     }
 

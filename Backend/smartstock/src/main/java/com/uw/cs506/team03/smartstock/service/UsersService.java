@@ -24,15 +24,15 @@ public interface UsersService {
     public Optional<Users> findById(String id);
 
     /**
-     * This method is used to find a user by its username
-     * @param username the username of the user
-     * @return the user
+     * This method is used to save a user
+     * @param users the user to be saved
+     * @return the saved user
      */
     public Users save(Users users);
 
     /**
-     * This method is used to delete a user by its id
-     * @param id the id of the user
+     * This method is used to delete a user by its username
+     * @param username the username of the user
      */
     public void deleteByUsername(String username);
 

@@ -19,7 +19,7 @@ public class CategoryController {
 
     /**
      * This is the constructor for the CategoryController class
-     * @param categoryService
+     * @param categoryService the service for the category table
      */
     @Autowired
     public  CategoryController(CategoryService categoryService) {
@@ -37,7 +37,7 @@ public class CategoryController {
     
     /**
      * This method is used to get a specific tuple in the category table
-     * @param id
+     * @param id the id of the tuple to be retrieved
      * @return the tuple with the specified id
      */
     @GetMapping("/categories/{id}")
@@ -47,7 +47,7 @@ public class CategoryController {
     
     /**
      * This method is used to add a tuple to the category table
-     * @param category
+     * @param category the tuple to be added
      * @return the tuple that was added
      */
     @PostMapping("categories")
@@ -59,7 +59,7 @@ public class CategoryController {
     
     /**
      * This method is used to update a tuple in the category table
-     * @param category
+     * @param category the updated tuple
      * @return the updated tuple
      */
     @PutMapping("categories")
@@ -70,7 +70,7 @@ public class CategoryController {
     
     /**
      * This method is used to delete a tuple in the category table
-     * @param id
+     * @param id the id of the tuple to be deleted
      * @return a string indicating whether the deletion was successful
      */
     @DeleteMapping("categories/{id}")

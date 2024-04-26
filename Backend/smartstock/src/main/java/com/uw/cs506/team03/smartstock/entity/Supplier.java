@@ -39,6 +39,9 @@ public class Supplier {
     @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL)
     private List<Product> products;
 
+    /**
+     * This is the default constructor for the Supplier class
+     */
     public Supplier() {
 
     }

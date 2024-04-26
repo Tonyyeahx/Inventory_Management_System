@@ -18,6 +18,12 @@ public class SupplierServiceImp implements SupplierService{
     private SupplierRepository supplierRepository;
 
     /**
+     * This is the default constructor for the SupplierServiceImp class
+     */
+    public SupplierServiceImp() {
+    }
+
+    /**
      * This method is used to find all the suppliers
      * @return the list of suppliers
      */

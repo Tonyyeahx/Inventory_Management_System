@@ -25,6 +25,9 @@ public class Image {
     @Lob
     private byte[] data;
 
+    /**
+     * This is the default constructor for the Image class
+     */
     public Image() {
     }
 

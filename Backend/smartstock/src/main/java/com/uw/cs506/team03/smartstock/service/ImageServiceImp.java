@@ -9,13 +9,19 @@ import org.springframework.web.multipart.MultipartFile;
 import com.uw.cs506.team03.smartstock.entity.Image;
 import com.uw.cs506.team03.smartstock.repository.ImageRepository;
 
-@Service
 /**
  * This class is the service for the image table
  */
+@Service
 public class ImageServiceImp implements ImageService {
     @Autowired
     private ImageRepository imageRepository;
+
+    /**
+     * This is the default constructor for the ImageServiceImp class
+     */
+    public ImageServiceImp() {
+    }
 
     /**
      * This method is used to save an image

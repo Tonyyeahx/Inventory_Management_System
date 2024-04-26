@@ -44,7 +44,7 @@ public class LoginController {
 
     /**
      * This method is used to login
-     * @param authorizationHeader
+     * @param authorizationHeader the header value
      * @return the user that logged in
      */
     @GetMapping("/login")
@@ -68,7 +68,7 @@ public class LoginController {
 
     /**
      * This method is used to add a user
-     * @param loginDTO
+     * @param loginDTO the user to be added
      * @return a string indicating the success of the operation
      */
     @PostMapping("/login/adduser")
@@ -119,7 +119,7 @@ public class LoginController {
     
     /**
      * This method is used to find a user by name
-     * @param id
+     * @param id the id of the user to be found
      * @return a string indicating the success of the operation
      */
     @GetMapping("/users/test/{id}")
@@ -131,7 +131,7 @@ public class LoginController {
 
     /**
      * This method is used to parse the basic auth header
-     * @param headerValue 
+     * @param headerValue the header value
      * @return the credentials
      */
     private String[] parseBasicAuthHeader(String headerValue) {

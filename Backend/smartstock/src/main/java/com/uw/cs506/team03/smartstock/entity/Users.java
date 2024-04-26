@@ -38,6 +38,9 @@ public class Users {
     @Column(name = "store_id")
     private Integer store_id;
 
+    /**
+     * This is the default constructor for the Users class
+     */
     public Users() {
 
     }

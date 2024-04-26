@@ -37,7 +37,7 @@ public class SupplierController {
     
     /**
      * This method is used to get a specific tuple in the supplier table
-     * @param id
+     * @param id the id of the tuple to be retrieved
      * @return the tuple with the specified id
      */
     @GetMapping("/suppliers/{id}")
@@ -47,7 +47,7 @@ public class SupplierController {
     
     /**
      * This method is used to add a tuple to the supplier table
-     * @param supplier
+     * @param supplier the tuple to be added
      * @return the tuple that was added
      */
     @PostMapping("suppliers")
@@ -59,7 +59,7 @@ public class SupplierController {
     
     /**
      * This method is used to update a tuple in the supplier table
-     * @param supplier
+     * @param supplier the tuple to be updated
      * @return the tuple that was updated
      */
     @PutMapping("suppliers")
@@ -70,7 +70,7 @@ public class SupplierController {
     
     /**
      * This method is used to delete a tuple in the supplier table
-     * @param id
+     * @param id the id of the tuple to be deleted
      * @return a string indicating whether the deletion was successful
      */
     @DeleteMapping("suppliers/{id}")

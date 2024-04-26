@@ -18,7 +18,14 @@ public class UsersServiceImp implements UsersService{
     private UsersRepository usersRepository;
 
     /**
-     * This method is used to find all the users
+     * This is the default constructor for the UsersServiceImp class
+     */
+    public UsersServiceImp() {
+    }
+
+    /**
+     * This method is used to find all the users.
+     * 
      * @return the list of users
      */
     @Override
@@ -27,9 +34,10 @@ public class UsersServiceImp implements UsersService{
     }
 
     /**
-     * This method is used to find a user by its id
+     * This method is used to find a user by its id.
+     * 
      * @param id the id of the user
-     * @return the user
+     * @return the user, if found; otherwise, null
      */
     @Override
     public Optional<Users> findById(String id) {
@@ -43,7 +51,8 @@ public class UsersServiceImp implements UsersService{
     }
 
     /**
-     * This method is used to save a user
+     * This method is used to save a user.
+     * 
      * @param users the user to be saved
      * @return the saved user
      */
@@ -53,8 +62,9 @@ public class UsersServiceImp implements UsersService{
     }
 
     /**
-     * This method is used to delete a user by its id
-     * @param id the id of the user
+     * This method is used to delete a user by its username.
+     * 
+     * @param username the username of the user to be deleted
      */
     @Override
     public void deleteByUsername(String username) {

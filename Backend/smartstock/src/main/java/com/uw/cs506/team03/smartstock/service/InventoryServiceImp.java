@@ -20,6 +20,12 @@ public class InventoryServiceImp implements InventoryService {
     private InventoryRepository inventoryRepository;
 
     /**
+     * This is the default constructor for the InventoryServiceImp class
+     */
+    public InventoryServiceImp() {
+    }
+
+    /**
      * This method is used to add a product to a store in the inventory
      */
     @Override

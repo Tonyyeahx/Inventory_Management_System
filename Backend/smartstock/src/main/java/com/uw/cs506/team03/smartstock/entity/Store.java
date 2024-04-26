@@ -57,6 +57,9 @@ public class Store {
     @OneToMany(mappedBy = "store", cascade = CascadeType.ALL)
     private List<Inventory> inventories;
 
+    /**
+     * This is the default constructor for the Store class
+     */
     public Store() {
 
     }
