@@ -7,9 +7,23 @@
 #  artifacts:
 #    paths:
 #      - target/*.jar
+stages:
+  - build
+  - test
 
-run_tests:
-  
+build_project:
+  stage: build
+  image: maven:latest
+  script:
+    - echo "Building the project with Maven"
+    - mvn clean install -DskipTests=true
+  artifacts:
+    paths:
+      - target/
+
+
+run_backend_tests:
+  stage: test
   image: openjdk:latest # image of docker container default is Ruby
   # GitLab managed runner use Ruby to start containers
   # commands to run before script
@@ -17,8 +31,11 @@ run_tests:
   # Before install and other things you need
   # always use apt-get update
   before_script:
-    - apt-get update && apt-get install make
+    - apt-get update
   # script required and a script that should be executed for job
   # Our pipeline now runs test
   script:
-    - make test # make command is avaliable with Java and Maven
+    - echo "Changing to the test directory"
+    - cd Backend/smartstock/src/test/java/com/uw/cs506/team03/smartstock/controller
+    - echo "Running InventoryControllerDTOTest.java"
+    - ./gradlew test --tests *InventoryControllerDTOTest
