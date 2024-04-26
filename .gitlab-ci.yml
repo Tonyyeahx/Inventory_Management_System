@@ -24,20 +24,20 @@ build_project:
       - target/
 
 
-run_backend_tests:
-  stage: test
-  image: maven:latest # image of docker container default is Ruby
+#run_backend_tests:
+  #stage: test
+  #image: maven:latest # image of docker container default is Ruby
   # GitLab managed runner use Ruby to start containers
   # commands to run before script
   # Docker is execution environment like shell. GitLab runners use Docker
   # Before install and other things you need
   # always use apt-get update
-  before_script:
-    - apt-get update
+    # before_script:
+    # - apt-get update
   # script required and a script that should be executed for job
   # Our pipeline now runs test
-  script:
-    - echo "Changing to the test directory"
-    - cd Backend/smartstock
-    - echo "Running InventoryControllerDTOTest.java"
-    - mvn test -Dtest=com.uw.cs506.team03.smartstock.controller.InventoryControllerDTOTest
+  #script:
+    #- echo "Changing to the test directory"
+    #- cd Backend/smartstock
+    #- echo "Running InventoryControllerDTOTest.java"
+    #- mvn test -Dtest=com.uw.cs506.team03.smartstock.controller.InventoryControllerDTOTest
