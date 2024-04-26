@@ -1,0 +1,7 @@
+com.uw.cs506.team03.smartstock
+com.uw.cs506.team03.smartstock.controller
+com.uw.cs506.team03.smartstock.dto
+com.uw.cs506.team03.smartstock.entity
+com.uw.cs506.team03.smartstock.repository
+com.uw.cs506.team03.smartstock.security
+com.uw.cs506.team03.smartstock.service
