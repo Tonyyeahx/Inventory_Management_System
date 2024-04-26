@@ -13,11 +13,12 @@ stages:
 
 build_project:
   stage: build
-  image: maven:latest
+  # image: maven:latest
   script:
     - echo "Building the project with Maven"
     - cd Backend/smartstock
-    - mvn clean install -DskipTests=true
+    - ./mvnw clean install -DskipTests
+    - cp target/smartstock-0.0.1-SNAPSHOT.jar ../../Docker/
   artifacts:
     paths:
       - target/
