@@ -104,6 +104,12 @@ Here is a user requirements sample from [Crookshanks](https://learning-oreilly-c
     1. As a grocery store employee or manager, I want to be able to search up the inventory that I want to access by product name, supplier, category, or their matching IDs.
         1. The system should have an panel that allows users to select what logic they want to search by.
         2. The system should have a real time search bar that filters out the invetories table with each key stroke.
+        
+7. User Case: Authentication and Roles
+    1. As a manager of SmartStock, I want to the system to have various levels of permission so that I can edit my inventory, but my employees can only view them.
+        1. Only Managers should have to ability to edit the Store Inventory while Employees only have view access.
+        2. Role of the user should be associated with user and password and restricted based on role permissions
+
 
 ### User Interface Requirements
 
