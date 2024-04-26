@@ -7,9 +7,16 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * This interface is the repository for the store table
+ */
 @Repository
 public interface StoreRepository extends JpaRepository<Store, Integer> {
 
+    /**
+     * THis method is used to find a store by its id
+     * @return the store
+     */
     @Query(value = "SELECT * FROM store", nativeQuery = true)
     List<Store> sqltest();
 

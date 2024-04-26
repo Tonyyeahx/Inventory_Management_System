@@ -9,9 +9,19 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * This interface is the repository for the inventory table
+ */
 @Repository
 public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
 
+    /**
+     * This method is used to find products by dynamic criteria
+     * @param store the store id
+     * @param category the category name
+     * @param supplier the supplier name
+     * @return the list of products
+     */
     @Query("SELECT new com.uw.cs506.team03.smartstock.dto.AllInOneDTO(" +
             "i.inventoryId, s.storeId, p.productId, p.productName, c.categoryId, c.categoryName, p.cost, i.sellPrice, i.quantity, i.discount, i.lastOrderDate, i.orderQuantity, sup.supplierId, sup.supplierName) " +
             "FROM Product p JOIN Inventory i ON p.productId = i.product.productId " +
@@ -23,11 +33,20 @@ public interface InventoryRepository extends JpaRepository<Inventory, Integer> {
             "(:supplier IS NULL OR sup.supplierName = :supplier)")
     List<AllInOneDTO> findProductsByDynamicCriteria(@Param("store") Integer store, @Param("category") String category, @Param("supplier") String supplier);
 
-    
+    /**
+     * This method is used to find the highest cost inventory
+     * @param storeId the id of the store
+     * @return the inventory
+     */
     @Query("SELECT i FROM Inventory i WHERE i.store.storeId = :storeId ORDER BY i.product.cost DESC")
     List<Inventory> findHighestCostByStoreId(@Param("storeId") int storeId);
 
-
+    /**
+     * This method is used to find the inventory by store id and product id
+     * @param storeId the id of the store
+     * @param productId the id of the product
+     * @return the inventory
+     */
     @Query("SELECT i FROM Inventory i WHERE i.store.storeId = :storeId AND i.product.productId = :productId")
     Inventory findByStoreIdAndProductId(@Param("storeId") int storeId, @Param("productId") int productId);
 

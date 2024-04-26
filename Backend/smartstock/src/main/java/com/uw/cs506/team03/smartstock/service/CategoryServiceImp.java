@@ -10,17 +10,35 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * This class is the service for the category table
+ */
 @Service
 public class CategoryServiceImp implements CategoryService {
 
     @Autowired
     private CategoryRepository categoryRepository;
 
+    /**
+     * This is the default constructor for the CategoryServiceImp class
+     */
+    public CategoryServiceImp() {
+    }
+
+    /**
+     * This method is used to find all the categories
+     * @return the list of categories
+     */
     @Override
     public List<Category> findAll() {
         return categoryRepository.findAll();
     }
 
+    /**
+     * This method is used to find a category by its id
+     * @param id the id of the category
+     * @return the category
+     */
     @Override
     public Category findById(int id) {
         Optional<Category> category = categoryRepository.findById(id);
@@ -32,11 +50,20 @@ public class CategoryServiceImp implements CategoryService {
         }
     }
 
+    /**
+     * This method is used to save a category
+     * @param category the category to be saved
+     * @return the saved category
+     */
     @Override
     public Category save(Category category) {
         return categoryRepository.save(category);
     }
 
+    /**
+     * This method is used to delete a category by its id
+     * @param id the id of the category
+     */
     @Override
     public void deleteById(int id) {
         categoryRepository.deleteById(id);

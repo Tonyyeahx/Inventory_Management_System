@@ -10,12 +10,26 @@ import org.springframework.web.multipart.MultipartFile;
 import com.uw.cs506.team03.smartstock.entity.Image;
 import com.uw.cs506.team03.smartstock.service.ImageService;
 
+/**
+ * This class is the controller for the images
+ */
 @RestController
 public class ImageController {
     
     @Autowired
     private ImageService imageService;
 
+    /**
+     * This is the default constructor for the ImageController class
+     */
+    public ImageController() {
+    }
+
+    /**
+     * This method is used to upload an image
+     * @param file the image file
+     * @return the image that was uploaded
+     */
     @PostMapping("images/upload")
     public ResponseEntity<Image> uploadImage(@RequestParam("file") MultipartFile file) {
         try {
@@ -26,6 +40,11 @@ public class ImageController {
         }
     }
 
+    /**
+     * This method is used to get an image
+     * @param id the id of the image
+     * @return the image with the specified id
+     */
     @GetMapping("images/{id}")
     public ResponseEntity<byte[]> getImage(@PathVariable Long id) {
         try {
