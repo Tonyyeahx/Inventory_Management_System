@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * This class is the controller for the financial metrics
+ */
 @RestController
 public class FinancialMetricController {
 
@@ -19,6 +22,10 @@ public class FinancialMetricController {
     @Autowired
     InventoryService inventoryService;
 
+    /**
+     * This method is used to get all the tuples in the store table
+     * @return a list of all the tuples in the store table
+     */
     @GetMapping("/greatestCost/{storeId}")  // Fix the path variable name here to match the method parameter
     public int getGreatestCost(@PathVariable int storeId) {
         Inventory inventory = inventoryService.findHighestCostInventory(storeId);

@@ -9,39 +9,70 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * This class is the controller for the category table
+ */
 @RestController
 public class CategoryController {
 
     CategoryService categoryService;
 
+    /**
+     * This is the constructor for the CategoryController class
+     * @param categoryService
+     */
     @Autowired
     public  CategoryController(CategoryService categoryService) {
         this.categoryService = categoryService;
     }
 
+    /**
+     * This method is used to get all the tuples in the category table
+     * @return a list of all the tuples in the category table
+     */
     @GetMapping("/categories")
     public List<Category> findAll() {
         return categoryService.findAll();
     }
-    //find one tuple in the category table by id
+    
+    /**
+     * This method is used to get a specific tuple in the category table
+     * @param id
+     * @return the tuple with the specified id
+     */
     @GetMapping("/categories/{id}")
     public Category findById(@PathVariable int id) {
         return categoryService.findById(id);
     }
-    //add one tuple in the category table
+    
+    /**
+     * This method is used to add a tuple to the category table
+     * @param category
+     * @return the tuple that was added
+     */
     @PostMapping("categories")
     public Category addTuple(@RequestBody Category category) {
         category.setCategoryId(0);
         Category theTuple = categoryService.save(category);
         return  theTuple;
     }
-    //update one tuple in the category table
+    
+    /**
+     * This method is used to update a tuple in the category table
+     * @param category
+     * @return the updated tuple
+     */
     @PutMapping("categories")
     public Category updateTuple(@RequestBody Category category) {
         Category theTuple = categoryService.save(category);
         return  theTuple;
     }
-    //delete one tuple in the category table
+    
+    /**
+     * This method is used to delete a tuple in the category table
+     * @param id
+     * @return a string indicating whether the deletion was successful
+     */
     @DeleteMapping("categories/{id}")
     public String deleteTuple(@PathVariable int id) {
         Category theTuple = categoryService.findById(id);

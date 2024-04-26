@@ -19,6 +19,9 @@ import java.util.Base64;
 import java.util.Date;
 import java.util.Optional;
 
+/**
+ * This class is the controller for the login
+ */
 @RestController
 public class LoginController {
 
@@ -26,13 +29,24 @@ public class LoginController {
     UsersService usersService;
     StoreService storeService;
 
-
+    /**
+     * This is the constructor for the LoginController class
+     * @param authoritiesService the service for the authorities table
+     * @param usersService the service for the users table
+     * @param storeService the service for the store table
+     */
     @Autowired
     public LoginController(AuthoritiesService authoritiesService, UsersService usersService, StoreService storeService) {
         this.authoritiesService = authoritiesService;
         this.usersService = usersService;
         this.storeService = storeService;
     }
+
+    /**
+     * This method is used to login
+     * @param authorizationHeader
+     * @return the user that logged in
+     */
     @GetMapping("/login")
     public Users login(@RequestHeader("Authorization") String authorizationHeader) {
         //todo 1
@@ -51,6 +65,12 @@ public class LoginController {
         }
         return null;
     }
+
+    /**
+     * This method is used to add a user
+     * @param loginDTO
+     * @return a string indicating the success of the operation
+     */
     @PostMapping("/login/adduser")
     public String addUser(@RequestBody LoginDTO loginDTO) {
         //check username
@@ -96,6 +116,12 @@ public class LoginController {
         return "add user success";
     }
 
+    
+    /**
+     * This method is used to find a user by name
+     * @param id
+     * @return a string indicating the success of the operation
+     */
     @GetMapping("/users/test/{id}")
     public String findUsersByName(@PathVariable String id) {
         Optional<Users> users = usersService.findById(id);
@@ -103,6 +129,11 @@ public class LoginController {
         return "O";
     }
 
+    /**
+     * This method is used to parse the basic auth header
+     * @param headerValue 
+     * @return the credentials
+     */
     private String[] parseBasicAuthHeader(String headerValue) {
         String base64Credentials = headerValue.substring("Basic ".length()).trim();
         byte[] decoded = Base64.getDecoder().decode(base64Credentials);
