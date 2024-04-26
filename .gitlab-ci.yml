@@ -19,9 +19,9 @@ build_project:
     - cd Backend/smartstock
     - ./mvnw clean install -DskipTests
     - cp target/smartstock-0.0.1-SNAPSHOT.jar ../../Docker/
-  artifacts:
-    paths:
-      - target/
+  #artifacts:
+    #paths:
+      #- target/
 
 
 #run_backend_tests:
