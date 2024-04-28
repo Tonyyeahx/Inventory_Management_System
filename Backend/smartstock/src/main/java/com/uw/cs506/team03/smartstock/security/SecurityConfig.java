@@ -35,20 +35,6 @@ public class SecurityConfig {
         return new JdbcUserDetailsManager(dataSource);
     }
 
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsManager() {
-//        UserDetails James = User.builder().username("James").password("{noop}123").roles("EMPLOYEE").build();
-//        UserDetails Jack = User.builder().username("Jack").password("{noop}321").roles("EMPLOYEE", "MANAGER").build();
-//
-//        return new InMemoryUserDetailsManager(James, Jack);
-//    }
-
-    /**
-     * This method is used to create a SecurityFilterChain
-     * @param httpSecurity the http security
-     * @return the SecurityFilterChain
-     * @throws Exception if an exception occurs
-     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         //allow user access those APIs
@@ -99,5 +85,7 @@ public class SecurityConfig {
 
         return httpSecurity.build();
     }
+
+
 
 }
