@@ -12,10 +12,24 @@ import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
+/**
+ * This class is used to configure security
+ */
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
 
+    /**
+     * This is the default constructor for the SecurityConfig class
+     */
+    public SecurityConfig() {
+    }
+
+    /**
+     * This method is used to create a UserDetailsManager
+     * @param dataSource the data source
+     * @return the UserDetailsManager
+     */
     @Bean
     public UserDetailsManager userDetailsManager(DataSource dataSource) {
         return new JdbcUserDetailsManager(dataSource);
